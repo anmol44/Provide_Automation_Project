@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="44139" started-at="2022-01-19T16:21:32Z" finished-at="2022-01-19T16:22:16Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="44139" started-at="2022-01-19T16:21:32Z" finished-at="2022-01-19T16:22:16Z">
+      <class name="invoice.Sbs">
+        <test-method status="PASS" signature="startDriver()[pri:0, instance:invoice.Sbs@51e5fc98]" name="startDriver" is-config="true" duration-ms="4824" started-at="2022-01-19T21:51:32Z" finished-at="2022-01-19T21:51:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startDriver -->
+        <test-method status="PASS" signature="sbs(java.lang.String)[pri:0, instance:invoice.Sbs@51e5fc98]" name="sbs" duration-ms="39300" started-at="2022-01-19T21:51:36Z" finished-at="2022-01-19T21:52:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TestDataProvideInSBS]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sbs -->
+      </class> <!-- invoice.Sbs -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
