@@ -21,6 +21,8 @@ public class LogOut extends BasePage {
 	static String allSessionsLogOutXpath = "//span[@class='ng-scope' and contains(text(),'All sessions')]";
 	static String allSessionsLogOutInXpath="//button[@class='pt-btn' and contains(text(),'All sessions')]";
 	static String logOutUrl = "https://voflusoprasttest.p2p.basware.com/edge/#/logout/_2Fedge_2Fapi_2Flogout";
+	
+	//logout url for Invoice
 	static String LogOutInUrl = "https://voflusoprasttest.p2p.basware.com/ap/invoice?v=doc&s=0&docId=6a68077bfb934e6094fb22952c2f6c91";
 	
 	static String unsavedDataDiv="//div[@class='modal-content']//child :: pal-modal[@title-text='Unsaved data warning']";
