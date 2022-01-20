@@ -61,10 +61,10 @@ public ViewDetails viewDetails(String quantity,String unitPrice,String paymentTe
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();
 		
-		Double price;
+		Integer price;
 		
-		price= Double.parseDouble(quantity)*Double.parseDouble(unitPrice); 
-		String sellingPrice= Double.toString(price);
+		price= Integer.parseInt(quantity)*Integer.parseInt(unitPrice); 
+		String sellingPrice= Integer.toString(price);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceXpath))).sendKeys(sellingPrice);
 		if(!paymentTerms.isEmpty()) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(paymentTermsButtonXpath))).click();
