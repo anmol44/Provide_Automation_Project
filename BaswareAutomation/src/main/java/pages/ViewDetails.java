@@ -27,7 +27,7 @@ public class ViewDetails extends BasePage {
 	
 	
 	
-public ViewDetails viewDetails(String quantity,String unitPrice,String paymentTerms) {
+	public ViewDetails viewDetails(String quantity,String unitPrice,String paymentTerms) {
 		
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();

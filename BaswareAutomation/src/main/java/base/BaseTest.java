@@ -23,10 +23,12 @@ public class BaseTest {
 	
 	
 	
-	/*
-	 * @AfterMethod public void quitDriver() throws InterruptedException {
-	 * Thread.sleep(100); driver.quit(); }
-	 */
+	
+	  @AfterMethod 
+	  public void quitDriver() throws InterruptedException {
+	  Thread.sleep(100); 
+	  driver.quit(); }
+	 
 	 
 	 
 }

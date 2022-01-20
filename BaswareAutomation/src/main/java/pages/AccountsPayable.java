@@ -33,6 +33,8 @@ public class AccountsPayable extends BasePage {
 	static String supplierCodeSelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
 	static String supplierCodeSelect2Xpath="')]";
 	
+	// xpaths for Supplier code
+	
 	static String supplierCodeButtonXpath="(//button[@class='pt-select-toggle-btn'])[5]"; 
 	static String supplierCodePanelXpath="/html/body/pt-floating-panel";
 	static String supplierCodeSearchContainerXpath="//div[@class='searchContainer']";
