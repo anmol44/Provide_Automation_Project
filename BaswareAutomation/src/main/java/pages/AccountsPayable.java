@@ -39,7 +39,7 @@ public class AccountsPayable extends BasePage {
 	static String supplierCodePanelXpath="/html/body/pt-floating-panel";
 	static String supplierCodeSearchContainerXpath="//div[@class='searchContainer']";
 	static String supplierCodeInputXpath="/html/body/pt-floating-panel/div[2]/div/div/ng-component/div/div/div[2]/div[1]/pt-search-input/input";
-	static String supplierCodeSelectXpath="(//button[@class='pt-btn action-input-modal-btn'])";
+	static String supplierCodeSelectXpath="(//button[@class='pt-btn action-input-modal-btn' and not(@disabled)])";
 	static String supplierSearchInputXpath="//pt-search-input[@class='search-input']";
 	static String invoiceDateXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[1]/div[2]/div/div/div/div[2]/div/ia-invoice-details-tabs/pt-tabs/mat-tab-group/div/mat-tab-body[2]/div/ia-invoice-header/form/div[10]/pt-field-container/div/div/div/pt-date-picker/div/div[1]/div/div[1]/input";
 	static String netSumXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[1]/div[2]/div/div/div/div[2]/div/ia-invoice-details-tabs/pt-tabs/mat-tab-group/div/mat-tab-body[2]/div/ia-invoice-header/form/div[13]/pt-field-container/div/div/div/gl-general-editor/pt-decimal-field-editor/input";

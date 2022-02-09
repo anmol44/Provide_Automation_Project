@@ -19,15 +19,11 @@ public class BaseTest {
 		javascriptExecutor = (JavascriptExecutor) driver;
 	}
 	
-
 	
-	
-	
-	
-	  @AfterMethod 
-	  public void quitDriver() throws InterruptedException {
-	  Thread.sleep(100); 
-	  driver.quit(); }
+	/*
+	 * @AfterMethod public void quitDriver() throws InterruptedException {
+	 * Thread.sleep(100); driver.quit(); }
+	 */
 	 
 	 
 	 

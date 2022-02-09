@@ -33,7 +33,7 @@ public class Matching extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(refreshButtonXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(refreshButtonXpath)));
 		
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(openToMatchXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(openToMatchXpath))).click();
 		

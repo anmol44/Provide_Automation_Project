@@ -5,7 +5,7 @@
     <classes>
       <class name="invoice.Sbs">
         <methods>
-          <include name="sbs" invocation-numbers="0"/>
+          <include name="sbs"/>
           <include name="startDriver"/>
         </methods>
       </class> <!-- invoice.Sbs -->

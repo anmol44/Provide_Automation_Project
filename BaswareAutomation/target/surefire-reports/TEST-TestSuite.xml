@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="57.836" tests="1" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="69.813" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_111\jre\bin"/>
@@ -28,7 +28,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\anchaudhary\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4955095370936308611.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\anchaudhary\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2179314596446395415.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_111\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_111/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_111/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_111/bin/../jre/lib/amd64;C:\Program Files\Java\jdk1.8.0_111\bin;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\PuTTY\;D:\DevSuiteHome_2;D:\DevSuiteHome_2\jre\1.4.2\bin;D:\DevSuiteHome_2\BIN;D:\DevSuiteHome_2\jre\1.4.2\bin\client;D:\DevSuiteHome_2\jlib;C:\Program Files\WindowsPowerShell\Scripts\HP.ClientScriptLibrary;C:\Program Files\Java\jre1.8.0_111\bin;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\apache-maven-3.6.1-bin\apache-maven-3.6.1\bin;C:\Program Files\Git\cmd;D:\Selenium\ProvideAutomation\provide\src\main\java\org;C:\Program Files\Java\jdk1.8.0_111\bin;C:\Users\anchaudhary\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.3\bin;;C:\Users\anchaudhary\OneDrive - Sopra Steria\Desktop;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -62,37 +62,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="sbs" classname="invoice.Sbs" time="51.459">
-    <failure message="Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class=&apos;pt-btn&apos; and contains(text(),&apos;All sessions&apos;)] (tried for 15 second(s) with 500 milliseconds interval)" type="org.openqa.selenium.TimeoutException">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //button[@class='pt-btn' and contains(text(),'All sessions')] (tried for 15 second(s) with 500 milliseconds interval)
-	at invoice.Sbs.sbs(Sbs.java:146)
-Caused by: org.openqa.selenium.NoSuchElementException: 
-no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='pt-btn' and contains(text(),'All sessions')]"}
-  (Session info: chrome=96.0.4664.110)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'ITEM-S72590', ip: '192.168.16.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_111'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 96.0.4664.110, chrome: {chromedriverVersion: 96.0.4664.45 (76e4c1bb2ab46..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:50628}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 4f56208078aad62bfafc6717051c837b
-*** Element info: {Using=xpath, value=//button[@class='pt-btn' and contains(text(),'All sessions')]}
-	at invoice.Sbs.sbs(Sbs.java:146)
-</failure>
-    <system-out><![CDATA[[TestNGContentHandler] [WARN] It is strongly recommended to add "<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >" at the top of your file, otherwise TestNG may fail or not work as expected.
-{1={User=EMEAAD\anchaudhary, Organization=119, Url=https://voflusoprasttest.p2p.basware.com, PO Number=PO2111900025, NatureCode=, Approver2=, Approver1=EMEAAD\spineau, Currency=MAD, Approver3=, TaxAmt=0.0, InvoiceDate=21/08/2021, Requestor=, MatchQty=1, LineNo=, Password=Provide2018, Agency=, SupplierCode=S00011626001, docType=Invoice, TaxCode/Rate=EXON, InvoiceNo=Inv-C119/1/StdPO/1, PurchaseCAtegory=, SSP=, PR Type=, Type=, Environment=TEST, InvoiceAmt=30.0}}
-D:\Automation\BaswareAutomation\Output\OutputDataProvide.xlsx
-java.io.FileInputStream@6f6962ba
-Name: /xl/worksheets/sheet1.xml - Content Type: application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml
-26
-]]></system-out>
-    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 2302
-Only local connections are allowed.
-Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully.
-Jan 20, 2022 10:56:17 AM org.openqa.selenium.remote.ProtocolHandshake createSession
-INFO: Detected dialect: W3C
-]]></system-err>
-  </testcase>
+  <testcase name="sbs" classname="invoice.Sbs" time="63.9"/>
 </testsuite>
