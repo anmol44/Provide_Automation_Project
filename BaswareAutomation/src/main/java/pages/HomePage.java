@@ -46,6 +46,7 @@ public class HomePage extends BasePage {
 		searchHomeXpath().
 		waitAlustaNavigation();
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+accountsPayableXpath);
+		javascriptExecutor.executeScript("arguments[0].click() ",webelement);
 		webelement.click();
 		return new AccountsPayable(driver);
 	}
