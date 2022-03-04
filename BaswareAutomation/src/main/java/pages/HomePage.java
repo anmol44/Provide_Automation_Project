@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
 	static String searchHomeXpath="//span[@class='pal-search-submit-text ng-scope' and contains(text(),'Search')]";
 	static String shopFRButtonXpath="document.querySelector('alusta-navigation').shadowRoot.querySelector('div > nav > div.pt-navbar-nav.main-nav > ul > li:nth-child(2) > a')";
 	// accoutspayable xpath fix
-	static String accountsPayableXpath="document.querySelector('alusta-navigation').shadowRoot.querySelector('div > nav > div.pt-navbar-nav.main-nav > ul > li:nth-child(7)')";
+	static String accountsPayableXpath = "document.querySelector('alusta-navigation').shadowRoot.querySelector('alusta-navigation-more-menu').shadowRoot.querySelector('div > alusta-navigation-dropdown > div:nth-child(7) > a')";
 	static String alustaNavigation="//alusta-navigation[@id='alusta-navigation']";	
 
 
@@ -47,7 +47,7 @@ public class HomePage extends BasePage {
 		waitAlustaNavigation();
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+accountsPayableXpath);
 		javascriptExecutor.executeScript("arguments[0].click() ",webelement);
-		webelement.click();
+	
 		return new AccountsPayable(driver);
 	}
 	

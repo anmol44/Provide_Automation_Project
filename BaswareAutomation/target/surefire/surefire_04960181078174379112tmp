@@ -1,8 +1,0 @@
-#surefire_0
-#Fri Feb 25 15:34:40 IST 2022
-Name=TestDataProvideInSBS
-FileName=
-File=sbsInvoice.xml
-user.dir=D\:\\Automation\\BaswareAutomation
-localRepository=C\:\\Users\\anchaudhary\\.m2\\repository
-basedir=D\:\\Automation\\BaswareAutomation

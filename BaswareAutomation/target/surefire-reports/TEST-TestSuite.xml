@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="49.846" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="20.745" tests="1" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_111\jre\bin"/>
@@ -28,7 +28,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\anchaudhary\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf7797011540342794230.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\anchaudhary\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf217677300107471158.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_111\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_111/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_111/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_111/bin/../jre/lib/amd64;C:\Program Files\Java\jdk1.8.0_111\bin;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\PuTTY\;D:\DevSuiteHome_2;D:\DevSuiteHome_2\jre\1.4.2\bin;D:\DevSuiteHome_2\BIN;D:\DevSuiteHome_2\jre\1.4.2\bin\client;D:\DevSuiteHome_2\jlib;C:\Program Files\WindowsPowerShell\Scripts\HP.ClientScriptLibrary;C:\Program Files\Java\jre1.8.0_111\bin;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\apache-maven-3.6.1-bin\apache-maven-3.6.1\bin;C:\Program Files\Git\cmd;D:\Selenium\ProvideAutomation\provide\src\main\java\org;C:\Program Files\Java\jdk1.8.0_111\bin;C:\Users\anchaudhary\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.3\bin;;C:\Users\anchaudhary\OneDrive - Sopra Steria\Desktop;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -62,5 +62,33 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="sbs" classname="invoice.Sbs" time="40.201"/>
+  <testcase name="sbs" classname="invoice.Sbs" time="15.3">
+    <failure message="element click intercepted: Element &lt;span class=&quot;caption&quot; title=&quot;...&quot;&gt;CHAUDHARY Anmol, Sopra Steria Group&lt;/span&gt; is not clickable at point (1777, 23). Other element would receive the click: &lt;div _ngcontent-rhg-c46=&quot;&quot; cdktrapfocus=&quot;&quot; class=&quot;pt-modal-wrapper ng-tns-c46-17 ng-trigger ng-trigger-slideAndFadeInOut&quot; style=&quot;transform: translateY(0px);&quot;&gt;...&lt;/div&gt;&#10;  (Session info: chrome=99.0.4844.51)&#10;Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;&#10;System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.100&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:57288}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 516bd601aa636b72f5d7cd50f9ef8a22" type="org.openqa.selenium.ElementClickInterceptedException"><![CDATA[org.openqa.selenium.ElementClickInterceptedException: 
+element click intercepted: Element <span class="caption" title="...">CHAUDHARY Anmol, Sopra Steria Group</span> is not clickable at point (1777, 23). Other element would receive the click: <div _ngcontent-rhg-c46="" cdktrapfocus="" class="pt-modal-wrapper ng-tns-c46-17 ng-trigger ng-trigger-slideAndFadeInOut" style="transform: translateY(0px);">...</div>
+  (Session info: chrome=99.0.4844.51)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ITEM-S72590', ip: '192.168.16.100', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_111'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:57288}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
+	at invoice.Sbs.sbs(Sbs.java:150)
+]]></failure>
+    <system-out><![CDATA[[TestNGContentHandler] [WARN] It is strongly recommended to add "<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >" at the top of your file, otherwise TestNG may fail or not work as expected.
+{1={User=EMEAAD\anchaudhary, Organization=119, Url=https://voflusoprasttest.p2p.basware.com, PO Number=PO2111900025, NatureCode=, Approver2=, Approver1=EMEAAD\spineau, Currency=MAD, Approver3=, TaxAmt=60, InvoiceDate=21/08/2021, Requestor=, MatchQty=1, LineNo=, Password=Provide2018, Agency=, SupplierCode=S00011626001, docType=Invoice, TaxCode/Rate=D200E, InvoiceNo=Test119/1, PurchaseCAtegory=, SSP=, PR Type=, Type=, Environment=TEST, InvoiceAmt=3000}}
+D:\Automation\BaswareAutomation\Output\OutputDataProvide.xlsx
+java.io.FileInputStream@5bb8f9e2
+Name: /xl/worksheets/sheet1.xml - Content Type: application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml
+26
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Starting ChromeDriver 99.0.4844.51 (d537ec02474b5afe23684e7963d538896c63ac77-refs/branch-heads/4844@{#875}) on port 19324
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Mar 04, 2022 7:22:14 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+  </testcase>
 </testsuite>
