@@ -20,7 +20,7 @@ public class EditRequisition extends BasePage {
 	static String purchaseCategorySearchFRXpath="/html/body/div/section/section/section/div/form/ul/li[2]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-category-field/pal-field-container/div/div/div/pal-tree-single-select/div/div[2]/pal-tree-view/div/div[1]/div/input";
 	// Change of Purchase category Xpath  (class from  'pal-tree-item-label ng-binding'   to   'ui-select-highlight' )
 	static String purchaseCategorySelect1Xpath = "//span[@class='ui-select-highlight' and contains(text(),'"; 
-    static String purchaseCategorySelect2Xpath = "')]";
+    static String purchaseCategorySelect2Xpath = "')]/parent::span";
     static String supplierButtonXpath = "//button[@type='button' and @class='pal-single-select-toggle-btn'][1]";
 	static String supplierSearchXpath = "/html/body/div/section/section/section/div/form/ul/li[4]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-category-supplier-field/pal-field-container/div/div/div/pal-single-select/div/div[2]/pal-single-select-dropdown/div/div[1]/div/input";
 	static String supplierSelect1XpathFR="//span[@class='ui-select-highlight' and contains(text(),'";
