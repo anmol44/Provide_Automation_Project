@@ -11,6 +11,8 @@ public class Login extends BasePage{
 	static String userNameXpath = "//*[@id=\"txtLogin\"]";
 	static String userPasswordXpath = "//*[@id=\"txtPassword\"]";
 	static String userLogignButtonXpath ="//input[@type='submit' and @id='btnLogin']"; 
+	static String searchHomeXpath="//span[@class='pal-search-submit-text ng-scope' and contains(text(),'Search')]";
+
 	
 	public Login(WebDriver driver) {
 		super(driver);
@@ -38,7 +40,8 @@ public class Login extends BasePage{
 	}
 	
 	public HomePage homepage() {
-		clickLoginBtn();
+		clickLoginBtn().
+		waitForElement(searchHomeXpath);
 		return new HomePage(driver);
 	}
 	

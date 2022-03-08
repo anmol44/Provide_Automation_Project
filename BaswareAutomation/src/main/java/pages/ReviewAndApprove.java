@@ -6,10 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
 import base.BasePage;
 import commons.ExceptionCode;
+import commons.ScreenShot;
 
 public class ReviewAndApprove extends BasePage {
 	
@@ -31,8 +33,31 @@ public class ReviewAndApprove extends BasePage {
 	public ReviewAndApprove review(JavascriptExecutor javascriptExecutor,String reviewer,String password,String orderDescription,String docType,String PRNumber,String status,int i,int j,ExtentTest test)  {
 		
 		
+try {
+			
 			Login login = new Login(driver);
-			login.logIn(reviewer, password);
+			
+			test.log(Status.INFO, "Login for reviewer "+j);
+			login.logIn(reviewer,password);
+			test.log(Status.INFO, "Login "+reviewer+"  reviewer "+j);
+			
+		}
+		catch(Exception e) {
+			status="FAIL";
+			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
+			
+			try {
+				String errorSc =concate+ ScreenShot.attachedScreenShot(driver, "PR_REQUISITION "+i);
+				
+				test.log(Status.FAIL, "Error Snapshot below:", MediaEntityBuilder.createScreenCaptureFromPath(errorSc).build());
+					
+				} catch(Exception a) {
+					
+					test.log(Status.INFO, "Error Screenshot not found");
+				}
+			
+			return this;
+		}
 		
 		
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
@@ -79,10 +104,33 @@ public class ReviewAndApprove extends BasePage {
 	}
 	
 	
-	public ReviewAndApprove approve(JavascriptExecutor javascriptExecutor,String approver,String password,String orderDescription,String docType,String PRNumber,String status,int i,int j,ExtentTest test) throws Exception {
+	public  ReviewAndApprove approve(JavascriptExecutor javascriptExecutor,String approver,String password,String orderDescription,String docType,String PRNumber,String status,int i,int j,ExtentTest test) throws Exception {
 		
-		Login login = new Login(driver);
-		login.logIn(approver, password);
+		try {
+			
+			Login login = new Login(driver);
+			
+			test.log(Status.INFO, "Loging for approver "+j);
+			login.logIn(approver,password);
+			test.log(Status.INFO, "Login "+approver+"  approver "+j);
+			
+		}
+		catch(Exception e) {
+			status="FAIL";
+			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
+			
+			try {
+				String errorSc =concate+ ScreenShot.attachedScreenShot(driver, "PR_REQUISITION "+i);
+				
+				test.log(Status.FAIL, "Error Snapshot below:", MediaEntityBuilder.createScreenCaptureFromPath(errorSc).build());
+					
+				} catch(Exception a) {
+					
+					test.log(Status.INFO, "Error Screenshot not found");
+				}
+			
+			return this;
+		}
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
 		 

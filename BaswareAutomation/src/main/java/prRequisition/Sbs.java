@@ -50,7 +50,7 @@ public class Sbs extends BaseTest {
 	
 	@Test
 	@Parameters("Name")
-	public void sbs(String Name) throws IOException {
+	public void sbs(String Name) throws InterruptedException, IOException {
 		
 		 String inputFile = System.getProperty("user.dir") +"/test/";
 		 String outputFile = System.getProperty("user.dir") +"/Output/OutputDataProvide.xlsx";
