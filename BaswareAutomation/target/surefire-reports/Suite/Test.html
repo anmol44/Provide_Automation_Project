@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Mar 04 19:22:11 IST 2022</td>
+<td>Started on:</td><td>Tue Mar 08 10:26:44 IST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>19 seconds (19062 ms)</td>
+<tr><td>Total time:</td><td>101 seconds (101340 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -75,32 +75,31 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='invoice.Sbs.sbs()'><b>sbs</b><br>Test class: invoice.Sbs<br>Parameters: TestDataProvideInSBS</td>
-<td><div><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;caption&quot; title=&quot;...&quot;&gt;CHAUDHARY Anmol, Sopra Steria Group&lt;/span&gt; is not clickable at point (1777, 23). Other element would receive the click: &lt;div _ngcontent-rhg-c46=&quot;&quot; cdktrapfocus=&quot;&quot; class=&quot;pt-modal-wrapper ng-tns-c46-17 ng-trigger ng-trigger-slideAndFadeInOut&quot; style=&quot;transform: translateY(0px);&quot;&gt;...&lt;/div&gt;
+<td title='prRequisition.France.sbs()'><b>sbs</b><br>Test class: prRequisition.France<br>Parameters: TestDataProvideFrance</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: chrome not reachable
   (Session info: chrome=99.0.4844.51)
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.100&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
+System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:57288}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:61528}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5b468cbc32dbdfac525bcd0e508e6c8d
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-	at pages.LogOut.logout(LogOut.java:40)
-	at invoice.Sbs.sbs(Sbs.java:150)
-... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1973491942", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1973491942'><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;caption&quot; title=&quot;...&quot;&gt;CHAUDHARY Anmol, Sopra Steria Group&lt;/span&gt; is not clickable at point (1777, 23). Other element would receive the click: &lt;div _ngcontent-rhg-c46=&quot;&quot; cdktrapfocus=&quot;&quot; class=&quot;pt-modal-wrapper ng-tns-c46-17 ng-trigger ng-trigger-slideAndFadeInOut&quot; style=&quot;transform: translateY(0px);&quot;&gt;...&lt;/div&gt;
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:489)
+	at pages.LogOut.logout(LogOut.java:39)
+	at prRequisition.France.sbs(France.java:180)
+... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1565647145", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1565647145'><pre>org.openqa.selenium.WebDriverException: chrome not reachable
   (Session info: chrome=99.0.4844.51)
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.100&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
+System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:57288}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:61528}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5b468cbc32dbdfac525bcd0e508e6c8d
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -111,10 +110,9 @@ Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-	at pages.LogOut.logout(LogOut.java:40)
-	at invoice.Sbs.sbs(Sbs.java:150)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:489)
+	at pages.LogOut.logout(LogOut.java:39)
+	at prRequisition.France.sbs(France.java:180)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -144,8 +142,8 @@ Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
 </pre></div></td>
-<td>15</td>
-<td>invoice.Sbs@51e5fc98</td></tr>
+<td>97</td>
+<td>prRequisition.France@51e5fc98</td></tr>
 </table><p>
 </body>
 </html>

@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Suite">
-                    <span>D:\Automation\BaswareAutomation\sbsInvoice.xml</span>
+                    <span>D:\Automation\BaswareAutomation\france.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="invoice.Sbs" hash-for-method="sbs(TestDataProvideInSBS)">sbs(TestDataProvideInSBS)</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="prRequisition.France" hash-for-method="sbs(TestDataProvideFrance)">sbs(TestDataProvideFrance)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -120,32 +120,31 @@
           <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">invoice.Sbs</span>
+              <span class="class-name">prRequisition.France</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="sbs(TestDataProvideInSBS)">
-                  </a> <!-- sbs(TestDataProvideInSBS) -->
+                  <a name="sbs(TestDataProvideFrance)">
+                  </a> <!-- sbs(TestDataProvideFrance) -->
                   <span class="method-name">sbs</span>
-                  <span class="parameters">(TestDataProvideInSBS)</span>
-                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;span class=&quot;caption&quot; title=&quot;...&quot;&gt;CHAUDHARY Anmol, Sopra Steria Group&lt;/span&gt; is not clickable at point (1777, 23). Other element would receive the click: &lt;div _ngcontent-rhg-c46=&quot;&quot; cdktrapfocus=&quot;&quot; class=&quot;pt-modal-wrapper ng-tns-c46-17 ng-trigger ng-trigger-slideAndFadeInOut&quot; style=&quot;transform: translateY(0px);&quot;&gt;...&lt;/div&gt;
+                  <span class="parameters">(TestDataProvideFrance)</span>
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: chrome not reachable
   (Session info: chrome=99.0.4844.51)
 Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.100&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
+System info: host: &apos;ITEM-S72590&apos;, ip: &apos;192.168.16.104&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_111&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:57288}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 99.0.4844.51, chrome: {chromedriverVersion: 99.0.4844.51 (d537ec02474b5..., userDataDir: C:\Users\ANCHAU~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:61528}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 5b468cbc32dbdfac525bcd0e508e6c8d
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
 	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-	at pages.LogOut.logout(LogOut.java:40)
-	at invoice.Sbs.sbs(Sbs.java:150)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:489)
+	at pages.LogOut.logout(LogOut.java:39)
+	at prRequisition.France.sbs(France.java:180)
 ... Removed 32 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
@@ -155,7 +154,7 @@ Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">D:\Automation\BaswareAutomation\sbsInvoice.xml</span>
+            <span class="header-content">D:\Automation\BaswareAutomation\france.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -164,7 +163,7 @@ Session ID: 516bd601aa636b72f5d7cd50f9ef8a22
 &lt;suite thread-count=&quot;-1&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot; name=&quot;Suite&quot;&gt;
   &lt;test thread-count=&quot;5&quot; verbose=&quot;0&quot; name=&quot;Test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;invoice.Sbs&quot;/&gt;
+      &lt;class name=&quot;prRequisition.France&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -207,13 +206,13 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'sbs')
-data.setCell(0, 2, 'invoice.Sbs')
-data.setCell(0, 3, 15272);
+data.setCell(0, 2, 'prRequisition.France')
+data.setCell(0, 3, 97623);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 15 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -239,7 +238,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">invoice.Sbs</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">prRequisition.France</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">startDriver</span>
                 <span class="method-start">0 ms</span>
@@ -247,8 +246,8 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">sbs(TestDataProvideInSBS)</span>
-                <span class="method-start">3759 ms</span>
+                <span class="method-name">sbs(TestDataProvideFrance)</span>
+                <span class="method-start">3681 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
