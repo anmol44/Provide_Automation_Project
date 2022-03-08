@@ -45,6 +45,10 @@ public class GetTaskList extends BasePage {
 		//String docType = ProvidePom.docType;
 		 
 		for (int i = 1; i <= rows; i++) {
+			
+			if(total ==noMatch) {
+				return " ";
+			}
 			count++;
 			noMatch++;
 			// get document type from approval page.

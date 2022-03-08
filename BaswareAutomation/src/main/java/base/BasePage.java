@@ -18,7 +18,7 @@ public class BasePage {
 	
 	public BasePage(WebDriver driver) {
 		BasePage.driver=driver;
-		wait = new WebDriverWait(driver,15);
+		wait = new WebDriverWait(driver,20);
 		javascriptExecutor = (JavascriptExecutor) driver;
 	}
 	

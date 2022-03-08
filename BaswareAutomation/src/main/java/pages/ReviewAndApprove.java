@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -18,10 +19,12 @@ public class ReviewAndApprove extends BasePage {
 	String concate=".";
 	String orderDescr = "";
 	String Reviewer = "Reviewer";
+	WebElement webElement;
 	
 	static String taskListXpath = "/html/body/div/div/div[3]/div[1]/pal-narrow-layout/div/ng-transclude/div/div/div/div/div[2]/div[2]/div/a/span";
 	static String approveTaskListXpath = "/html/body/div/bw-purchase-requisition-details/section/div[1]/pal-title-bar/div/div/div[2]/div/div[2]/pal-title-bar-actions/bw-purchase-requisition-details-actions/div/pal-actions/div/div/div/div[1]/div/button";
 	static String allTasksXpath= "/html/body/div/div/bw-task-list-all/div/div/div[1]/div/span[1]";
+	static String taskButtonXpath="document.querySelector('alusta-navigation').shadowRoot.querySelector('div > nav > div.pt-navbar-nav.main-nav > ul > li:nth-child(3) > a')";
 
 
 	public ReviewAndApprove(WebDriver driver) {
@@ -60,7 +63,11 @@ try {
 		}
 		
 		
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
+	//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
+			
+			webElement = (WebElement) javascriptExecutor.executeScript("return "+taskButtonXpath);
+			webElement.click();		
+
 		    try {
 				orderDescr =GetTaskList.getTaskList( orderDescription,docType);
 			} catch (Exception e) {
@@ -132,9 +139,19 @@ try {
 			return this;
 		}
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
+	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
+		
+		webElement = (WebElement) javascriptExecutor.executeScript("return "+taskButtonXpath);
+		webElement.click();
+		
 		 
+		 try {
 				orderDescr =GetTaskList.getTaskList( orderDescription,docType);
+			} catch (Exception e) {
+				ExceptionCode exception =new ExceptionCode(driver);
+				exception.exception(i, test);
+				e.printStackTrace();
+			}
 			
 		 
 		 if (orderDescr.toLowerCase().equalsIgnoreCase("\"" + orderDescription  + "\"")) {

@@ -132,7 +132,7 @@ public class EditCoding extends BasePage {
 		
 		// ssp coding
 		if(type.equalsIgnoreCase("A")) {
-		
+			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspDivXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSearchXpath))).sendKeys(ssp);
@@ -214,6 +214,7 @@ public class EditCoding extends BasePage {
 		
 		// ssp coding
 		if(type.equalsIgnoreCase("A")) {
+			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspDivXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSearchXpath))).sendKeys(ssp);
