@@ -135,10 +135,10 @@ public class EditRequisition extends BasePage {
 	
 	
 	
-	public EditRequisition subcontractingAndLogistics(String orderDescription ,String purchaseCategory,String productName,String supplier,String quantity,String unitPrice,String currency) {
+	public EditRequisition subcontractingAndLogistics(String orderDescr ,String purchaseCategory,String productName,String supplier,String quantity,String unitPrice,String currency) {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(orderDescription);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(orderDescr);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierProductNameSBS136SubcontractingXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierProductNameSBS136SubcontractingXpath))).sendKeys(productName);
