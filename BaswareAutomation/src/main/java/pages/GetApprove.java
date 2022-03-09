@@ -19,7 +19,7 @@ public class GetApprove extends BasePage {
 	
 	
 	public String prNumber() throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		driver.navigate().back();
 		
 		String Pr = driver.findElement(By.xpath(getPrApproveNumberXpath)).getText();
