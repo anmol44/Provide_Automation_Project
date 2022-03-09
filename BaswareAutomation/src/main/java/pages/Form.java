@@ -58,7 +58,10 @@ public class Form extends BasePage {
 	
 	
 	
-	public EditRequisition editRequisitionSBS(String type) {
+	public EditRequisition editRequisitionSBS(String type) throws InterruptedException {
+		Thread.sleep(2000);
+		//refresh the page 
+		driver.navigate().refresh();
 		selectFormSBS(type);
 		
 		return new EditRequisition(driver);
