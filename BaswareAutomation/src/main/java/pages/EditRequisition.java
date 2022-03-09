@@ -135,7 +135,7 @@ public class EditRequisition extends BasePage {
 	
 	
 	
-	public EditRequisition subcontractingAndLogistics(String orderDescr ,String purchaseCategory,String productName,String supplier,String quantity,String unitPrice,String currency) {
+	public EditRequisition subcontractingAndLogistics(String orderDescr ,String purchaseCategory,String productName,String supplier,String quantity,String unitPrice,String currency,String prType) {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(orderDescr);
@@ -164,6 +164,14 @@ public class EditRequisition extends BasePage {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencyButtonXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencySearchXpath))).sendKeys(currency);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencySearch1Xpath+currency+currencySearch2Xpath))).click();
+			
+			
+			// check logistic and subcontracting have prtype field
+			if(!prType.isEmpty()) {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeButtonXpath))).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSearchXpath))).sendKeys(prType);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSelect1Xpath+prType+prTypeSelect2Xpath))).click();
+			}
 			
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editRequisitionXpath))).click();
@@ -263,9 +271,10 @@ public class EditRequisition extends BasePage {
 	public EditCoding editCodingSBS(String OrderDesc,String PurchaseCategory,String ProductCode,String ProductName,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE,String PRForm) {
 		
 		if(PRForm.equalsIgnoreCase("Subcontracting") || PRForm.equalsIgnoreCase("Logistics")) {
-			subcontractingAndLogistics(OrderDesc , PurchaseCategory, ProductName, Supplier, Quantity, UnitPrice, Currency);
+			subcontractingAndLogistics(OrderDesc , PurchaseCategory, ProductName, Supplier, Quantity, UnitPrice, Currency,PrTYPE);
 			
-		} else {
+		}
+		else {
 			
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(OrderDesc);
