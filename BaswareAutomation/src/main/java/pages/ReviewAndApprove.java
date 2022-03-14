@@ -33,7 +33,7 @@ public class ReviewAndApprove extends BasePage {
 	}
 	
 	
-	public ReviewAndApprove review(JavascriptExecutor javascriptExecutor,String reviewer,String password,String orderDescription,String docType,String PRNumber,String status,int i,int j,ExtentTest test)  {
+	public ReviewAndApprove review(JavascriptExecutor javascriptExecutor,String reviewer,String password,String orderDescription,String docType,String PRNumber,String status,String url,int i,int j,ExtentTest test)  {
 		
 		
 try {
@@ -41,7 +41,7 @@ try {
 			Login login = new Login(driver);
 			
 			test.log(Status.INFO, "Login for reviewer "+j);
-			login.logIn(reviewer,password);
+			login.logIn(reviewer,password,url);
 			test.log(Status.INFO, "Login "+reviewer+"  reviewer "+j);
 			
 		}
@@ -111,14 +111,14 @@ try {
 	}
 	
 	
-	public  ReviewAndApprove approve(JavascriptExecutor javascriptExecutor,String approver,String password,String orderDescription,String docType,String PRNumber,String status,int i,int j,ExtentTest test) throws Exception {
+	public  ReviewAndApprove approve(JavascriptExecutor javascriptExecutor,String approver,String password,String orderDescription,String docType,String PRNumber,String status,String url,int i,int j,ExtentTest test) throws Exception {
 		
 		try {
 			
 			Login login = new Login(driver);
 			
 			test.log(Status.INFO, "Loging for approver "+j);
-			login.logIn(approver,password);
+			login.logIn(approver,password,url);
 			test.log(Status.INFO, "Login "+approver+"  approver "+j);
 			
 		}

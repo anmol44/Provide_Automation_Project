@@ -19,7 +19,10 @@ public class Login extends BasePage{
 	
 	}
 	
-	
+	public Login load(String url ) {
+		driver.get(url);
+		return this;
+	}
 	
 	public Login enterUserName(String username ) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(userNameXpath))).clear();
@@ -45,9 +48,9 @@ public class Login extends BasePage{
 		return new HomePage(driver);
 	}
 	
-	public HomePage logIn(String username,String password) {
+	public HomePage logIn(String username,String password,String url) {
 		
-		return  
+		return  load(url).
 				enterUserName(username).
 				enterPassword(password).
 				homepage();

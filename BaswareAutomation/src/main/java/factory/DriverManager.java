@@ -12,7 +12,7 @@ public class DriverManager {
 	public WebDriver initializeDriver() {
 	
 		WebDriver driver;
-		String Url="https://voflusoprasttest.p2p.basware.com";
+		//String Url="https://voflusoprasttest.p2p.basware.com";
 
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
@@ -20,7 +20,7 @@ public class DriverManager {
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
-		driver.get(Url);
+		//driver.get(Url);
 		
 		return driver;
 		
