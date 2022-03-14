@@ -58,6 +58,12 @@ public class Shop extends BasePage {
 	
 	
 	public Shop selectEntity(JavascriptExecutor javascriptExecutor ) {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+shopXpath);
 		webelement.click();
 		
