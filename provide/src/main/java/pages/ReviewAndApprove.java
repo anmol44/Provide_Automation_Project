@@ -33,7 +33,7 @@ public class ReviewAndApprove extends BasePage {
 	}
 	
 	
-	public ReviewAndApprove review(JavascriptExecutor javascriptExecutor,String reviewer,String password,String orderDescription,String docType,String PRNumber,String status,String url,int i,int j,ExtentTest test)  {
+	public String review(JavascriptExecutor javascriptExecutor,String reviewer,String password,String orderDescription,String docType,String PRNumber,String status,String url,int i,int j,ExtentTest test)  {
 		
 		
 try {
@@ -59,7 +59,7 @@ try {
 					test.log(Status.INFO, "Error Screenshot not found");
 				}
 			
-			return this;
+			return status;
 		}
 		
 		
@@ -107,11 +107,11 @@ try {
 			}
 				}
 		
-		return this;
+		return status;
 	}
 	
 	
-	public  ReviewAndApprove approve(JavascriptExecutor javascriptExecutor,String approver,String password,String orderDescription,String docType,String PRNumber,String status,String url,int i,int j,ExtentTest test) throws Exception {
+	public  String approve(JavascriptExecutor javascriptExecutor,String approver,String password,String orderDescription,String docType,String PRNumber,String status,String url,int i,int j,ExtentTest test) throws Exception {
 		
 		try {
 			
@@ -136,7 +136,7 @@ try {
 					test.log(Status.INFO, "Error Screenshot not found");
 				}
 			
-			return this;
+			return status;
 		}
 		
 	//	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taskListXpath))).click();
@@ -182,7 +182,7 @@ try {
 			}
 		 }
 		
-		return this;
+		return status;
 	}
 
 }

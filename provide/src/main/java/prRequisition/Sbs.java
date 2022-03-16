@@ -154,7 +154,7 @@ public class Sbs extends BaseTest {
 					ReviewAndApprove reviewAndApprove = new ReviewAndApprove(driver);
 					while (excelData.get(i).containsKey(Reviewer + j) && !excelData.get(i).get(Reviewer + j).isEmpty()) {
 						System.out.println(excelData.get(i).containsKey(Reviewer + j));
-						reviewAndApprove.review(javascriptExecutor,excelData.get(i).get(Reviewer + j),excelData.get(i).get("Password"),excelData.get(i).get("OrderDesc"),excelData.get(i).get("docType"),prNumber,status,excelData.get(i).get("Url"),i,j,test);
+					status =	reviewAndApprove.review(javascriptExecutor,excelData.get(i).get(Reviewer + j),excelData.get(i).get("Password"),excelData.get(i).get("OrderDesc"),excelData.get(i).get("docType"),prNumber,status,excelData.get(i).get("Url"),i,j,test);
 						j++;
 					}
 					j=1;
@@ -164,7 +164,7 @@ public class Sbs extends BaseTest {
 					ReviewAndApprove reviewAndApprove = new ReviewAndApprove(driver);
 					while (excelData.get(i).containsKey(Approver + j) && !excelData.get(i).get(Approver + j).isEmpty()) {
 						System.out.println(excelData.get(i).containsKey(Approver + j));
-						reviewAndApprove.approve(javascriptExecutor,excelData.get(i).get(Approver + j),excelData.get(i).get("Password"),excelData.get(i).get("OrderDesc"),excelData.get(i).get("docType"),prNumber,status,excelData.get(i).get("Url"),i,j,test);
+					status = reviewAndApprove.approve(javascriptExecutor,excelData.get(i).get(Approver + j),excelData.get(i).get("Password"),excelData.get(i).get("OrderDesc"),excelData.get(i).get("docType"),prNumber,status,excelData.get(i).get("Url"),i,j,test);
 						j++;
 					}
 					j=1;
