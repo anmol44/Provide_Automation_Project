@@ -78,51 +78,53 @@ public class ViewDetails extends BasePage {
 		return this;
 	}
 	
-	public GetApprove getApproveSBS(String quantity,String unitPrice,String paymentTerms ) {
-		viewDetailsFR(quantity,unitPrice,paymentTerms);
+	public GetApprove getApprovePage() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		
+		return new GetApprove(driver);
+	}
+	
+	public GetApprove getApproveSBS(String quantity,String unitPrice,String paymentTerms ) {
+		viewDetailsFR(quantity,unitPrice,paymentTerms).
+		getApprovePage();
+		
 		
 		return new GetApprove(driver);
 	}
 	
 	
 	public GetApprove getApprove(String quantity,String unitPrice,String paymentTerms) {
-		viewDetails(quantity,unitPrice,paymentTerms);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		viewDetails(quantity,unitPrice,paymentTerms).
+		getApprovePage();
 		
 		return new GetApprove(driver);
 	}
 	
 	public GetApprove getApproveGalitt(String quantity,String unitPrice,String paymentTerms ) {
-		viewDetailsFR(quantity,unitPrice,paymentTerms);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		viewDetailsFR(quantity,unitPrice,paymentTerms).
+		getApprovePage();
 		
 		return new GetApprove(driver);
 	}
 	
 	public GetApprove getApproveBeleux(String quantity,String unitPrice,String paymentTerms ) {
-		viewDetailsFR(quantity,unitPrice,paymentTerms);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		viewDetailsFR(quantity,unitPrice,paymentTerms).
+		getApprovePage();
 		
 		return new GetApprove(driver);
 	}
 	
 	public GetApprove getApproveSpain(String quantity,String unitPrice,String paymentTerms) {
-		viewDetails(quantity,unitPrice,paymentTerms);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		viewDetails(quantity,unitPrice,paymentTerms).
+		getApprovePage();
 		
 		return new GetApprove(driver);
 	}
 	
 	public GetApprove getApproveFrance(String quantity,String unitPrice,String paymentTerms) {
-		viewDetailsFR(quantity,unitPrice,paymentTerms);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		viewDetailsFR(quantity,unitPrice,paymentTerms).
+		getApprovePage();
 		
 		return new GetApprove(driver);
 	}

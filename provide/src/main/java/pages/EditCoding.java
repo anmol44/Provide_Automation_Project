@@ -96,6 +96,15 @@ public class EditCoding extends BasePage {
 		return this;
 	}
 	
+	//Add viewDetails Button Common method
+	
+	public EditCoding viewDetailsButton() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		return this;
+	}
+	
 	public EditCoding editCodingFR(JavascriptExecutor javascriptExecutor,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingDivXpath)));
@@ -234,11 +243,8 @@ public class EditCoding extends BasePage {
 	public ViewDetails viewDetailsSBS(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
 		headerData(requestor).
 		addAddress(deliveryAddress).
-		editCodingFR(javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp);
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		editCodingFR(javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
+		viewDetailsButton();
 		
 		return new ViewDetails(driver); 
 	}
@@ -246,11 +252,8 @@ public class EditCoding extends BasePage {
 	public ViewDetails viewDetailsGalitt(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
 		headerData(requestor).
 		addAddress(deliveryAddress).
-		editCoding(javascriptExecutor, nature, agency, type, ssp);
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		editCoding(javascriptExecutor, nature, agency, type, ssp).
+		viewDetailsButton();
 		
 		return new ViewDetails(driver); 
 	}
@@ -258,11 +261,8 @@ public class EditCoding extends BasePage {
 	public ViewDetails viewDetailsBeleux(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
 		headerData(requestor).
 		addAddress(deliveryAddress).
-		editCoding(javascriptExecutor, nature, agency, type, ssp);
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		editCoding(javascriptExecutor, nature, agency, type, ssp).
+		viewDetailsButton();
 		
 		return new ViewDetails(driver); 
 	}
@@ -270,11 +270,8 @@ public class EditCoding extends BasePage {
 	public ViewDetails viewDetailsSpain(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
 		headerData(requestor).
 		addAddress(deliveryAddress).
-		editCoding(javascriptExecutor, nature, agency, type, ssp);
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		editCoding(javascriptExecutor, nature, agency, type, ssp).
+		viewDetailsButton();
 		
 		return new ViewDetails(driver); 
 	}
@@ -282,11 +279,8 @@ public class EditCoding extends BasePage {
 	public ViewDetails viewDetailsFrance(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
 		headerData(requestor).
 		addAddress(deliveryAddress).
-		editCodingFR( javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp);
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		editCodingFR( javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
+		viewDetailsButton();
 		
 		return new ViewDetails(driver); 
 	}

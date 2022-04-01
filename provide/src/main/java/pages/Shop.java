@@ -48,7 +48,8 @@ public class Shop extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectDropDownXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(modalTitleXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fieldContaierXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(organizationSearchXpath))).sendKeys(organization);
+		// change from elementToBeClickable  to visiblityOfElementLocated.
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchXpath))).sendKeys(organization);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationCountXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationPanelXpath +organization+"]"))).click();
