@@ -103,6 +103,14 @@ public class Beleux extends BaseTest {
 						
 						test.log(Status.INFO, "Error Screenshot not found");
 					}
+				try {
+					OutPutSheet.updateStatus(workbook, sheet, status, i,excelData);
+				}
+				
+				catch(Exception ex) {
+					
+					ex.printStackTrace();
+				}
 				
 				continue;
 			}
