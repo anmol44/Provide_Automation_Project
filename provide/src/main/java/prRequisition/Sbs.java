@@ -48,7 +48,7 @@ public class Sbs extends BaseTest {
 	static String prNumber="";
 	static int j=1;
 	
-	@Test    //Anmol chaudhary
+	@Test    //Test SBS
 	@Parameters("Name")
 	public void sbs(String Name) throws InterruptedException, IOException {
 		
