@@ -10,6 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelData {
 
+	@SuppressWarnings("unchecked")
 	public static HashMap<Integer, HashMap<String, String>> getExcelData(String Name) throws Exception {
 		String path = System.getProperty("user.dir");
 		HashMap<Integer, HashMap<String, String>> map = new HashMap<Integer, HashMap<String, String>>();

@@ -32,7 +32,7 @@ public class EditCoding extends BasePage {
 	static String viewCodingXpath = "//div[@class='view-coding']";
 	static String natureJSXpath = "document.evaluate(\"//div[@aria-label='Nature']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
 	static String natureDivXpath = "(//div[@class='pal-single-select-dropdown-header'])[2]";
-	static String natureSearchXpath = "/html/body/div/bw-purchase-requisition-details/section/pal-two-col-row/div/div[1]/div/pal-two-col-row-left-content/div/bw-personal-requisition-details-lines/div/div/div[2]/div/div/pal-catalog/div[1]/div/pal-catalog-list/div/div[2]/pal-catalog-items/pal-catalog-item/div/div[2]/div[2]/div[3]/div/bw-purchase-requisition-coding-row-editor/div/div[1]/pal-detail-fields/div/pal-detail-field[4]/div/div/bw-purchase-requisition-panel-field/div/bw-purchase-panel-field-switch/div/div/div/bw-lookup-list/div/pal-single-select/div/div[2]/pal-single-select-dropdown/div/div[1]/div/input";
+	static String natureSearchXpath = "//input[@type='text' and @aria-label='Nature']";
 	static String natureSearch1Xpath ="(//span[@class='psl-icon-search ng-scope'])[2]";
 	static String natureSelect1Xpath = "//span[@class='ui-select-highlight' and contains(text(),'";
 	static String natureSelect2Xpath = "')]";
