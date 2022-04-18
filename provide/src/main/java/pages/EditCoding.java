@@ -32,19 +32,19 @@ public class EditCoding extends BasePage {
 	static String viewCodingXpath = "//div[@class='view-coding']";
 	static String natureJSXpath = "document.evaluate(\"//div[@aria-label='Nature']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
 	static String natureDivXpath = "(//div[@class='pal-single-select-dropdown-header'])[2]";
-	static String natureSearchXpath = "//input[@type='text' and @aria-label='Nature']";
+	static String natureSearchXpath = "//input[@type='text' and @aria-label='Nature']";  // xpath relative
 	static String natureSearch1Xpath ="(//span[@class='psl-icon-search ng-scope'])[2]";
 	static String natureSelect1Xpath = "//span[@class='ui-select-highlight' and contains(text(),'";
 	static String natureSelect2Xpath = "')]";
 	static String agencyXpath = "(//button[@class='pal-single-select-toggle-btn' ])[3]";
 	static String agencyDivXpath = "(//div[@class='pal-single-select-dropdown-header'])[3]";
-	static String agencySearchXpath = "/html/body/div/bw-purchase-requisition-details/section/pal-two-col-row/div/div[1]/div/pal-two-col-row-left-content/div/bw-personal-requisition-details-lines/div/div/div[2]/div/div/pal-catalog/div[1]/div/pal-catalog-list/div/div[2]/pal-catalog-items/pal-catalog-item/div/div[2]/div[2]/div[3]/div/bw-purchase-requisition-coding-row-editor/div/div[1]/pal-detail-fields/div/pal-detail-field[6]/div/div/bw-purchase-requisition-panel-field/div/bw-purchase-panel-field-switch/div/div/div/bw-lookup-list/div/pal-single-select/div/div[2]/pal-single-select-dropdown/div/div[1]/div/input";
+	static String agencySearchXpath = "//input[@type='text' and @aria-label='Agency/Site Code']";
 	static String agencySearch1Xpath ="(//span[@class='psl-icon-search ng-scope'])[3]";
 	static String agencySelect1Xpath = "//span[@class='ui-select-highlight' and starts-with(text(),'";
 	static String agencySelect2Xpath = "')]//parent::span[@class='ng-binding' and not(text()[normalize-space(.)])]";
 	static String sspXpath = "(//button[@class='pal-single-select-toggle-btn' ])[4]";
 	static String sspDivXpath = "(//div[@class='pal-single-select-dropdown-header'])[4]";
-	static String sspSearchXpath = "/html/body/div/bw-purchase-requisition-details/section/pal-two-col-row/div/div[1]/div/pal-two-col-row-left-content/div/bw-personal-requisition-details-lines/div/div/div[2]/div/div/pal-catalog/div[1]/div/pal-catalog-list/div/div[2]/pal-catalog-items/pal-catalog-item/div/div[2]/div[2]/div[3]/div/bw-purchase-requisition-coding-row-editor/div/div[1]/pal-detail-fields/div/pal-detail-field[8]/div/div/bw-purchase-requisition-panel-field/div/bw-purchase-panel-field-switch/div/div/div/bw-lookup-list/div/pal-single-select/div/div[2]/pal-single-select-dropdown/div/div[1]/div/input";
+	static String sspSearchXpath = "//input[@type='text' and @aria-label='SSP']";
 	static String sspSearch1Xpath ="(//span[@class='psl-icon-search ng-scope'])[4]";
 	static String sspSelect1Xpath = "//span[@class='ui-select-highlight' and starts-with(text(),'";
 	static String sspSelect2Xpath = "')]//parent::span[@class='ng-binding' and not(text()[normalize-space(.)])]";
