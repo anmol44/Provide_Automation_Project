@@ -20,6 +20,10 @@ public class ViewDetails extends BasePage {
 	static String backPageXpath = "(//i[@class='psl-icon-angle-left'])[1]";
 	static String getApproveXpath = "(//button[@class='btn btn-pal-actions-button ng-scope use-dropdown-style'])[2]";
 	
+	// new selling price for new script
+	static String sellingPriceNewXpath = "//span[@class='ng-binding' and @id ='LinePricingNum1']//parent::label//following-sibling::bw-purchase-panel-field-switch//child::div//child::div[@class='value']//child::input";
+
+	
 	public ViewDetails(WebDriver driver) {
 		super(driver);
 		
@@ -27,42 +31,30 @@ public class ViewDetails extends BasePage {
 	
 	
 	
-	public ViewDetails viewDetails(String quantity,String unitPrice,String paymentTerms) {
-		
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();
-		
+	public ViewDetails viewDetails(String quantity,String unitPrice,String paymentTerms) {	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();	
 		double price;
 		double quant;
 		double uPrice;
 		quant= Double.parseDouble(quantity.replace(",", "."));
 		uPrice= Double.parseDouble(unitPrice.replace(",", "."));
 		price= quant*uPrice; 
-		String sellingPrice= Double.toString(price).replace(".", ",");
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceXpath))).sendKeys(sellingPrice);
-		
+		String sellingPrice= Double.toString(price).replace(".", ",");	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceXpath))).sendKeys(sellingPrice);	
 		if(!paymentTerms.isEmpty()) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(paymentTermsButtonXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(paymentTermsSearchXpath))).sendKeys(paymentTerms);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(paymentTermsSelect1Xpath+paymentTerms+paymentTermsSelect2Xpath))).click();
 			}
-		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));
-		
-		return this;
-		
+		return this;	
 	}
 	
 	
 	public ViewDetails  viewDetailsFR(String quantity,String unitPrice,String paymentTerms) {
-		
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();
-		
-		Integer price;
-		
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();
+			Integer price;
 		price= Integer.parseInt(quantity)*Integer.parseInt(unitPrice); 
 		String sellingPrice= Integer.toString(price);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceXpath))).sendKeys(sellingPrice);
@@ -72,11 +64,21 @@ public class ViewDetails extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(paymentTermsSelect1Xpath+paymentTerms+paymentTermsSelect2Xpath))).click();
 		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));
-		
-		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));	
 		return this;
 	}
+	
+	public ViewDetails  viewDetailsNew(String quantity,String unitPrice,String paymentTerms) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();		
+		Integer price;		
+		price= Integer.parseInt(quantity)*Integer.parseInt(unitPrice); 
+		String sellingPrice= Integer.toString(price);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceNewXpath))).sendKeys(sellingPrice);		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));		
+		return this;
+	}
+	
 	
 	public GetApprove getApprovePage() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
@@ -125,6 +127,14 @@ public class ViewDetails extends BasePage {
 	public GetApprove getApproveFrance(String quantity,String unitPrice,String paymentTerms) {
 		viewDetailsFR(quantity,unitPrice,paymentTerms).
 		getApprovePage();
+		
+		return new GetApprove(driver);
+	}
+	
+	public GetApprove getApproveNew(String quantity,String unitPrice,String paymentTerms ) {
+		viewDetailsNew(quantity,unitPrice,paymentTerms);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();  for testing purpose commented on GalittNew entity
 		
 		return new GetApprove(driver);
 	}

@@ -65,6 +65,24 @@ public class EditCoding extends BasePage {
 	static String viewDetailsButtonXpath = "(//button[@class='dropdown-btn btn-pal-actions-button'])[1]";
 	
 	
+	static String codingJSXpath = "document.evaluate(\"//div[@aria-label='Coding']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
+    private By codingInput = By.xpath("//input[@type='text' and @aria-label='Coding']");
+    static String codingSelect1= "//span[@class='ui-select-highlight' and contains(text(),'";
+    static String codingSelect2="')]//parent :: span[@class='ng-binding']//parent::li//parent::ul[@aria-label='Coding']";
+    
+    static String agencySiteCodeJSXpath = "document.evaluate(\"//div[@aria-label='Agency/Site Code']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
+    private By agencySiteCodeInput = By.xpath("//input[@type='text' and @aria-label='Agency/Site Code']");
+    static String agencySiteCodeSelect1= "//span[@class='ui-select-highlight' and contains(text(),'";
+    static String agencySiteCodeSelect2="')]//parent :: span[@class='ng-binding']//parent::li//parent::ul[@aria-label='Agency/Site Code']";
+    
+    static String SSPJSXpath = "document.evaluate(\"//div[@aria-label='SSP']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
+    private By SSPInput = By.xpath("//input[@type='text' and @aria-label='SSP']");
+    static String SSPSelect1= "//span[@class='ui-select-highlight' and contains(text(),'";
+    static String SSPSelect2="')]//parent :: span[@class='ng-binding']//parent::li//parent::ul[@aria-label='SSP']";
+    
+    
+	
+	
 	public EditCoding(WebDriver driver) {
 		super(driver);
 		
@@ -240,6 +258,53 @@ public class EditCoding extends BasePage {
 		
 	}
 	
+	
+	public EditCoding  editCodingNew(JavascriptExecutor javascriptExecutor,String coding,String agency,String type, String ssp)throws InterruptedException {
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingDivXpath)));
+		
+		webelement = (WebElement) javascriptExecutor.executeScript("return "+editCodingDivButtonXpath);
+		javascriptExecutor.executeScript("arguments[0].click()",webelement);
+		
+		
+	//  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ProvidePom.editCodingXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(editCodingXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingButtonXpath))).click();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewCodingXpath)));
+		
+		Thread.sleep(2000);
+		webelement = (WebElement) javascriptExecutor.executeScript("return "+codingJSXpath);
+		javascriptExecutor.executeScript("arguments[0].click()",webelement);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(codingInput)).sendKeys(coding);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(codingSelect1+coding+codingSelect2))).click();
+		
+		Thread.sleep(2000);
+		webelement = (WebElement) javascriptExecutor.executeScript("return "+agencySiteCodeJSXpath);
+		javascriptExecutor.executeScript("arguments[0].click()",webelement);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(agencySiteCodeInput)).sendKeys(agency);
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteCodeSelect1+agency+agencySiteCodeSelect2))).click();
+	
+	
+		// ssp coding
+		if(type.equalsIgnoreCase("A")) {
+			Thread.sleep(2000);
+			webelement = (WebElement) javascriptExecutor.executeScript("return "+SSPJSXpath);
+			javascriptExecutor.executeScript("arguments[0].click()",webelement);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(SSPInput)).sendKeys(ssp);
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SSPSelect1+ssp+SSPSelect2))).click();
+			
+		}
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodeSaveButtonXpath))).click();
+		return this;
+		
+	}
+	
+	
 	public ViewDetails viewDetailsSBS(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
 		headerData(requestor).
 		addAddress(deliveryAddress).
@@ -280,6 +345,15 @@ public class EditCoding extends BasePage {
 		headerData(requestor).
 		addAddress(deliveryAddress).
 		editCodingFR( javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
+		viewDetailsButton();
+		
+		return new ViewDetails(driver); 
+	}
+	
+	public ViewDetails viewDetails(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String coding,String agency,String type,String prType,String ssp) throws InterruptedException {
+		headerData(requestor).
+		addAddress(deliveryAddress).
+		editCodingNew(javascriptExecutor, coding, agency, type, ssp).
 		viewDetailsButton();
 		
 		return new ViewDetails(driver); 

@@ -21,7 +21,7 @@ public class Shop extends BasePage {
 	static String organizationSelectButtonXpath="//button[@class='btn btn-pal-action-button ng-scope']";
 	static String selectDropDownXpath= "//div[@class='pal-tree-select dropdown']";
 	static String modalTitleXpath ="//span[@class='modal-title ng-binding']";
-	static String fieldContaierXpath="/html/body/div[1]/div/div/pal-modal/div/div[2]/pal-modal-body/pal-field-container/div/div/div/pal-tree-single-select/div/div[1]/div";
+	static String fieldContaierXpath="//div[@class='pal-tree-select-inner-container flex-grow' and @aria-label='Organization']";
 	static String alustaNavigation="//alusta-navigation[@id='alusta-navigation']";	
 	
 
@@ -45,8 +45,8 @@ public class Shop extends BasePage {
 	public Shop organizationSelect(String organization) {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchBoxXpath)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectDropDownXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(modalTitleXpath)));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectDropDownXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fieldContaierXpath))).click();
 		// change from elementToBeClickable  to visiblityOfElementLocated.
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchXpath))).sendKeys(organization);

@@ -9,8 +9,8 @@ import base.BasePage;
 public class EditRequisition extends BasePage {
 	
 
-	static String orderDescription = "/html/body/div/section/section/section/div/form/ul/li[1]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-text-field/pal-field-container/div/div/div/input";
-	static String supplierProductName = "/html/body/div/section/section/section/div/form/ul/li[2]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-text-field/pal-field-container/div/div/div/input";
+	static String orderDescription = "//div[@class='text ng-scope']//child::pal-field-container[@label='Description *']//child::input[@type='text']";
+	static String supplierProductName = "//div[@class='text ng-scope']//child::pal-field-container[@label='Product name ']//child::input[@type='text']";
 	static String supplierSelect1Xpath = "//span[@class='ng-binding'and @ng-bind-html='item.name | highlight:vm.searchString' and contains(text(),'";
 	static String supplierSelect2Xpath = "')]";
 	static String supplierProductNameSBS136SubcontractingXpath= "/html/body/div/section/section/section/div/form/ul/li[2]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-text-field/pal-field-container/div/div/div/input";
@@ -22,14 +22,15 @@ public class EditRequisition extends BasePage {
 	// Change Xpath value of Purchase category .
 	static String purchaseCategorySelect1Xpath = "//span[@class='ui-select-highlight' and contains(text(),'"; 
 	static String purchaseCategorySelect2Xpath = "')]//parent::span[@class='pal-tree-item-label ng-binding']//parent::span";
-    static String supplierButtonXpath = "//button[@type='button' and @class='pal-single-select-toggle-btn'][1]";
-	static String supplierSearchXpath = "/html/body/div/section/section/section/div/form/ul/li[4]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-category-supplier-field/pal-field-container/div/div/div/pal-single-select/div/div[2]/pal-single-select-dropdown/div/div[1]/div/input";
+	
+    static String supplierButtonXpath = "//div[@aria-label='Supplier *']//child::button";
+	static String supplierSearchXpath = "//div[@aria-label='Supplier *']//child::input[@aria-label='Supplier *']";
 	static String supplierSelect1XpathFR="//span[@class='ui-select-highlight' and contains(text(),'";
 	static String supplierSelect2XpathFR = "')]";
-	static String quantityXpath = "/html/body/div/section/section/section/div/form/ul/li[5]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-decimal-field/pal-field-container/div/div/div/input";
-	static String unitPriceXpath = "/html/body/div/section/section/section/div/form/ul/li[6]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-decimal-field/pal-field-container/div/div/div/input";
-	static String currencyButtonXpath="/html/body/div/section/section/section/div/form/ul/li[7]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-lookup-field/pal-field-container/div/div/div/pal-single-select/div/div[1]/button";
-	static String currencySearchXpath="/html/body/div/section/section/section/div/form/ul/li[7]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-lookup-field/pal-field-container/div/div/div/pal-single-select/div/div[2]/pal-single-select-dropdown/div/div[1]/div/input";
+	static String quantityXpath = "//div[@class='decimal ng-scope']//child::pal-field-container[@label='Quantity *']//child::input";
+	static String unitPriceXpath = "//div[@class='decimal ng-scope']//child::pal-field-container[@label='Unit Price *']//child::input";
+	static String currencyButtonXpath="//pal-field-container[@label='Currency *']//child::button";
+	static String currencySearchXpath="//input[@type='text' and @aria-label='Currency *']";
 	static String currencySearch1Xpath="//span[@class='ui-select-highlight' and contains(text(),'";
 	static String currencySearch2Xpath = "')]";
 	static String editRequisitionXpath = "(//button[@class='btn btn-pal-actions-button ng-scope' and @title ='Edit requisition'])[1]";
@@ -84,11 +85,12 @@ public class EditRequisition extends BasePage {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencySearchXpath))).sendKeys(currency);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencySearch1Xpath+currency+currencySearch2Xpath))).click();
 			
+			if(!prType.isEmpty()) {	
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeButtonXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSearchXpath))).sendKeys(prType);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSelect1Xpath+prType+prTypeSelect2Xpath))).click();
+			}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editRequisitionXpath))).click();
-		
 		return this;
 	}
 	
@@ -222,9 +224,6 @@ public class EditRequisition extends BasePage {
 	}
 	
 	
-	
-	
-	
 	public EditRequisition diAndDa(String purchaseCategory,String codeProduct,String productName,String supplier,String quantity,String unitPrice,String currency,String prType) {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(purchaseCategoryButtonXpath))).click();
@@ -266,56 +265,50 @@ public class EditRequisition extends BasePage {
 		
 		return this;
 	}
-	
-	
-	
+		
 	public EditCoding editCodingSBS(String OrderDesc,String PurchaseCategory,String ProductCode,String ProductName,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE,String PRForm) {
 		
 		if(PRForm.equalsIgnoreCase("Subcontracting") || PRForm.equalsIgnoreCase("Logistics")) {
-			subcontractingAndLogistics(OrderDesc , PurchaseCategory, ProductName, Supplier, Quantity, UnitPrice, Currency,PrTYPE);
-			
+			subcontractingAndLogistics(OrderDesc , PurchaseCategory, ProductName, Supplier, Quantity, UnitPrice, Currency,PrTYPE);			
 		}
-		else {
-			
+		else {			
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(OrderDesc);
-				
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(OrderDesc);				
 			if(PRForm.equalsIgnoreCase("Standard")) {
 				standard( PurchaseCategory, ProductCode, ProductName, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
-			} else {
-				
+			} else {				
 				diAndDa(  PurchaseCategory, ProductCode, ProductName, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
-			}
-			
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editRequisitionXpath))).click();
-			
+			}			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editRequisitionXpath))).click();			
 		}
 		return new EditCoding(driver);
 	}
 	
 	
-	public EditCoding editCodingGalitt(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
-		
+	public EditCoding editCodingGalitt(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
 		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingBeleux(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
-		
+	public EditCoding editCodingBeleux(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
 		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
 	public EditCoding editCodingSpain(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
-		
 		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingFrance(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
-		
+	public EditCoding editCodingFrance(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {	
 		editRequisitionFrance( OrderDesc ,PurchaseCategory, ProductName, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
+	}
+	
+	
+	public EditCoding editCoding(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
+		return new EditCoding(driver);	
 	}
 
 

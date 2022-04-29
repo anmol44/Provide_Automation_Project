@@ -7,12 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
 import base.BasePage;
 import commons.ExceptionCode;
-import commons.ScreenShot;
 
 public class ReviewAndApprove extends BasePage {
 	
@@ -49,15 +47,8 @@ try {
 			status="FAIL";
 			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
 			
-			try {
-				String errorSc =concate+ ScreenShot.attachedScreenShot(driver, "PR_REQUISITION "+i);
-				
-				test.log(Status.FAIL, "Error Snapshot below:", MediaEntityBuilder.createScreenCaptureFromPath(errorSc).build());
-					
-				} catch(Exception a) {
-					
-					test.log(Status.INFO, "Error Screenshot not found");
-				}
+			ExceptionCode exception = new ExceptionCode(driver);
+			exception.exception(i, test);
 			
 			return status;
 		}
@@ -126,15 +117,8 @@ try {
 			status="FAIL";
 			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
 			
-			try {
-				String errorSc =concate+ ScreenShot.attachedScreenShot(driver, "PR_REQUISITION "+i);
-				
-				test.log(Status.FAIL, "Error Snapshot below:", MediaEntityBuilder.createScreenCaptureFromPath(errorSc).build());
-					
-				} catch(Exception a) {
-					
-					test.log(Status.INFO, "Error Screenshot not found");
-				}
+			ExceptionCode exception = new ExceptionCode(driver);
+			exception.exception(i, test);
 			
 			return status;
 		}
