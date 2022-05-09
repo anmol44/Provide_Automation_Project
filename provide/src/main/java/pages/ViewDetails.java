@@ -134,7 +134,7 @@ public class ViewDetails extends BasePage {
 	public GetApprove getApproveNew(String quantity,String unitPrice,String paymentTerms ) {
 		viewDetailsNew(quantity,unitPrice,paymentTerms);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();  for testing purpose commented on GalittNew entity
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();  
 		
 		return new GetApprove(driver);
 	}
