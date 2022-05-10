@@ -140,7 +140,7 @@ public class PrCreationLatest extends BaseTest {
 				test.log(Status.INFO, "Enter Data for View Details creation ");
 				ViewDetails viewDetails = new ViewDetails(driver);
 				viewDetails.getApproveNew(excelData.get(i).get("Quantity"), excelData.get(i).get("UnitPrice"),
-						excelData.get(i).get("Payment Terms"));
+						excelData.get(i).get("Payment Terms"), excelData.get(i).get("SellingPrice"));
 				test.log(Status.INFO, "Enter Data for View Details successfull ");
 
 				test.log(Status.INFO, "Get Approve Successfull");

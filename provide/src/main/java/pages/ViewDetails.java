@@ -68,12 +68,16 @@ public class ViewDetails extends BasePage {
 		return this;
 	}
 	
-	public ViewDetails  viewDetailsNew(String quantity,String unitPrice,String paymentTerms) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();		
+	public ViewDetails  viewDetailsNew(String quantity,String unitPrice,String paymentTerms,String SellingPrice) {
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();	
+		
+		if(SellingPrice.equalsIgnoreCase("yes")) {
 		Integer price;		
 		price= Integer.parseInt(quantity)*Integer.parseInt(unitPrice); 
 		String sellingPrice= Integer.toString(price);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceNewXpath))).sendKeys(sellingPrice);		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceNewXpath))).sendKeys(sellingPrice);	
+		}
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));		
 		return this;
@@ -131,8 +135,8 @@ public class ViewDetails extends BasePage {
 		return new GetApprove(driver);
 	}
 	
-	public GetApprove getApproveNew(String quantity,String unitPrice,String paymentTerms ) {
-		viewDetailsNew(quantity,unitPrice,paymentTerms);
+	public GetApprove getApproveNew(String quantity,String unitPrice,String paymentTerms ,String sellingPrice) {
+		viewDetailsNew(quantity,unitPrice,paymentTerms,sellingPrice);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();  
 		
