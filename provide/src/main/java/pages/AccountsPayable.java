@@ -20,10 +20,17 @@ public class AccountsPayable extends BasePage {
 	static String invoiceXpath = "(//input[@class='pt-input ng-untouched ng-pristine ng-valid'])[1]";
 	static String invoiceSearchXpath="//button[@class='pt-btn' and contains(text(),'Search')]";
 	
-	static String poXpath="(//div[@class='pt-select-combobox-main'])[1]";
-	static String poDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
+	static String poXpath="//button[@aria-labelledby='OrderNumbers']";
+	static String poDivXpath="//div[contains(text(),'Search for purchase order number')]";
 	
-	static String poSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
+	static String poSearchXpath="//input[@placeholder='Order number']";
+	static String poSearchButtonXpath="//button[@class='pt-btn pt-btn-primary search-button' and contains(text(),'Search')]";
+	static String poNumberVerify1Xpath="//span[@class='label' and contains(text(),'";
+	static String poNumberVerify2Xpath="')]";
+	static String poNumberTabCancelXpath="//button[@title='Cancel']";
+	static String poNumberSelectXpath="//button[@class='pt-btn select-btn' and contains(text(),'Select')]";
+
+	
 	static String poSelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
 	static String poSelect2Xpath="')]";
 	
@@ -35,25 +42,21 @@ public class AccountsPayable extends BasePage {
 	
 	// xpaths for Supplier code
 	
-	static String supplierCodeButtonXpath="(//button[@class='pt-select-toggle-btn'])[5]"; 
+	static String supplierCodeButtonXpath="(//button[@class='pt-select-toggle-btn' and @aria-labelledby='SupplierCode'])"; 
 	static String supplierCodePanelXpath="/html/body/pt-floating-panel";
 	static String supplierCodeSearchContainerXpath="//div[@class='searchContainer']";
-	static String supplierCodeInputXpath="/html/body/pt-floating-panel/div[2]/div/div/ng-component/div/div/div[2]/div[1]/pt-search-input/input";
+	static String supplierCodeInputXpath="//input[@placeholder='Search for supplier information']";
 	static String supplierCodeSelectXpath="(//button[@class='pt-btn action-input-modal-btn' and not(@disabled)])";
 	static String supplierSearchInputXpath="//pt-search-input[@class='search-input']";
-	static String invoiceDateXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[1]/div[2]/div/div/div/div[2]/div/ia-invoice-details-tabs/pt-tabs/mat-tab-group/div/mat-tab-body[2]/div/ia-invoice-header/form/div[10]/pt-field-container/div/div/div/pt-date-picker/div/div[1]/div/div[1]/input";
-	static String netSumXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[1]/div[2]/div/div/div/div[2]/div/ia-invoice-details-tabs/pt-tabs/mat-tab-group/div/mat-tab-body[2]/div/ia-invoice-header/form/div[13]/pt-field-container/div/div/div/gl-general-editor/pt-decimal-field-editor/input";
-	static String taxSumXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[1]/div[2]/div/div/div/div[2]/div/ia-invoice-details-tabs/pt-tabs/mat-tab-group/div/mat-tab-body[2]/div/ia-invoice-header/form/div[14]/pt-field-container/div/div/div/gl-general-editor/pt-decimal-field-editor/input";
+	
+	static String invoiceDateXpath="//input[@aria-labelledby='InvoiceDate']";
+	
+	static String netSumXpath="//input[@aria-labelledby='NetSum']";
+	static String taxSumXpath="//input[@aria-labelledby='TaxSum']";
 	static String saveButtonXpath="//button[@class='pt-btn' and contains(text(),'Save')]";
 	static String matLabLabelsXpath="(//div[@class='mat-tab-labels'])[1]";
 	static String matTabLabelsXpath= "//div[@id='mat-tab-label-0-1']";
-	
-	
-	static String prTypeXpath="(//button[@class='pt-select-toggle-btn' and @data-t-id='dropdown-toggle' ])[2]";
-	static String prTypeDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
-	static String prTypeSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
-	static String prTypeSelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
-	static String prTypeSelect2Xpath="')]";
+		
 	static String approverXpath="(//button[@class='pt-select-toggle-btn' and @data-t-id='dropdown-toggle' ])[5]";
 	static String approverDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String approverSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
@@ -109,13 +112,13 @@ public class AccountsPayable extends BasePage {
 	
 	public AccountsPayable invoiceSearch(String invoice)throws InterruptedException  {
 	       
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).click();
 		
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceXpath))).sendKeys(invoice);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).sendKeys(invoice);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceSearchXpath)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceSearchXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceSearchXpath))).click();
 		 
 		return this;
 	}
@@ -126,34 +129,37 @@ public class AccountsPayable extends BasePage {
 		WebElement element = driver.findElement(By.xpath(matLabLabelsXpath));
 		List<WebElement> elements = element.findElements(By.xpath("./child::*"));
 		elements.get(1).click();
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poDivXpath)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poDivXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchXpath))).sendKeys(Keys.CONTROL+"a");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchXpath))).sendKeys(Keys.BACK_SPACE);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchXpath))).sendKeys(po);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSelect1Xpath+po+poSelect2Xpath))).click();
-		
+				
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath))).click();
      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodePanelXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeSearchContainerXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//pt-search-input[@class='search-input']")));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeInputXpath))).sendKeys(supplierCode);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeSelectXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeInputXpath))).sendKeys(supplierCode);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeSelectXpath))).click();
 		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceDateXpath))).clear();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceDateXpath))).sendKeys(invoiceDate);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceDateXpath))).sendKeys(invoiceDate);
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(netSumXpath))).sendKeys(Keys.CONTROL+"a");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(netSumXpath))).sendKeys(Keys.BACK_SPACE);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(netSumXpath))).sendKeys(invoiceAmt);
+	
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(Keys.CONTROL+"a");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(Keys.BACK_SPACE);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(invoiceAmt);
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taxSumXpath))).sendKeys(Keys.CONTROL+"a");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taxSumXpath))).sendKeys(Keys.BACK_SPACE);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(taxSumXpath))).sendKeys(taxAmt);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(Keys.CONTROL+"a");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(Keys.BACK_SPACE);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(taxAmt);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poDivXpath)));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(Keys.CONTROL+"a");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(Keys.BACK_SPACE);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(po);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchButtonXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberVerify1Xpath+po+poNumberVerify2Xpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberTabCancelXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberSelectXpath))).click();
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(saveButtonXpath))).click();
 		Thread.sleep(2000);
@@ -161,20 +167,13 @@ public class AccountsPayable extends BasePage {
 		return this;
 	}
 	
-	public AccountsPayable editNonPoInvoice(String invoice,String prType,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver) throws InterruptedException  {
+	public AccountsPayable editNonPoInvoice(String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver) throws InterruptedException  {
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(matLabLabelsXpath)));
-		List<WebElement> elements = driver.findElements(By.xpath(matLabLabelsXpath));
-		elements.get(0).click();
+		WebElement element = driver.findElement(By.xpath(matLabLabelsXpath));
+		List<WebElement> elements = element.findElements(By.xpath("./child::*"));
+		elements.get(1).click();
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(matTabLabelsXpath))).click();		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(prTypeDivXpath)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeDivXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSearchXpath))).sendKeys(Keys.CONTROL+"a");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSearchXpath))).sendKeys(Keys.BACK_SPACE);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSearchXpath))).sendKeys(prType);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSelect1Xpath+prType+prTypeSelect2Xpath))).click();
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath)));
@@ -208,10 +207,10 @@ public class AccountsPayable extends BasePage {
 		return this;
 		}
 	
-	public AccountsPayable saveAndAddLines(JavascriptExecutor javascriptExecutor, String lines,String purchaseCategoryList,String agencyList,String typeList,String sspList) throws InterruptedException  {
+	public AccountsPayable saveAndAddLines(JavascriptExecutor javascriptExecutor,String purchaseCategoryList,String agencyList,String typeList,String sspList) throws InterruptedException  {
 
 		// add new line
-		int line =Integer.parseInt(lines);
+		
 	
 		ArrayList<String> purchaseList= new ArrayList<String>(Arrays.asList(purchaseCategoryList.split("\\r?\\n")));
 		ArrayList<String> agencylist= new ArrayList<String>(Arrays.asList(agencyList.split("\\r?\\n")));
@@ -265,11 +264,7 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSelect1Xpath+ssp+sspSelect2Xpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(sspVisibleXpath)));
         }       
-        for(int k=1;k<line;k++) {
-        	 purchasecategory = purchaseList.get(k);      	
-        	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addCodingXpath))).click();
-        	Thread.sleep(1000);       	
-        }       
+            
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(saveButtonXpath))).click();
         
         return this;
@@ -299,10 +294,11 @@ public class AccountsPayable extends BasePage {
 		return new Matching(driver);
 	}
 	
-	public AccountsPayable nonPOInvoice(JavascriptExecutor javascriptExecutor,String invoice,String prType,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver, String lines,String purchaseCategoryList,String agencyList,String typeList,String sspList) throws InterruptedException  {
+	public AccountsPayable nonPOInvoice(JavascriptExecutor javascriptExecutor,String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver,String purchaseCategory,String agency,String type,String ssp) throws InterruptedException  {
 		receivedStage().
-		invoiceSearch(invoice).editNonPoInvoice(invoice, prType, supplierCode, invoiceDate, invoiceAmt, taxAmt, approver).
-		saveAndAddLines(javascriptExecutor, lines, purchaseCategoryList, agencyList, typeList, sspList).
+		invoiceSearch(invoice).
+		editNonPoInvoice(invoice, supplierCode, invoiceDate, invoiceAmt, taxAmt, approver).
+		saveAndAddLines(javascriptExecutor, purchaseCategory, agency, type, ssp).
 		sendToValidate();
 		return this;
 	}

@@ -11,8 +11,8 @@ public class EditRequisition extends BasePage {
 
 	static String orderDescription = "//div[@class='text ng-scope']//child::pal-field-container[@label='Description *']//child::input[@type='text']";
 	static String supplierProductName = "//div[@class='text ng-scope']//child::pal-field-container[@label='Product name ']//child::input[@type='text']";
-	static String supplierSelect1Xpath = "//span[@class='ng-binding'and @ng-bind-html='item.name | highlight:vm.searchString' and contains(text(),'";
-	static String supplierSelect2Xpath = "')]";
+	static String supplierSelect1Xpath = "//span[@class='ui-select-highlight' and contains(text(),'";
+	static String supplierSelect2Xpath = "')]//parent::span[@class='ng-binding']";
 	static String supplierProductNameSBS136SubcontractingXpath= "/html/body/div/section/section/section/div/form/ul/li[2]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-text-field/pal-field-container/div/div/div/input";
 	static String purchaseCategoryButtonXpath = "//button[@type='button' and @class='pal-tree-select-toggle-btn ng-invalid']";
 	static String purchaseCategorySearchXpath = "/html/body/div/section/section/section/div/form/ul/li[3]/span/div/bw-freetext-field-switcher/div/div/bw-freetext-category-field/pal-field-container/div/div/div/pal-tree-single-select/div/div[2]/pal-tree-view/div/div[1]/div/input";
@@ -70,7 +70,7 @@ public class EditRequisition extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(purchaseCategorySelect1Xpath+purchaseCategory+purchaseCategorySelect2Xpath))).click();
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierButtonXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierSearchXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierSearchXpath))).sendKeys(supplier);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierSelect1Xpath+supplier+supplierSelect2Xpath))).click();
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(quantityXpath))).click();

@@ -14,7 +14,6 @@ public class ScreenShot {
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String dest = "./Output/ErrorScreenshots/"+name+".png";
-		File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		File destination = new File(dest);
 		FileHandler.copy(source, destination);
 		return dest;

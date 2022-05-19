@@ -26,7 +26,11 @@ public class LogOut extends BasePage {
 	static String LogOutInUrl = "https://voflusoprasttest.p2p.basware.com/ap/invoice?v=doc&s=0&docId=6a68077bfb934e6094fb22952c2f6c91";
 	
 	static String unsavedDataDiv="//div[@class='modal-content']//child :: pal-modal[@title-text='Unsaved data warning']";
-	static String unsavedDataButton="//button[@class='btn btn-secondary']";								  
+	static String unsavedDataButton="//button[@class='btn btn-secondary']";		
+	
+
+	static String unsavedDataDivInvoice="//div[@class='pt-modal-content']//child::div[contains(text(),'Unsaved data')]";
+	static String unsavedDataButtonInvoice="//button[contains(text(),' Discard changes ')]";	
 
 
 	public LogOut(WebDriver driver) {
@@ -46,20 +50,15 @@ public class LogOut extends BasePage {
 		else {
 		webElement = (WebElement) javascriptExecutor.executeScript("return "+shadowRootHostLogoutXpath);
 		javascriptExecutor.executeScript("arguments[0].click();", webElement); 
-		}
-		
-		unSavedData(javascriptExecutor,doctype);
-		
-
+		}		
+		unSavedData(javascriptExecutor,doctype);		
 		Thread.sleep(2000);
 		if (driver.getCurrentUrl().contains(logOutUrl)) {
 			allSessionsLogOut(wait,doctype);
 			
-		} else if(driver.getCurrentUrl().contains(LogOutInUrl)) {
+		} else if(driver.findElements(By.xpath(allSessionsLogOutInXpath)).size()>0) {
 			allSessionsLogOut(wait,doctype);
-		}
-		
-		
+		}		
 		return this;
 	}
 	
@@ -71,17 +70,22 @@ public class LogOut extends BasePage {
 		
 	}
 	
-	public static void unSavedData(JavascriptExecutor javascriptExecutor,String doctype) throws InterruptedException {
-		
-		if(driver.findElements(By.xpath(unsavedDataDiv)).size()>0) {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(unsavedDataButton))).click();
-			
-			Thread.sleep(2000);
-			if (driver.getCurrentUrl().contains(logOutUrl)) {
-				allSessionsLogOut(wait,doctype);
-				}else if(driver.getCurrentUrl().contains(LogOutInUrl)) {
-					allSessionsLogOut(wait,doctype);
-				}
+	public static void unSavedData(JavascriptExecutor javascriptExecutor, String doctype) throws InterruptedException {
+
+		if (doctype.equalsIgnoreCase("invoice")) {
+			if (driver.findElements(By.xpath(unsavedDataDivInvoice)).size() > 0) {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(unsavedDataButtonInvoice))).click();
+			}
+		} else {
+			if (driver.findElements(By.xpath(unsavedDataDivInvoice)).size() > 0) {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(unsavedDataButtonInvoice))).click();
+			}
+		}
+		Thread.sleep(2000);
+		if (driver.getCurrentUrl().contains(logOutUrl)) {
+			allSessionsLogOut(wait, doctype);
+		} else if ((driver.findElements(By.xpath(allSessionsLogOutInXpath)).size() > 0)) {
+			allSessionsLogOut(wait, doctype);
 		}
 	}
 }

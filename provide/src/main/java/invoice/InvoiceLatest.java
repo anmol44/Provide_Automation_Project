@@ -21,6 +21,7 @@ import commons.ExceptionCode;
 import commons.ExtentReport;
 import commons.OutPutSheet;
 import commons.ScreenShot;
+import commons.UserLoginException;
 import pages.AccountsPayable;
 import pages.HomePage;
 import pages.LogOut;
@@ -29,7 +30,7 @@ import pages.Matching;
 import pages.ReviewAndApprove;
 
 
-public class Sbs extends BaseTest {
+public class InvoiceLatest extends BaseTest {
 	
 	
 	static HashMap<Integer, HashMap<String,String>> excelData;
@@ -69,25 +70,26 @@ public class Sbs extends BaseTest {
 			e.printStackTrace();
 			System.exit(0);
 		}
+		
+		// Automation start point
 		for (int i = 1; i <=excelData.size() ; i++) {
 			status="PASS";
-			test = extent.createTest("PR REQUISITION : "+i, "");
+			test = extent.createTest("Invoice : "+i, "");
 			
 			try {
 				Login login = new Login(driver);
 				test.log(Status.INFO, "Loging for PR Creator "+i);
-				login.logIn(excelData.get(i).get("User"),excelData.get(i).get("Password"),excelData.get(i).get("Url"));
-				test.log(Status.INFO, "Login "+excelData.get(i).get("User")+" for PR Creator "+i);
+				
+				login.logIn(
+						excelData.get(i).get("User"),
+						excelData.get(i).get("Password"),
+						excelData.get(i).get("Url"));
+				
+				test.log(Status.INFO, "Login "+excelData.get(i).get("User")+" for Invoice  "+i);
 			}
-			catch(Exception e) {
-				status="FAIL";
-				test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
-				try {
-					String errorSc =concate+ ScreenShot.attachedScreenShot(driver, "PR_REQUISITION "+i);
-					test.log(Status.FAIL, "Error Snapshot below:", MediaEntityBuilder.createScreenCaptureFromPath(errorSc).build());
-					} catch(Exception a) {
-						test.log(Status.INFO, "Error Screenshot not found");
-					}
+			catch(Exception e) {				
+				UserLoginException userLoginException = new UserLoginException(driver);
+				userLoginException.loginExceptionHandler(status, test,workbook,sheet,i,excelData);
 				continue;
 			}
 			try {
@@ -105,15 +107,34 @@ public class Sbs extends BaseTest {
 					if(!excelData.get(i).get("PO Number").isEmpty()) {
 						
 						test.log(Status.INFO, "Enter Data for Po Invoice ");	
-						accountsPayable.matching(excelData.get(i).get("InvoiceNo"),excelData.get(i).get("PO Number"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"));
+						accountsPayable.matching(
+								excelData.get(i).get("InvoiceNo"),
+								excelData.get(i).get("PO Number"),
+								excelData.get(i).get("SupplierCode"),
+								excelData.get(i).get("InvoiceDate"),
+								excelData.get(i).get("InvoiceAmt"),
+								excelData.get(i).get("TaxAmt")
+								);
 						
 						Matching matching = new Matching(driver);
 						matching.openAndMatchInvoice(excelData.get(i).get("MatchQty"));
 					}
-					if(!excelData.get(i).get("PR Type").isEmpty() && excelData.get(i).get("PO Number").isEmpty()) {
-						
+					else
+					if(excelData.get(i).get("PO Number").isEmpty()) {
 						test.log(Status.INFO, "Enter Data for  Non-Po Invoice");	
-						accountsPayable.nonPOInvoice(javascriptExecutor,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"),excelData.get(i).get("Approver"),excelData.get(i).get("PurchaseCAtegory"),excelData.get(i).get("Agency"),excelData.get(i).get("Type"),excelData.get(i).get("SSP"));
+						accountsPayable.nonPOInvoice(
+								javascriptExecutor,
+								excelData.get(i).get("InvoiceNo")								
+								,excelData.get(i).get("SupplierCode")
+								,excelData.get(i).get("InvoiceDate")
+								,excelData.get(i).get("InvoiceAmt")
+								,excelData.get(i).get("TaxAmt")
+								,excelData.get(i).get("Approver")								
+								,excelData.get(i).get("PurchaseCAtegory")
+								,excelData.get(i).get("Agency")
+								,excelData.get(i).get("Type")
+								,excelData.get(i).get("SSP")
+								);
 						}
 				
 				LogOut logOut = new LogOut(driver);
@@ -141,7 +162,7 @@ public class Sbs extends BaseTest {
 					j=1;
 			
 			} catch(Exception e) {
-			 test.log(Status.FAIL, "PR REQUISITION: "+i+e.toString());
+			 test.log(Status.FAIL, "Invoice: "+i+e.toString());
 				 	ExceptionCode exception =new ExceptionCode(driver);
 					exception.exception(i, test);
 					status="FAIL";

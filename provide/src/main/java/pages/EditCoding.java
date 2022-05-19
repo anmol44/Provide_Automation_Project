@@ -67,18 +67,18 @@ public class EditCoding extends BasePage {
 	
 	static String codingJSXpath = "document.evaluate(\"//div[@aria-label='Coding']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
     private By codingInput = By.xpath("//input[@type='text' and @aria-label='Coding']");
-    static String codingSelect1= "//span[@class='ui-select-highlight' and contains(text(),'";
-    static String codingSelect2="')]//parent :: span[@class='ng-binding']//parent::li//parent::ul[@aria-label='Coding']";
+    static String codingSelect1= "//span[@class='ui-select-highlight' and starts-with(text(),'";
+    static String codingSelect2="')]//parent::span[@class='ng-binding' and not(text()[normalize-space(.)])]";
     
     static String agencySiteCodeJSXpath = "document.evaluate(\"//div[@aria-label='Agency/Site Code']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
     private By agencySiteCodeInput = By.xpath("//input[@type='text' and @aria-label='Agency/Site Code']");
-    static String agencySiteCodeSelect1= "//span[@class='ui-select-highlight' and contains(text(),'";
-    static String agencySiteCodeSelect2="')]//parent :: span[@class='ng-binding']//parent::li//parent::ul[@aria-label='Agency/Site Code']";
+    static String agencySiteCodeSelect1= "//span[@class='ui-select-highlight' and starts-with(text(),'";
+    static String agencySiteCodeSelect2="')]//parent::span[@class='ng-binding' and not(text()[normalize-space(.)])]";
     
     static String SSPJSXpath = "document.evaluate(\"//div[@aria-label='SSP']//span[@class='psl-icon-caret-down']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue";
     private By SSPInput = By.xpath("//input[@type='text' and @aria-label='SSP']");
-    static String SSPSelect1= "//span[@class='ui-select-highlight' and contains(text(),'";
-    static String SSPSelect2="')]//parent :: span[@class='ng-binding']//parent::li//parent::ul[@aria-label='SSP']";
+    static String SSPSelect1= "//span[@class='ui-select-highlight' and starts-with(text(),'";
+    static String SSPSelect2="')]//parent::span[@class='ng-binding' and not(text()[normalize-space(.)])]";
     
     
 	
