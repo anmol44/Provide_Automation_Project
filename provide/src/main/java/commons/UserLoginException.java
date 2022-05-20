@@ -22,7 +22,7 @@ public class UserLoginException extends BasePage {
 	public void loginExceptionHandler(String status ,ExtentTest test, XSSFWorkbook workbook, XSSFSheet sheet,int i,HashMap<Integer, HashMap<String, String>> excelData) {
 
 	status = "FAIL";
-	test.log(Status.FAIL, "Unable to login : Invalid  User/Password/url. ");
+	test.log(Status.FAIL, "Unable to login : Invalid  User/Password/url. OR Language is not English ");
 
 
 	ExceptionCode exception = new ExceptionCode(driver);

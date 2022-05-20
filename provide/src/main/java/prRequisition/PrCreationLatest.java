@@ -123,8 +123,7 @@ public class PrCreationLatest extends BaseTest {
 						excelData.get(i).get("PR tYPE"));
 						
 				test.log(Status.INFO, "Enter Data for Edit Requisition successfull ");
-
-				test.log(Status.INFO, "Enter Data for Edit Coding creation ");
+				test.log(Status.INFO, "Click Edit Requisition Button waiting till 20 sec for Edit Coding creation ");
 				EditCoding editCoding = new EditCoding(driver);
 				editCoding.viewDetails(
 						javascriptExecutor, 
