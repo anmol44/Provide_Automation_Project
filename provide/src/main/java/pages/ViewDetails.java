@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import base.BasePage;
 
 public class ViewDetails extends BasePage {
@@ -18,11 +21,11 @@ public class ViewDetails extends BasePage {
 	static String lineDataSaveXpath = "(//button[@class='btn ng-binding'])[1]";
 	static String lineDataSaveButtonVisibleXpath = "/html/body/div/bw-purchase-requisition-line-details/div/pal-two-col-row/div/div[1]/div/pal-two-col-row-left-content/div/bw-purchase-line-data-panel/div/div/div[1]/div/span/span/section[2]/button";
 	static String backPageXpath = "(//i[@class='psl-icon-angle-left'])[1]";
-	static String getApproveXpath = "(//button[@class='btn btn-pal-actions-button ng-scope use-dropdown-style'])[2]";
+	static String getApprovalXpath = "(//button[@class='btn btn-pal-actions-button ng-scope use-dropdown-style'])[2]";
 	
 	// new selling price for new script
 	static String sellingPriceNewXpath = "//span[@class='ng-binding' and @id ='LinePricingNum1']//parent::label//following-sibling::bw-purchase-panel-field-switch//child::div//child::div[@class='value']//child::input";
-
+	static String sentToProcessXpath = "//div[@class='pal-toast']//child::span[@role='alert' and contains(text(),'Sent to process')]";
 	
 	public ViewDetails(WebDriver driver) {
 		super(driver);
@@ -68,77 +71,89 @@ public class ViewDetails extends BasePage {
 		return this;
 	}
 	
-	public ViewDetails  viewDetailsNew(String quantity,String unitPrice,String paymentTerms,String SellingPrice) {
+	public ViewDetails  viewDetailsNew(ExtentTest test,String quantity,String unitPrice,String paymentTerms,String SellingPrice) {
 		
+		test.log(Status.INFO, "Click LineData Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataXpath))).click();	
+		test.log(Status.PASS, "Successful LineData Button");
 		
+		test.log(Status.INFO, "Selling price Status " +SellingPrice);
 		if(SellingPrice.equalsIgnoreCase("yes")) {
 		Integer price;		
 		price= Integer.parseInt(quantity)*Integer.parseInt(unitPrice); 
 		String sellingPrice= Integer.toString(price);
+		test.log(Status.INFO, "Enter Selling Price");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sellingPriceNewXpath))).sendKeys(sellingPrice);	
+		test.log(Status.PASS, "Successful Selling Price");
 		}
+		test.log(Status.INFO, "Click LineData Save Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(lineDataSaveButtonVisibleXpath)));
+		test.log(Status.PASS, "Successful LineData Save Button");
 		return this;
 	}
 	
 	
-	public GetApprove getApprovePage() {
+	public ViewDetails getApprovalPage(ExtentTest test) {
+		test.log(Status.INFO, "Page For Get Approve Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApprovalXpath))).click();
+		test.log(Status.INFO, "Successful Get Approval Button clicked");
 		
-		return new GetApprove(driver);
+		test.log(Status.INFO, "Wait for confirm of :: Sent To Process ");		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sentToProcessXpath)));
+		test.log(Status.PASS, "Successfully Sent to Process");	
+				
+		return this;
 	}
 	
-	public GetApprove getApproveSBS(String quantity,String unitPrice,String paymentTerms ) {
+	public GetApprove getApproveSBS(ExtentTest test,String quantity,String unitPrice,String paymentTerms ) {
 		viewDetailsFR(quantity,unitPrice,paymentTerms).
-		getApprovePage();
+		getApprovalPage(test);
 		
 		
 		return new GetApprove(driver);
 	}
 	
 	
-	public GetApprove getApprove(String quantity,String unitPrice,String paymentTerms) {
+	public GetApprove getApprove(ExtentTest test,String quantity,String unitPrice,String paymentTerms) {
 		viewDetails(quantity,unitPrice,paymentTerms).
-		getApprovePage();
+		getApprovalPage(test);
 		
 		return new GetApprove(driver);
 	}
 	
-	public GetApprove getApproveGalitt(String quantity,String unitPrice,String paymentTerms ) {
+	public GetApprove getApproveGalitt(ExtentTest test,String quantity,String unitPrice,String paymentTerms ) {
 		viewDetailsFR(quantity,unitPrice,paymentTerms).
-		getApprovePage();
+		getApprovalPage(test);
 		
 		return new GetApprove(driver);
 	}
 	
-	public GetApprove getApproveBeleux(String quantity,String unitPrice,String paymentTerms ) {
+	public GetApprove getApproveBeleux(ExtentTest test,String quantity,String unitPrice,String paymentTerms ) {
 		viewDetailsFR(quantity,unitPrice,paymentTerms).
-		getApprovePage();
+		getApprovalPage(test);
 		
 		return new GetApprove(driver);
 	}
 	
-	public GetApprove getApproveSpain(String quantity,String unitPrice,String paymentTerms) {
+	public GetApprove getApproveSpain(ExtentTest test,String quantity,String unitPrice,String paymentTerms) {
 		viewDetails(quantity,unitPrice,paymentTerms).
-		getApprovePage();
+		getApprovalPage(test);
 		
 		return new GetApprove(driver);
 	}
 	
-	public GetApprove getApproveFrance(String quantity,String unitPrice,String paymentTerms) {
+	public GetApprove getApproveFrance(ExtentTest test,String quantity,String unitPrice,String paymentTerms) {
 		viewDetailsFR(quantity,unitPrice,paymentTerms).
-		getApprovePage();
+		getApprovalPage(test);
 		
 		return new GetApprove(driver);
 	}
 	
-	public GetApprove getApproveNew(String quantity,String unitPrice,String paymentTerms ,String sellingPrice) {
-		viewDetailsNew(quantity,unitPrice,paymentTerms,sellingPrice);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(backPageXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getApproveXpath))).click();  
+	public GetApprove getApproveNew(ExtentTest test,String quantity,String unitPrice,String paymentTerms ,String sellingPrice) {
+		viewDetailsNew(test,quantity,unitPrice,paymentTerms,sellingPrice).
+		getApprovalPage(test); 
 		
 		return new GetApprove(driver);
 	}

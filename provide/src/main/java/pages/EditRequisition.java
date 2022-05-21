@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import base.BasePage;
 
 public class EditRequisition extends BasePage {
@@ -57,39 +60,61 @@ public class EditRequisition extends BasePage {
 		super(driver);
 	}
 	
-	public EditRequisition editRequisition(String orderDesc ,String productName,String purchaseCategory,String supplier,String quantity,String unitPrice,String currency,String prType) {
+	public EditRequisition editRequisition(ExtentTest test, String orderDesc ,String productName,String purchaseCategory,String supplier,String quantity,String unitPrice,String currency,String prType) {
 		
+		test.log(Status.INFO, "Enter Order Description");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(orderDesc);
-		
+		test.log(Status.PASS, "Successfull Order Description");
+
+		test.log(Status.INFO, "Enter Product Name");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierProductName))).clear();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierProductName))).sendKeys(productName);
+		test.log(Status.PASS, "Successful Product Name");
 		
+		test.log(Status.INFO, "Enter Purchase Category");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(purchaseCategoryButtonXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(purchaseCategorySearchXpath))).sendKeys(purchaseCategory);
+		test.log(Status.INFO, "Select  Purchase Category if Purchase category is correct and available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(purchaseCategorySelect1Xpath+purchaseCategory+purchaseCategorySelect2Xpath))).click();
+		test.log(Status.PASS, "Successful Purchase Category");
 		
+		test.log(Status.INFO, "Enter Supplier");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierButtonXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierSearchXpath))).sendKeys(supplier);
+		test.log(Status.INFO, "Select Supplier if Supplier is correct and available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierSelect1Xpath+supplier+supplierSelect2Xpath))).click();
+		test.log(Status.PASS, "Successful Supplier");
 		
+		test.log(Status.INFO, "Enter Quantity");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(quantityXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(quantityXpath))).sendKeys(quantity);
+		test.log(Status.PASS, "Successful Quantity");
 		
+		test.log(Status.INFO, "Enter Unit Price");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(unitPriceXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(unitPriceXpath))).sendKeys(unitPrice);
+		test.log(Status.PASS, "Successful Unit Price");
 		
 		
 			currency=currency.toUpperCase();
+			test.log(Status.INFO, "Enter Currency");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencyButtonXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencySearchXpath))).sendKeys(currency);
+			test.log(Status.INFO, "Select Currency if Currency is correct and available");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(currencySearch1Xpath+currency+currencySearch2Xpath))).click();
+			test.log(Status.PASS, "Successful Currency");
 			
 			if(!prType.isEmpty()) {	
+		test.log(Status.INFO, "Enter Pr Type if available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeButtonXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSearchXpath))).sendKeys(prType);
+		test.log(Status.INFO, "Select Pr Type if is correct and available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(prTypeSelect1Xpath+prType+prTypeSelect2Xpath))).click();
+		test.log(Status.PASS, "Successful PR Type");
 			}
+			
+		test.log(Status.INFO, "Click Edit Requisition Button ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editRequisitionXpath))).click();
 		return this;
 	}
@@ -285,29 +310,29 @@ public class EditRequisition extends BasePage {
 	}
 	
 	
-	public EditCoding editCodingGalitt(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
-		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
+	public EditCoding editCodingGalitt(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+		editRequisition( test, OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingBeleux(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
-		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
+	public EditCoding editCodingBeleux(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+		editRequisition( test,OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingSpain(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
-		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
+	public EditCoding editCodingSpain(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
+		editRequisition( test,OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingFrance(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {	
+	public EditCoding editCodingFrance(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {	
 		editRequisitionFrance( OrderDesc ,PurchaseCategory, ProductName, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
 	
-	public EditCoding editCoding(String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
-		editRequisition( OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
+	public EditCoding editCoding(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+		editRequisition(test, OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);	
 	}
 

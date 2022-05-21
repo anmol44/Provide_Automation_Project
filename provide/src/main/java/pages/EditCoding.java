@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import base.BasePage;
 
@@ -90,40 +92,54 @@ public class EditCoding extends BasePage {
 	
 	
 	
-	public EditCoding headerData(String requester) {
+	public EditCoding headerData(ExtentTest test,String requester) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(headerDataSaveXpath)));
+	    test.log(Status.PASS, "Edit Requisition Successful");
+	    
 	    if(!requester.isEmpty()) {
+	    	test.log(Status.INFO, "Enter Requester");
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(requesterXpath))).click();
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(requesterSearchXpath))).sendKeys(requester);
+	    	test.log(Status.INFO, "Select Requester if is correct and available");
 	    	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(requesterSelect1Xpath+requester+requesterSelect2Xpath))).click();
 	    }
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(headerDataSaveXpath))).click();
+	   
+		
+	    test.log(Status.INFO, "Click Header Data Button");
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(headerDataSaveXpath))).click();
+
+		test.log(Status.PASS, "Header Data saved");
 	
 		return this;
 	}
 	
 	
-	public EditCoding addAddress(String deliveryAddress) {
+	public EditCoding addAddress(ExtentTest test,String deliveryAddress) {
+		test.log(Status.INFO, "click Delivery Address Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addAdressEditButtonXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addAdressEditButtonXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addressXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addressSearchXpath))).sendKeys(deliveryAddress);
+		test.log(Status.INFO, "Select Delivery Address if is correct and available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addressSelect1Xpath+deliveryAddress+addressSelect2Xpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addressSaveButtonXpath))).click();
-		
+		test.log(Status.PASS, "Successful Delivery address");
 	
 		return this;
 	}
 	
 	//Add viewDetails Button Common method
 	
-	public EditCoding viewDetailsButton() {
+	public EditCoding viewDetailsButton(ExtentTest test) {
+		test.log(Status.INFO, "Click View Details button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewDetailsXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(viewDetailsButtonXpath))).click();
+		test.log(Status.PASS, "Successful on View Details page");
 		return this;
 	}
 	
-	public EditCoding editCodingFR(JavascriptExecutor javascriptExecutor,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
+	public EditCoding editCodingFR(ExtentTest test,JavascriptExecutor javascriptExecutor,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingDivXpath)));
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+editCodingDivButtonXpath);
@@ -202,7 +218,7 @@ public class EditCoding extends BasePage {
 		
 	}
 	
-	public EditCoding  editCoding(JavascriptExecutor javascriptExecutor,String nature,String agency,String type, String ssp)throws InterruptedException {
+	public EditCoding  editCoding(ExtentTest test,JavascriptExecutor javascriptExecutor,String nature,String agency,String type, String ssp)throws InterruptedException {
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingDivXpath)));
 		
@@ -259,102 +275,115 @@ public class EditCoding extends BasePage {
 	}
 	
 	
-	public EditCoding  editCodingNew(JavascriptExecutor javascriptExecutor,String coding,String agency,String type, String ssp)throws InterruptedException {
+	public EditCoding  editCodingNew(ExtentTest test,JavascriptExecutor javascriptExecutor,String coding,String agency,String type, String ssp)throws InterruptedException {
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingDivXpath)));
-		
+		test.log(Status.INFO, "Click Edit Coding Button");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingDivXpath)));		
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+editCodingDivButtonXpath);
 		javascriptExecutor.executeScript("arguments[0].click()",webelement);
-		
-		
+				
 	//  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ProvidePom.editCodingXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(editCodingXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodingButtonXpath))).click();
-		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(viewCodingXpath)));
+		test.log(Status.PASS, "Successful Edit Coding Button Clicked");
 		
 		Thread.sleep(2000);
+		test.log(Status.INFO, "Click Coding Button ");
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+codingJSXpath);
 		javascriptExecutor.executeScript("arguments[0].click()",webelement);
+		test.log(Status.INFO, "Enter Coding ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(codingInput)).sendKeys(coding);
 		Thread.sleep(2000);
+		test.log(Status.INFO, "Select Coding if is correct and available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(codingSelect1+coding+codingSelect2))).click();
+		test.log(Status.PASS, "Successful Coding");
 		
 		Thread.sleep(2000);
+		test.log(Status.INFO, "Click Agency/Site Code Button");
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+agencySiteCodeJSXpath);
 		javascriptExecutor.executeScript("arguments[0].click()",webelement);
+		test.log(Status.INFO, "Enter Agency/Site code");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(agencySiteCodeInput)).sendKeys(agency);
 		Thread.sleep(2000);
+		test.log(Status.INFO, "Select Agency/Site code");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteCodeSelect1+agency+agencySiteCodeSelect2))).click();
+		test.log(Status.PASS, "Successful Agency/Site");
 	
 	
 		// ssp coding
 		if(type.equalsIgnoreCase("A")) {
 			Thread.sleep(2000);
+			test.log(Status.INFO, "Click SSP Button");
 			webelement = (WebElement) javascriptExecutor.executeScript("return "+SSPJSXpath);
 			javascriptExecutor.executeScript("arguments[0].click()",webelement);
+			test.log(Status.INFO, "Enter SSP");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(SSPInput)).sendKeys(ssp);
 			Thread.sleep(2000);
+			test.log(Status.INFO, "Select SSP if correct and available");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SSPSelect1+ssp+SSPSelect2))).click();
+			test.log(Status.PASS, "Successful SSP");
+			
 			
 		}
-		
+		test.log(Status.INFO, "Click Edit Coding Save Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editCodeSaveButtonXpath))).click();
+		test.log(Status.PASS, "Successful Edit Coding Save Button");
 		return this;
 		
 	}
 	
 	
-	public ViewDetails viewDetailsSBS(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
-		headerData(requestor).
-		addAddress(deliveryAddress).
-		editCodingFR(javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
-		viewDetailsButton();
+	public ViewDetails viewDetailsSBS(ExtentTest test,JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
+		headerData(test,requestor).
+		addAddress(test,deliveryAddress).
+		editCodingFR(test,javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
+		viewDetailsButton(test);
 		
 		return new ViewDetails(driver); 
 	}
 	
-	public ViewDetails viewDetailsGalitt(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
-		headerData(requestor).
-		addAddress(deliveryAddress).
-		editCoding(javascriptExecutor, nature, agency, type, ssp).
-		viewDetailsButton();
+	public ViewDetails viewDetailsGalitt(ExtentTest test,JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
+		headerData(test,requestor).
+		addAddress(test,deliveryAddress).
+		editCoding(test,javascriptExecutor, nature, agency, type, ssp).
+		viewDetailsButton(test);
 		
 		return new ViewDetails(driver); 
 	}
 	
-	public ViewDetails viewDetailsBeleux(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
-		headerData(requestor).
-		addAddress(deliveryAddress).
-		editCoding(javascriptExecutor, nature, agency, type, ssp).
-		viewDetailsButton();
+	public ViewDetails viewDetailsBeleux(ExtentTest test,JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
+		headerData(test,requestor).
+		addAddress(test,deliveryAddress).
+		editCoding(test,javascriptExecutor, nature, agency, type, ssp).
+		viewDetailsButton(test);
 		
 		return new ViewDetails(driver); 
 	}
 	
-	public ViewDetails viewDetailsSpain(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
-		headerData(requestor).
-		addAddress(deliveryAddress).
-		editCoding(javascriptExecutor, nature, agency, type, ssp).
-		viewDetailsButton();
+	public ViewDetails viewDetailsSpain(ExtentTest test,JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String prType,String ssp) throws InterruptedException {
+		headerData(test,requestor).
+		addAddress(test,deliveryAddress).
+		editCoding(test,javascriptExecutor, nature, agency, type, ssp).
+		viewDetailsButton(test);
 		
 		return new ViewDetails(driver); 
 	}
 	
-	public ViewDetails viewDetailsFrance(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
-		headerData(requestor).
-		addAddress(deliveryAddress).
-		editCodingFR( javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
-		viewDetailsButton();
+	public ViewDetails viewDetailsFrance(ExtentTest test,JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String nature,String agency,String type,String realEstateReference,String prType,String Approver,String ssp) throws InterruptedException {
+		headerData(test,requestor).
+		addAddress(test,deliveryAddress).
+		editCodingFR(test, javascriptExecutor, nature, agency, type, realEstateReference, prType, Approver, ssp).
+		viewDetailsButton(test);
 		
 		return new ViewDetails(driver); 
 	}
 	
-	public ViewDetails viewDetails(JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String coding,String agency,String type,String prType,String ssp) throws InterruptedException {
-		headerData(requestor).
-		addAddress(deliveryAddress).
-		editCodingNew(javascriptExecutor, coding, agency, type, ssp).
-		viewDetailsButton();
+	public ViewDetails viewDetails(ExtentTest test,JavascriptExecutor javascriptExecutor,String requestor,String deliveryAddress,String coding,String agency,String type,String prType,String ssp) throws InterruptedException {
+		headerData(test,requestor).
+		addAddress(test,deliveryAddress).
+		editCodingNew(test,javascriptExecutor, coding, agency, type, ssp).
+		viewDetailsButton(test);
 		
 		return new ViewDetails(driver); 
 	}

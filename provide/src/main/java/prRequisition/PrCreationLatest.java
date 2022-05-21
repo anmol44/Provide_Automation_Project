@@ -98,21 +98,26 @@ public class PrCreationLatest extends BaseTest {
 			try {
 				test.log(Status.INFO, "HomePage ");
 				HomePage homePage = new HomePage(driver);
-				homePage.shopBtn(javascriptExecutor);
+				homePage.shopBtn(test,javascriptExecutor);
 
 				test.log(Status.INFO, "ShopButton ");
 				Shop shop = new Shop(driver);
 				shop.selectForm(
+						test,
 						excelData.get(i).get("Organization"),
 						javascriptExecutor);
 
 				test.log(Status.INFO, "Select Orgainzation ");
 				Form form = new Form(driver);
-				form.editRequisition(excelData.get(i).get("PRForm"));
+				form.editRequisition(
+						test,
+						excelData.get(i).get("PRForm")
+						);
 
 				test.log(Status.INFO, "Enter Data for Edit Requisition creation ");
 				EditRequisition editRequisition = new EditRequisition(driver);
 				editRequisition.editCoding(
+						test,
 						excelData.get(i).get("OrderDesc"),
 						excelData.get(i).get("Product Name"),
 						excelData.get(i).get("PurchaseCategory"),
@@ -120,12 +125,14 @@ public class PrCreationLatest extends BaseTest {
 						excelData.get(i).get("Quantity"),
 						excelData.get(i).get("UnitPrice"),
 						excelData.get(i).get("Currency"), 
-						excelData.get(i).get("PR tYPE"));
+						excelData.get(i).get("PR tYPE")
+						);
 						
-				test.log(Status.INFO, "Enter Data for Edit Requisition successfull ");
-				test.log(Status.INFO, "Click Edit Requisition Button waiting till 20 sec for Edit Coding creation ");
+				
+				test.log(Status.INFO, "Wait till 20 sec for Basware Response");
 				EditCoding editCoding = new EditCoding(driver);
 				editCoding.viewDetails(
+						test,
 						javascriptExecutor, 
 						excelData.get(i).get("Requestor"),
 						excelData.get(i).get("Delivery Address"), 
@@ -133,31 +140,37 @@ public class PrCreationLatest extends BaseTest {
 						excelData.get(i).get("Agency/Site"),
 						excelData.get(i).get("Type"),
 						excelData.get(i).get("PR tYPE"), 
-						excelData.get(i).get("SSP"));
-				test.log(Status.INFO, "Enter Data for Edit Coding successfull ");
+						excelData.get(i).get("SSP")
+						);
+				test.log(Status.PASS, "Enter Data for Edit Coding successfull ");
 
 				test.log(Status.INFO, "Enter Data for View Details creation ");
 				ViewDetails viewDetails = new ViewDetails(driver);
-				viewDetails.getApproveNew(excelData.get(i).get("Quantity"), excelData.get(i).get("UnitPrice"),
-						excelData.get(i).get("Payment Terms"), excelData.get(i).get("SellingPrice"));
+				viewDetails.getApproveNew(
+						test,
+						excelData.get(i).get("Quantity"),
+						excelData.get(i).get("UnitPrice"),
+						excelData.get(i).get("Payment Terms"),
+						excelData.get(i).get("SellingPrice"));
 				test.log(Status.INFO, "Enter Data for View Details successfull ");
 
-				test.log(Status.INFO, "Get Approve Successfull");
+				test.log(Status.INFO, "Get Approval Successfull");
 				GetApprove getApprove = new GetApprove(driver);
-				prNumber = getApprove.prNumber();
-				test.log(Status.PASS, "PR: " + prNumber + " Successfuly created.");
-
+				prNumber = getApprove.prNumber(test);
+				
+				test.log(Status.INFO, "LogOut for "+prNumber + " creator");	
 				LogOut logOut = new LogOut(driver);
 				logOut.logout(javascriptExecutor, excelData.get(i).get("docType"));
 				test.log(Status.INFO, "LogOut " + excelData.get(i).get("User") + " for PR Creator " + i);
-
+				
+				test.log(Status.INFO, "Check for reviewer if available");	
 				if (excelData.get(i).containsKey(Reviewer + 1) && !excelData.get(i).get(Reviewer + 1).isEmpty()) {
 					test.log(Status.INFO, "Review Process Started ");
 
 					ReviewAndApprove reviewAndApprove = new ReviewAndApprove(driver);
 					while (excelData.get(i).containsKey(Reviewer + j)
 							&& !excelData.get(i).get(Reviewer + j).isEmpty()) {
-						System.out.println(excelData.get(i).containsKey(Reviewer + j));
+						
 						status = reviewAndApprove.review(
 								javascriptExecutor, 
 								excelData.get(i).get(Reviewer + j),

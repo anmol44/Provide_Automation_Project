@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import base.BasePage;
 
@@ -32,7 +34,7 @@ public class Form extends BasePage {
 		
 	}
 	
-	public Form selectForm(String type) throws InterruptedException {
+	public Form selectForm(ExtentTest test,String type) throws InterruptedException {
 		Thread.sleep(2000);
 		//refresh the page 
 		driver.navigate().refresh();
@@ -50,10 +52,12 @@ public class Form extends BasePage {
 	
 	
 	
-	public Form selectFormSBS(String type) throws InterruptedException {
+	public Form selectFormSBS(ExtentTest test,String type) throws InterruptedException {
 		Thread.sleep(2000);
 		//refresh the page 
+		test.log(Status.INFO,"Refresh Page for Stale element");
 		driver.navigate().refresh();
+		
 		
 		if(type.equalsIgnoreCase("DA")) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(beStandardXpath))).click();
@@ -74,11 +78,13 @@ public class Form extends BasePage {
 	
 	// New Form for entity :=> 010, 136, 413, 426, 022, 362
 	
-		public Form selectFormNew(String type) throws InterruptedException {
+		public Form selectFormNew(ExtentTest test,String type) throws InterruptedException {
 			Thread.sleep(2000);
 			//refresh the page 
+			test.log(Status.INFO,"Refresh Page for Stale element");
 			driver.navigate().refresh();
 			
+			test.log(Status.INFO,"Select Form");
 			if(type.equalsIgnoreCase("Goods & Services")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(beGoodsAndServicesXpath))).click();
 			}else if(type.equalsIgnoreCase("It")) {
@@ -90,38 +96,39 @@ public class Form extends BasePage {
 			}else if(type.equalsIgnoreCase("Travel")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(beTravelXpath))).click();
 			}
+			test.log(Status.PASS,"Successful Form");
 			return this;
 		}
 	
 	
 	
-	public EditRequisition editRequisitionSBS(String type) throws InterruptedException  {
-		selectFormSBS(type);	
+	public EditRequisition editRequisitionSBS(ExtentTest test,String type) throws InterruptedException  {
+		selectFormSBS(test,type);	
 		return new EditRequisition(driver);
 	}
 	
-	public EditRequisition editRequisitionGalitt(String type) throws InterruptedException {
-		selectFormSBS(type);	
+	public EditRequisition editRequisitionGalitt(ExtentTest test,String type) throws InterruptedException {
+		selectFormSBS(test,type);	
 		return new EditRequisition(driver);
 	}
 	
-	public EditRequisition editRequisitionBeleux(String type) throws InterruptedException {
-		selectForm(type);		
+	public EditRequisition editRequisitionBeleux(ExtentTest test,String type) throws InterruptedException {
+		selectForm(test,type);		
 		return new EditRequisition(driver);
 	}
 	
-	public EditRequisition editRequisitionSpain(String type) throws InterruptedException {
-		selectForm(type);	
+	public EditRequisition editRequisitionSpain(ExtentTest test,String type) throws InterruptedException {
+		selectForm(test,type);	
 		return new EditRequisition(driver);
 	}
 	
-	public EditRequisition editRequisitionFrance(String type) throws InterruptedException {
-		selectFormSBS(type);		
+	public EditRequisition editRequisitionFrance(ExtentTest test,String type) throws InterruptedException {
+		selectFormSBS(test,type);		
 		return new EditRequisition(driver);
 	}
 	
-	public EditRequisition editRequisition(String type) throws InterruptedException {
-		selectFormNew(type);
+	public EditRequisition editRequisition(ExtentTest test,String type) throws InterruptedException {
+		selectFormNew(test,type);
 		return new EditRequisition(driver);
 	}
 

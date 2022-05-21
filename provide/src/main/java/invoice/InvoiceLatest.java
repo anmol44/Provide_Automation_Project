@@ -131,6 +131,7 @@ public class InvoiceLatest extends BaseTest {
 								,excelData.get(i).get("TaxAmt")
 								,excelData.get(i).get("Approver")								
 								,excelData.get(i).get("PurchaseCAtegory")
+								,excelData.get(i).get("Coding")
 								,excelData.get(i).get("Agency")
 								,excelData.get(i).get("Type")
 								,excelData.get(i).get("SSP")

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import base.BasePage;
 
@@ -42,41 +44,47 @@ public class Shop extends BasePage {
 		return this;
 	}
 	
-	public Shop organizationSelect(String organization) {
+	public Shop organizationSelect(ExtentTest test,String organization) {
 		
+		test.log(Status.INFO, "Enter Organization");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchBoxXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(modalTitleXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectDropDownXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fieldContaierXpath))).click();
 		// change from elementToBeClickable  to visiblityOfElementLocated.
+		test.log(Status.INFO, "Organization If is correct and available");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchXpath))).sendKeys(organization);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationCountXpath)));
+		test.log(Status.INFO, "Select Organization");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationPanelXpath +organization+"]"))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSelectButtonXpath))).click();
+		test.log(Status.PASS, "Successful Organization");
 		return this;
 	}
 	
 	
-	public Shop selectEntity(JavascriptExecutor javascriptExecutor ) {
+	public Shop selectEntity(ExtentTest test,JavascriptExecutor javascriptExecutor ) {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		test.log(Status.INFO, "Click to Open Select Organization Panel");
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+shopXpath);
 		webelement.click();
+		test.log(Status.PASS, "Successful Panel Opened to enter Organization");
 		
 		return this;
 	}
 	
 	
-	public Form selectForm(String organization,JavascriptExecutor javascriptExecutor) {
+	public Form selectForm(ExtentTest test ,String organization,JavascriptExecutor javascriptExecutor) {
 		waitSearchSubmitButton().
 		waitAlustaNavigation().
-		selectEntity(javascriptExecutor).
-		organizationSelect(organization);
+		selectEntity(test,javascriptExecutor).
+		organizationSelect(test,organization);
 		
 		return new Form(driver);
 	}

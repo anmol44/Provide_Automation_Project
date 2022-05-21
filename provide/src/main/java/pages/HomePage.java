@@ -4,6 +4,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import base.BasePage;
 
 public class HomePage extends BasePage {
@@ -34,15 +37,17 @@ public class HomePage extends BasePage {
 		return this;
 	}
 	
-	public Shop shopBtn(JavascriptExecutor javascriptExecutor) {
+	public Shop shopBtn(ExtentTest test, JavascriptExecutor javascriptExecutor) {
 		searchHomeXpath().
 		waitAlustaNavigation();
+		test.log(Status.INFO, "Click Shop Button");
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+shopButtonXpath);
 		webelement.click();
+		test.log(Status.PASS, "Shop clicked");
 		return new  Shop(driver);
 	}
 	
-	public  AccountsPayable accountPayable(JavascriptExecutor javascriptExecutor) {
+	public  AccountsPayable accountPayable(ExtentTest test,JavascriptExecutor javascriptExecutor) {
 		searchHomeXpath().
 		waitAlustaNavigation();
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+accountsPayableXpath);

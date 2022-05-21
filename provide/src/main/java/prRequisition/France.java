@@ -118,35 +118,35 @@ public class France extends BaseTest {
 			try {
 				test.log(Status.INFO, "HomePage ");
 				HomePage homePage = new HomePage(driver);
-					homePage.shopBtn(javascriptExecutor);
+					homePage.shopBtn(test,javascriptExecutor);
 					
 					
 				test.log(Status.INFO, "ShopButton ");	
 				Shop shop = new Shop(driver);
-					shop.selectForm(excelData.get(i).get("Organization"), javascriptExecutor);
+					shop.selectForm(test,excelData.get(i).get("Organization"), javascriptExecutor);
 					
 				test.log(Status.INFO, "Select Orgainzation ");
 				Form form = new Form(driver);
-					form.editRequisitionFrance(excelData.get(i).get("PRForm"));
+					form.editRequisitionFrance(test,excelData.get(i).get("PRForm"));
 				
 				test.log(Status.INFO, "Enter Data for Edit Requisition creation ");
 				EditRequisition editRequisition = new EditRequisition(driver);
-					editRequisition.editCodingFrance(excelData.get(i).get("OrderDesc"),excelData.get(i).get("Product Name"), excelData.get(i).get("PurchaseCategory"),excelData.get(i).get("Supplier"), excelData.get(i).get("Quantity"),excelData.get(i).get("UnitPrice"),excelData.get(i).get("Currency"), excelData.get(i).get("PR tYPE"));
+					editRequisition.editCodingFrance(test,excelData.get(i).get("OrderDesc"),excelData.get(i).get("Product Name"), excelData.get(i).get("PurchaseCategory"),excelData.get(i).get("Supplier"), excelData.get(i).get("Quantity"),excelData.get(i).get("UnitPrice"),excelData.get(i).get("Currency"), excelData.get(i).get("PR tYPE"));
 					test.log(Status.INFO, "Enter Data for Edit Requisition successfull ");
 					
 					test.log(Status.INFO, "Enter Data for Edit Coding creation ");
 				EditCoding editCoding = new EditCoding(driver);
-					editCoding.viewDetailsFrance(javascriptExecutor, excelData.get(i).get("Requestor"), excelData.get(i).get("Delivery Address"), excelData.get(i).get("Nature"), excelData.get(i).get("Agency/Site"),excelData.get(i).get("Type"), excelData.get(i).get("RealEstateReference"),excelData.get(i).get("PR tYPE"),excelData.get(i).get("Approver"),excelData.get(i).get("SSP"));
+					editCoding.viewDetailsFrance(test,javascriptExecutor, excelData.get(i).get("Requestor"), excelData.get(i).get("Delivery Address"), excelData.get(i).get("Nature"), excelData.get(i).get("Agency/Site"),excelData.get(i).get("Type"), excelData.get(i).get("RealEstateReference"),excelData.get(i).get("PR tYPE"),excelData.get(i).get("Approver"),excelData.get(i).get("SSP"));
 					test.log(Status.INFO, "Enter Data for Edit Coding successfull ");
 					
 				test.log(Status.INFO, "Enter Data for View Details creation ");	
 				ViewDetails viewDetails = new ViewDetails(driver);
-					viewDetails.getApproveBeleux(excelData.get(i).get("Quantity"), excelData.get(i).get("UnitPrice"),excelData.get(i).get("Payment Terms"));
+					viewDetails.getApproveBeleux(test,excelData.get(i).get("Quantity"), excelData.get(i).get("UnitPrice"),excelData.get(i).get("Payment Terms"));
 					test.log(Status.INFO, "Enter Data for View Details successfull ");	
 					
 				test.log(Status.INFO, "Get Approve Successfull");
 				GetApprove getApprove = new GetApprove(driver);
-				prNumber=getApprove.prNumber();
+				prNumber=getApprove.prNumber(test);
 					test.log(Status.PASS, "PR: "+ prNumber +" Successfuly created.");
 				
 					
