@@ -93,7 +93,7 @@ public class Beleux extends BaseTest {
 			try {
 				test.log(Status.INFO, "HomePage ");
 				HomePage homePage = new HomePage(driver);
-					homePage.accountPayable(javascriptExecutor);
+					homePage.accountPayable(test,javascriptExecutor);
 					
 					
 				test.log(Status.INFO, "Accounts Payable ");	
@@ -113,7 +113,7 @@ public class Beleux extends BaseTest {
 					if(!excelData.get(i).get("PR Type").isEmpty() && excelData.get(i).get("PO Number").isEmpty()) {
 						
 						test.log(Status.INFO, "Enter Data for  Non-Po Invoice");	
-						accountsPayable.nonPOInvoice(javascriptExecutor,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"),excelData.get(i).get("Approver"),excelData.get(i).get("PurchaseCAtegory"),excelData.get(i).get("Agency"),excelData.get(i).get("Type"),excelData.get(i).get("SSP"));
+						accountsPayable.nonPOInvoice(javascriptExecutor,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"),excelData.get(i).get("Approver"),excelData.get(i).get("PurchaseCAtegory"),excelData.get(i).get("Coding"),excelData.get(i).get("Agency"),excelData.get(i).get("Type"),excelData.get(i).get("SSP"));
 						}
 				
 				LogOut logOut = new LogOut(driver);

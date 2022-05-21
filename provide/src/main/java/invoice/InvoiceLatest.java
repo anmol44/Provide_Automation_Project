@@ -95,7 +95,7 @@ public class InvoiceLatest extends BaseTest {
 			try {
 				test.log(Status.INFO, "HomePage ");
 				HomePage homePage = new HomePage(driver);
-					homePage.accountPayable(javascriptExecutor);
+					homePage.accountPayable(test,javascriptExecutor);
 					
 					
 				test.log(Status.INFO, "Accounts Payable ");	
