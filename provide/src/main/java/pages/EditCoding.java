@@ -312,6 +312,7 @@ public class EditCoding extends BasePage {
 	
 	
 		// ssp coding
+		test.log(Status.INFO, "Check It is Agency or Site to select SSP :: "+type);
 		if(type.equalsIgnoreCase("A")) {
 			Thread.sleep(2000);
 			test.log(Status.INFO, "Click SSP Button");

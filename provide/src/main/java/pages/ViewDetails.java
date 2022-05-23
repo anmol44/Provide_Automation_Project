@@ -21,7 +21,7 @@ public class ViewDetails extends BasePage {
 	static String lineDataSaveXpath = "(//button[@class='btn ng-binding'])[1]";
 	static String lineDataSaveButtonVisibleXpath = "/html/body/div/bw-purchase-requisition-line-details/div/pal-two-col-row/div/div[1]/div/pal-two-col-row-left-content/div/bw-purchase-line-data-panel/div/div/div[1]/div/span/span/section[2]/button";
 	static String backPageXpath = "(//i[@class='psl-icon-angle-left'])[1]";
-	static String getApprovalXpath = "(//button[@class='btn btn-pal-actions-button ng-scope use-dropdown-style'])[2]";
+	static String getApprovalXpath = "(//button[@class='btn btn-pal-actions-button ng-scope use-dropdown-style'])[1]";
 	
 	// new selling price for new script
 	static String sellingPriceNewXpath = "//span[@class='ng-binding' and @id ='LinePricingNum1']//parent::label//following-sibling::bw-purchase-panel-field-switch//child::div//child::div[@class='value']//child::input";

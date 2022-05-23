@@ -60,12 +60,12 @@ public class EditRequisition extends BasePage {
 		super(driver);
 	}
 	
-	public EditRequisition editRequisition(ExtentTest test, String orderDesc ,String productName,String purchaseCategory,String supplier,String quantity,String unitPrice,String currency,String prType) {
+	public EditRequisition editRequisition(ExtentTest test, String orderDesc ,String productName,String purchaseCategory,String supplier,String quantity,String unitPrice,String currency,String prType) throws InterruptedException {
 		
 		test.log(Status.INFO, "Enter Order Description");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription))).sendKeys(orderDesc);
-		test.log(Status.PASS, "Successfull Order Description");
+		test.log(Status.PASS, "Successful Order Description");
 
 		test.log(Status.INFO, "Enter Product Name");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierProductName))).clear();
@@ -116,6 +116,7 @@ public class EditRequisition extends BasePage {
 			
 		test.log(Status.INFO, "Click Edit Requisition Button ");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(editRequisitionXpath))).click();
+		Thread.sleep(10000);
 		return this;
 	}
 	
@@ -310,17 +311,17 @@ public class EditRequisition extends BasePage {
 	}
 	
 	
-	public EditCoding editCodingGalitt(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+	public EditCoding editCodingGalitt(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) throws InterruptedException {		
 		editRequisition( test, OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingBeleux(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+	public EditCoding editCodingBeleux(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) throws InterruptedException {		
 		editRequisition( test,OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
 	
-	public EditCoding editCodingSpain(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {
+	public EditCoding editCodingSpain(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) throws InterruptedException {
 		editRequisition( test,OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);
 	}
@@ -331,7 +332,7 @@ public class EditRequisition extends BasePage {
 	}
 	
 	
-	public EditCoding editCoding(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) {		
+	public EditCoding editCoding(ExtentTest test,String OrderDesc,String ProductName,String PurchaseCategory,String Supplier, String Quantity,String UnitPrice,String Currency,String PrTYPE) throws InterruptedException {		
 		editRequisition(test, OrderDesc , ProductName, PurchaseCategory, Supplier, Quantity, UnitPrice, Currency, PrTYPE);
 		return new EditCoding(driver);	
 	}

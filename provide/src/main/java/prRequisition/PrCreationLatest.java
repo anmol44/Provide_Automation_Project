@@ -86,7 +86,7 @@ public class PrCreationLatest extends BaseTest {
 						excelData.get(i).get("Url")
 						);
 				
-				test.log(Status.INFO, "Login " + excelData.get(i).get("User") + " for PR Creator " + i);
+				test.log(Status.PASS, "Login " + excelData.get(i).get("User") + " for PR Creator " + i);
 
 			} catch (Exception e) {
 				
@@ -107,7 +107,7 @@ public class PrCreationLatest extends BaseTest {
 						excelData.get(i).get("Organization"),
 						javascriptExecutor);
 
-				test.log(Status.INFO, "Select Orgainzation ");
+				
 				Form form = new Form(driver);
 				form.editRequisition(
 						test,
@@ -129,7 +129,7 @@ public class PrCreationLatest extends BaseTest {
 						);
 						
 				
-				test.log(Status.INFO, "Wait till 20 sec for Basware Response");
+				test.log(Status.INFO, "Wait till 30 sec for Basware Response");
 				EditCoding editCoding = new EditCoding(driver);
 				editCoding.viewDetails(
 						test,
@@ -151,8 +151,8 @@ public class PrCreationLatest extends BaseTest {
 						excelData.get(i).get("Quantity"),
 						excelData.get(i).get("UnitPrice"),
 						excelData.get(i).get("Payment Terms"),
-						excelData.get(i).get("SellingPrice"));
-				test.log(Status.INFO, "Enter Data for View Details successfull ");
+						excelData.get(i).get("SellingPrice")
+						);
 
 				test.log(Status.INFO, "Get Approval Successfull");
 				GetApprove getApprove = new GetApprove(driver);
