@@ -31,15 +31,16 @@ public class HomePage extends BasePage {
 		return this;
 	}
 	
-	public HomePage waitAlustaNavigation() {
+	public HomePage waitAlustaNavigation(ExtentTest test) {
 		waitForElement(alustaNavigation);
+		test.log(Status.PASS,"Successfully on Home Page");
 		
 		return this;
 	}
 	
 	public Shop shopBtn(ExtentTest test, JavascriptExecutor javascriptExecutor) {
 		searchHomeXpath().
-		waitAlustaNavigation();
+		waitAlustaNavigation(test);
 		test.log(Status.INFO, "Click Shop Button");
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+shopButtonXpath);
 		webelement.click();
@@ -49,10 +50,11 @@ public class HomePage extends BasePage {
 	
 	public  AccountsPayable accountPayable(ExtentTest test,JavascriptExecutor javascriptExecutor) {
 		searchHomeXpath().
-		waitAlustaNavigation();
+		waitAlustaNavigation(test);
+		test.log(Status.INFO, "Click Accounts Payable Button");
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+accountsPayableXpath);
 		javascriptExecutor.executeScript("arguments[0].click() ",webelement);
-	
+		test.log(Status.PASS, "Accounts Payable clicked");
 		return new AccountsPayable(driver);
 	}
 	

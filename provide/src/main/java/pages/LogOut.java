@@ -39,9 +39,10 @@ public class LogOut extends BasePage {
 	}
 	
 	public LogOut logout(JavascriptExecutor javascriptExecutor,String doctype) throws InterruptedException {
-		
+		try {
 		webElement = (WebElement) javascriptExecutor.executeScript("return "+shadowRootHostUserXpath);
 		webElement.click();
+	
 		
 		if(doctype.equalsIgnoreCase("Invoice")) {
 			webElement = (WebElement) javascriptExecutor.executeScript("return "+shadowRootHostInvoiceLogoutXpath);
@@ -51,7 +52,11 @@ public class LogOut extends BasePage {
 		webElement = (WebElement) javascriptExecutor.executeScript("return "+shadowRootHostLogoutXpath);
 		javascriptExecutor.executeScript("arguments[0].click();", webElement); 
 		}		
-		unSavedData(javascriptExecutor,doctype);		
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		unSavedData(doctype);		
 		Thread.sleep(2000);
 		if (driver.getCurrentUrl().contains(logOutUrl)) {
 			allSessionsLogOut(wait,doctype);
@@ -70,7 +75,7 @@ public class LogOut extends BasePage {
 		
 	}
 	
-	public static void unSavedData(JavascriptExecutor javascriptExecutor, String doctype) throws InterruptedException {
+	public static void unSavedData( String doctype) throws InterruptedException {
 
 		if (doctype.equalsIgnoreCase("invoice")) {
 			if (driver.findElements(By.xpath(unsavedDataDivInvoice)).size() > 0) {

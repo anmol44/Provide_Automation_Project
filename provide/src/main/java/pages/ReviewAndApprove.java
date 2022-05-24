@@ -22,6 +22,7 @@ public class ReviewAndApprove extends BasePage {
 	static String taskListXpath = "/html/body/div/div/div[3]/div[1]/pal-narrow-layout/div/ng-transclude/div/div/div/div/div[2]/div[2]/div/a/span";
 	static String approveTaskListXpath = "/html/body/div/bw-purchase-requisition-details/section/div[1]/pal-title-bar/div/div/div[2]/div/div[2]/pal-title-bar-actions/bw-purchase-requisition-details-actions/div/pal-actions/div/div/div/div[1]/div/button";
 	static String allTasksXpath= "/html/body/div/div/bw-task-list-all/div/div/div[1]/div/span[1]";
+	static String verifyReviewXpath = "//div[@class='pal-toast']//child::span[@role='alert' and contains(text(),'Recommended')]";
 	static String taskButtonXpath="document.querySelector('alusta-navigation').shadowRoot.querySelector('div > nav > div.pt-navbar-nav.main-nav > ul > li:nth-child(3) > a')";
 
 
@@ -45,7 +46,7 @@ try {
 		}
 		catch(Exception e) {
 			status="FAIL";
-			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
+			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. Or Language is France ");
 			
 			ExceptionCode exception = new ExceptionCode(driver);
 			exception.exception(i, test);
@@ -60,7 +61,7 @@ try {
 			webElement.click();		
 
 		    try {
-				orderDescr =GetTaskList.getTaskList( orderDescription,docType);
+				orderDescr =GetTaskList.getTaskList(test, orderDescription,docType);
 			} catch (Exception e) {
 				ExceptionCode exception =new ExceptionCode(driver);
 				exception.exception(i, test);
@@ -71,8 +72,11 @@ try {
 		if (orderDescr.toLowerCase().equalsIgnoreCase("\"" + orderDescription + "\"")) {
 			//	test.log(Status.INFO, "Approve");
 				try {
+					test.log(Status.PASS, "Click Review Button");
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(approveTaskListXpath))).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(verifyReviewXpath)));
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(allTasksXpath)));
+					test.log(Status.PASS, "Successfully Reviewed");
 					
 					test.log(Status.PASS, "PR: "+PRNumber+" reviewed  by reviewer "+j);
 					LogOut logOut = new LogOut(driver);
@@ -115,7 +119,7 @@ try {
 		}
 		catch(Exception e) {
 			status="FAIL";
-			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. ");
+			test.log(Status.FAIL ,"Unable to login : Invalid  User/Password/url. Or Language is France ");
 			
 			ExceptionCode exception = new ExceptionCode(driver);
 			exception.exception(i, test);
@@ -130,7 +134,7 @@ try {
 		
 		 
 		 try {
-				orderDescr =GetTaskList.getTaskList( orderDescription,docType);
+				orderDescr =GetTaskList.getTaskList(test, orderDescription,docType);
 			} catch (Exception e) {
 				ExceptionCode exception =new ExceptionCode(driver);
 				exception.exception(i, test);
@@ -142,7 +146,7 @@ try {
 			 ApproveTaskList approveTaskList = new ApproveTaskList(driver);
 			 
 			 try {
-				approveTaskList.approveTaskList(docType);
+				approveTaskList.approveTaskList(test,docType);
 				
 				test.log(Status.PASS, "PR: "+PRNumber+" Approved by Approver "+j);
 				LogOut logOut = new LogOut(driver);
@@ -153,9 +157,38 @@ try {
 				exception.exception(i, test);
 				e.printStackTrace();
 			}
-		 }else {
+		 }else if(docType.equalsIgnoreCase("Purchase requisition")){
 			 status="FAIL";
 				test.log(Status.FAIL, "NO PR Found for Approver"+j);
+				ExceptionCode exception =new ExceptionCode(driver);
+				exception.exception(j, test);
+				try {	
+					LogOut logOut = new LogOut(driver);
+					logOut.logout(javascriptExecutor,docType);
+			}catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		 }
+		 
+		 
+		 if (orderDescr.toLowerCase().equalsIgnoreCase( orderDescription )) {
+			 ApproveTaskList approveTaskList = new ApproveTaskList(driver);
+			 
+			 try {
+				approveTaskList.approveTaskList(test,docType);
+				
+				test.log(Status.PASS, "Invoice::   Approved by Approver "+j);
+				LogOut logOut = new LogOut(driver);
+				logOut.logout(javascriptExecutor,docType);
+				
+			} catch (Exception e) {
+				ExceptionCode exception =new ExceptionCode(driver);
+				exception.exception(i, test);
+				e.printStackTrace();
+			}
+		 }else if(docType.equalsIgnoreCase("Invoice")) {
+			 status="FAIL";
+				test.log(Status.FAIL, "NO INVOICE Found for Approver"+j);
 				ExceptionCode exception =new ExceptionCode(driver);
 				exception.exception(j, test);
 				try {	

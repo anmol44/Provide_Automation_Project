@@ -1,8 +1,7 @@
 package pages;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,6 +9,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import base.BasePage;
 
@@ -67,8 +69,7 @@ public class AccountsPayable extends BasePage {
 	static String addNewLineXpath="//button[@class='pt-btn pt-btn-link ng-star-inserted']";
 	static String addNewLineGridXpath="(//div[@class='grid-container'])[2]";
 	
-	static String purchaseCategoryXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[9]/gl-lookup-list-renderer/span";
-    
+	static String purchaseCategoryXpath="(//span[@class='text-align-left ng-star-inserted'])[2]";    
 	static String purchaseCategoryDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String purchaseCategorySearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String purchaseCategorySelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
@@ -76,9 +77,17 @@ public class AccountsPayable extends BasePage {
 	static String purchaseCategorySelectXpath="//span[@class='pt-item-list-item-header']";
 	
 	static String imputationXpath="(//span[@class='text-align-left ng-star-inserted'])[3]";
+	static String imputationDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
+	static String imputationSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
+	static String imputationSelect1Xpath="//span[@class='pt-highlighted-text' and starts-with(text(),'";
+	static String imputationSelect2Xpath="')]//parent::span[@class='pt-item-list-item-header' and not(text()[normalize-space(.)])]";
+	static String imputationSelectXpath="//span[@class='pt-item-list-item-header']";
+	
+	//span[@class='pt-highlighted-text' and starts-with(text(),'CBK MAINT FIXED COST')]//parent::span[@class='pt-item-list-item-header' and not(text()[normalize-space(.)])]
 	
 	static String natureCodeXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[11]/gl-lookup-list-renderer//child::span[@title!='']";
-	static String agencySiteXpath= "/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[12]/gl-lookup-list-renderer/span";
+	
+	static String agencySiteXpath= "(//span[@class='text-align-left ng-star-inserted'])[4]";
 	static String agencySiteDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String agencySiteSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String agencySiteSelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
@@ -99,6 +108,7 @@ public class AccountsPayable extends BasePage {
 	static String openXpath=   "//button[@class='pt-btn ng-star-inserted']//child::span[contains(text(),'Open')]";     //"(//button[@class='pt-btn ng-star-inserted'])[2]";
 	static String sendToValidationXpath= "//button[@class='pt-btn ng-star-inserted']//child::span[contains(text(),'Send to validation')]";    //"(//button[@class='pt-btn ng-star-inserted'])[1]";
 	static String tryRefreshingXpath="//button[@class='pt-btn-link ng-star-inserted' and contains(text(),'Try refreshing')]";
+	static String verifyInvoiceSentToValidation = "//span[contains(text(),'Invoice sent to validation')]";
 
 	
 	public AccountsPayable(WebDriver driver) {
@@ -106,187 +116,278 @@ public class AccountsPayable extends BasePage {
 	}
 	
 	
-	public AccountsPayable receivedStage() {
+	public AccountsPayable receivedStage(ExtentTest test) {
+		test.log(Status.INFO,"Click Recieved stage");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(recievedStageXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked Recieved stage");
+
 		return this;
 	}
 	
 	
-	public AccountsPayable invoiceSearch(String invoice)throws InterruptedException  {
-	       
+	public AccountsPayable invoiceSearch(ExtentTest test,String invoice)throws InterruptedException  {
+		test.log(Status.INFO,"Invoice search");
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).click();
-		
-		
+		test.log(Status.INFO,"Send Invoice Number");
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).sendKeys(invoice);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceSearchXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceSearchXpath))).click();
+		test.log(Status.PASS,"Successfully Invoice Searched");
+
 		 
 		return this;
 	}
 	
-	public AccountsPayable  savePoInvoice(String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException  {
-
+	public AccountsPayable  savePoInvoice(ExtentTest test,String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException  {
+		test.log(Status.INFO,"Click Header Data");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(matLabLabelsXpath)));
 		WebElement element = driver.findElement(By.xpath(matLabLabelsXpath));
 		List<WebElement> elements = element.findElements(By.xpath("./child::*"));
 		elements.get(1).click();
-				
+		test.log(Status.PASS,"Successfully Header Data clicked");
+		
+		test.log(Status.INFO,"Click supplier Code Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath))).click();
+		test.log(Status.PASS,"Successfully clicked Supplier code Button");
      	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodePanelXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeSearchContainerXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierSearchInputXpath))); 
+		test.log(Status.INFO,"Enter Supplier code");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeInputXpath))).sendKeys(supplierCode);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeSelectXpath))).click();
+		test.log(Status.PASS,"Successfully selected Supplier code");
 		
+		test.log(Status.INFO,"Enter Invoice Date");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceDateXpath))).clear();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceDateXpath))).sendKeys(invoiceDate);
+		test.log(Status.PASS,"Successfully Entered Invoice Date");
 		
-	
+		test.log(Status.INFO,"Enter Invoice Amount");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(invoiceAmt);
+		test.log(Status.PASS,"Successfully Entered Invoice amount");
 		
+		test.log(Status.INFO,"Enter Tax Amount");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(taxAmt);
+		test.log(Status.PASS,"Successfully Entered Tax Amount");
 		
+		test.log(Status.INFO,"Click PO Button");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poDivXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(Keys.BACK_SPACE);
+		test.log(Status.INFO,"Enter PO");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(po);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchButtonXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberVerify1Xpath+po+poNumberVerify2Xpath))).click();
+		test.log(Status.INFO,"Selected PO");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberTabCancelXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberSelectXpath))).click();
+		test.log(Status.PASS,"Successfully selected PO");
 		
+		test.log(Status.INFO,"Click save button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(saveButtonXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked save button");
 		Thread.sleep(2000);
 		
 		return this;
 	}
 	
-	public AccountsPayable editNonPoInvoice(String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver) throws InterruptedException  {
-
+	public AccountsPayable editNonPoInvoice(ExtentTest test,String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver) throws InterruptedException  {
+		
+		test.log(Status.INFO,"Click Header Data");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(matLabLabelsXpath)));
 		WebElement element = driver.findElement(By.xpath(matLabLabelsXpath));
 		List<WebElement> elements = element.findElements(By.xpath("./child::*"));
 		elements.get(1).click();
+		test.log(Status.PASS,"Successfully Clicked Header Data");
 		
-		
+		test.log(Status.INFO,"Click Supplier Code Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath)));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath))).click();		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeButtonXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked Supplier Code Button");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodePanelXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeSearchContainerXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierSearchInputXpath)));
+		test.log(Status.INFO,"Enter Supplier Code");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeInputXpath))).sendKeys(supplierCode);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(supplierCodeSelectXpath))).click();
+		test.log(Status.PASS,"Successfully Selected supplier code");
 		
+		test.log(Status.INFO,"Enter Invoice Date");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceDateXpath))).clear();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceDateXpath))).sendKeys(invoiceDate);
+		test.log(Status.PASS,"Successfully Entered Invoice Date");
 		
+		test.log(Status.INFO,"Enter Net Sum");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(netSumXpath))).sendKeys(invoiceAmt);
+		test.log(Status.PASS,"Successfully Entered Net Sum");
 		
+		test.log(Status.INFO,"Enter Tax Sum");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxSumXpath))).sendKeys(taxAmt);
-
+		test.log(Status.PASS,"Successfully Entered Tax Sum");
+		
+		test.log(Status.INFO,"Click Approver Button");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverDivXpath)));
+		test.log(Status.INFO,"Click Approval Panel");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverDivXpath))).click();
+		test.log(Status.PASS,"On Approval Panel");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverSearchXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverSearchXpath))).sendKeys(Keys.BACK_SPACE);
+		test.log(Status.INFO,"Enter Approver");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverSearchXpath))).sendKeys(approver);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(approverSelectXpath))).click();
+		test.log(Status.PASS,"Successfully Entered Approver");
 		
 		return this;
 		}
 	
-	public AccountsPayable saveAndAddLines(JavascriptExecutor javascriptExecutor,String purchaseCategory,String coding,String agency,String type,String ssp) throws InterruptedException  {
-		
+	public AccountsPayable saveAndAddLines(ExtentTest test,JavascriptExecutor javascriptExecutor,String purchaseCategory,String coding,String agency,String type,String ssp) throws InterruptedException  {
+		test.log(Status.INFO,"Add New Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addNewLineXpath))).click();		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(addNewLineGridXpath)));
 		driver.switchTo().activeElement();
+		test.log(Status.PASS,"Successfully New Line added");
 		
+		test.log(Status.INFO,"Click Purchase Category Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked Purchase Category Line to enter Data");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryDivXpath)));
+		test.log(Status.INFO,"Click Purchase Category Division");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryDivXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked division");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.CONTROL + "a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.BACK_SPACE);
+		test.log(Status.INFO,"Enter Purchase Category ");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(purchaseCategory);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySelect1Xpath + purchaseCategory + purchaseCategorySelect2Xpath))).click();
+		test.log(Status.PASS,"Successfully selected Purchase Category");
 
 		// wait for nature code
+		//Imputation data selection
+		test.log(Status.INFO,"Click Imputation Line");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationXpath))).click();
+		test.log(Status.PASS,"Successfully clicked Imputation Line");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationDivXpath)));
+		test.log(Status.INFO,"Click Imputation Division");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationDivXpath))).click();
+		test.log(Status.PASS,"Successfully Imputation division clicked");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(Keys.CONTROL + "a");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(Keys.BACK_SPACE);
+		test.log(Status.INFO,"Enter Imputation Data");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(coding);
+		Thread.sleep(2000);
+		test.log(Status.INFO,"Collect all Imputation Data from search Panel into List");
+		List<WebElement> elements = driver.findElements(By.xpath("//div[@class='pt-list-item-details-with-desc']//child::span[@CLASS='pt-item-list-item-header']"));
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationXpath))).sendKeys(coding);
+		List<WebElement> element = elements.stream().filter(e->e.getText().equalsIgnoreCase(coding)).collect(Collectors.toList());
+		for(WebElement el : element){
+			el.click();
+		}
+		test.log(Status.PASS,"Successfully Selected Imputation");
+		
 		
 		//agency site
+		test.log(Status.INFO,"Click Agency Site Line");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteXpath))).click();
+		test.log(Status.PASS,"Successfully Agency Site Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(agencySiteDivXpath)));
+		test.log(Status.INFO,"Agency Site Div");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteDivXpath))).click();
+		test.log(Status.PASS,"Successfully Agency Site div");
+		
+		test.log(Status.INFO, "Enter Agency Site");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(agency);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSelect1Xpath+agency+agencySiteSelect2Xpath))).click();
-
+		test.log(Status.PASS,"Successfully Selected Agency Site");
+		
+		test.log(Status.INFO,"Wait for scroll");
 		driver.findElement(By.xpath(horizontalScrollPortXpath));
 		WebElement element1 = driver.findElement(By.xpath(horizontalScrollXpath));
 		javascriptExecutor.executeScript("arguments[0].scrollLeft += 600;",element1);
     	Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteVisibleXpath)));
+    	test.log(Status.PASS,"Successfully Successfully scrolled right");
 		// ssp 
+    	test.log(Status.INFO,"Check type It is Agency or Site :: "+type);
         if(type.equalsIgnoreCase("A")) {
+        	test.log(Status.INFO,"Click SSP line");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspXpath))).click();
+		test.log(Status.PASS,"Successfully SSP line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(sspDivXpath)));
+		test.log(Status.INFO,"Click SSP Div");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspDivXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked SSP div");
+		
+		test.log(Status.INFO, "Enter SSP");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSearchXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSearchXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSearchXpath))).sendKeys(ssp);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSelect1Xpath+ssp+sspSelect2Xpath))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(sspVisibleXpath)));
+		test.log(Status.PASS,"Successfully SSP Selected");
         }       
-            
+        
+        test.log(Status.INFO,"Click Save Button");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(saveButtonXpath))).click();
+        test.log(Status.PASS,"Successfully Save Button Clicked");
         
         return this;
 	}
 	
 	
 	
-	public AccountsPayable sendToValidate() throws InterruptedException  {
+	public AccountsPayable sendToValidate(ExtentTest test) throws InterruptedException  {
+		test.log(Status.INFO,"wait for open button to be active");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(openXpath)));
+		test.log(Status.INFO,"Click Send To Validation Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sendToValidationXpath))).click();
+		test.log(Status.INFO,"Successfully Clicked send To Validation Button");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(verifyInvoiceSentToValidation)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tryRefreshingXpath))).click();
+		test.log(Status.PASS,"Successfully Sent To Validation");
 		return this;
 	}
 	
 	
-	public AccountsPayable searchInvoice(String invoice) throws InterruptedException  {
-		receivedStage().
-		invoiceSearch(invoice);
+	public AccountsPayable searchInvoice(ExtentTest test,String invoice) throws InterruptedException  {
+		receivedStage(test).
+		invoiceSearch(test,invoice);
 		return this;
 	}
 	
 	
-	public Matching matching(String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException {
-		savePoInvoice(invoice, po, supplierCode, invoiceDate, invoiceAmt, taxAmt).
-		sendToValidate();
+	public Matching matching(ExtentTest test,String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException {
+		receivedStage(test).
+		invoiceSearch(test,invoice).
+		savePoInvoice(test,invoice, po, supplierCode, invoiceDate, invoiceAmt, taxAmt).
+		sendToValidate(test);
 		
 		return new Matching(driver);
 	}
 	
-	public AccountsPayable nonPOInvoice(JavascriptExecutor javascriptExecutor,String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver,String purchaseCategory,String coding ,String agency,String type,String ssp) throws InterruptedException  {
-		receivedStage().
-		invoiceSearch(invoice).
-		editNonPoInvoice(invoice, supplierCode, invoiceDate, invoiceAmt, taxAmt, approver).
-		saveAndAddLines(javascriptExecutor, purchaseCategory,coding, agency, type, ssp).
-		sendToValidate();
+	public AccountsPayable nonPOInvoice(ExtentTest test,JavascriptExecutor javascriptExecutor,String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver,String purchaseCategory,String coding ,String agency,String type,String ssp) throws InterruptedException  {
+		receivedStage(test).
+		invoiceSearch(test,invoice).
+		editNonPoInvoice(test,invoice, supplierCode, invoiceDate, invoiceAmt, taxAmt, approver).
+		saveAndAddLines(test,javascriptExecutor, purchaseCategory,coding, agency, type, ssp).
+		sendToValidate(test);
 		return this;
 	}
 

@@ -3,6 +3,10 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import base.BasePage;
 
 public class GetTaskList extends BasePage {
@@ -28,12 +32,13 @@ public class GetTaskList extends BasePage {
 	}
 	
 	
-	public static String getTaskList(String orderDescription,String docType) throws Exception {
+	public static String getTaskList(ExtentTest test,String orderDescription,String docType) throws Exception {
 
 		int count = 0;
 		String concOrderDesc;
 		concOrderDesc = "\"" + orderDescription+ "\"";
 		String totalRows = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(totalRowsTaskListXpath))).getText();
+		test.log(Status.INFO, "Total Rows in Task List : "+totalRows);
 		int total = Integer.parseInt(totalRows);
 		int rows = 50;
 		int temp = rows;
@@ -54,15 +59,17 @@ public class GetTaskList extends BasePage {
 			// get document type from approval page.
 			document = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(docType1Xpath + i + docType2Xpath))).getText();
 			
+			
+			
 			if(document.equalsIgnoreCase("Purchase requisition")) {  
 				// For Pr requisition part we have to match invoice no.
 				
 				orderDesc="";
 				orderDesc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription1Xpath+i+orderDescription2Xpath))).getText();
-				System.out.println(orderDesc);
-				System.out.println(concOrderDesc);
+				
 				if (orderDesc.toLowerCase().equalsIgnoreCase(concOrderDesc)) {
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(orderDescription1Xpath + i + orderDescription2Xpath))).click();
+						test.log(Status.PASS, "Order Description matched : "+orderDesc);
 						return concOrderDesc;
 					} 
 			 else {
@@ -88,12 +95,13 @@ public class GetTaskList extends BasePage {
 					orderDesc="";
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceMatchButton1Xpath+i+invoiceMatchButton2Xpath))).click();
 					orderDesc = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceMatchText1Xpath+i+invoiceMatchText2Xpath))).getText();
-					System.out.println(orderDesc);
-					System.out.println(concOrderDesc);
+					
 					if (orderDesc.toLowerCase().equalsIgnoreCase(orderDescription)) {
 						//open invoice
 						wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceOPenPanel1Xpath+i+invoiceOPenPanel2Xpath))).click();
+						test.log(Status.PASS, "Order Description matched : "+orderDesc);
 						return orderDesc;
+						
 					    }   else {
 						        if (noMatch == Total) {
 							    return " ";

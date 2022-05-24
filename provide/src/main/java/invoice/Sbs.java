@@ -99,13 +99,13 @@ public class Sbs extends BaseTest {
 				test.log(Status.INFO, "Accounts Payable ");	
 				AccountsPayable accountsPayable = new AccountsPayable(driver);
 				test.log(Status.INFO, "Invoice search ");	
-					accountsPayable.receivedStage().
-					invoiceSearch(excelData.get(i).get("InvoiceNo"));
+					accountsPayable.receivedStage(test).
+					invoiceSearch(test,excelData.get(i).get("InvoiceNo"));
 					
 					if(!excelData.get(i).get("PO Number").isEmpty()) {
 						
 						test.log(Status.INFO, "Enter Data for Po Invoice ");	
-						accountsPayable.matching(excelData.get(i).get("InvoiceNo"),excelData.get(i).get("PO Number"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"));
+						accountsPayable.matching(test,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("PO Number"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"));
 						
 						Matching matching = new Matching(driver);
 						matching.openAndMatchInvoice(excelData.get(i).get("MatchQty"));
@@ -113,7 +113,7 @@ public class Sbs extends BaseTest {
 					if(!excelData.get(i).get("PR Type").isEmpty() && excelData.get(i).get("PO Number").isEmpty()) {
 						
 						test.log(Status.INFO, "Enter Data for  Non-Po Invoice");	
-						accountsPayable.nonPOInvoice(javascriptExecutor,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"),excelData.get(i).get("Approver"),excelData.get(i).get("PurchaseCAtegory"),excelData.get(i).get("Coding"),excelData.get(i).get("Agency"),excelData.get(i).get("Type"),excelData.get(i).get("SSP"));
+						accountsPayable.nonPOInvoice(test,javascriptExecutor,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"),excelData.get(i).get("Approver"),excelData.get(i).get("PurchaseCAtegory"),excelData.get(i).get("Coding"),excelData.get(i).get("Agency"),excelData.get(i).get("Type"),excelData.get(i).get("SSP"));
 						}
 				
 				LogOut logOut = new LogOut(driver);

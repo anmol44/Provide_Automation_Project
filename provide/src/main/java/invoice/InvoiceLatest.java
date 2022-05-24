@@ -85,7 +85,7 @@ public class InvoiceLatest extends BaseTest {
 						excelData.get(i).get("Password"),
 						excelData.get(i).get("Url"));
 				
-				test.log(Status.INFO, "Login "+excelData.get(i).get("User")+" for Invoice  "+i);
+				test.log(Status.PASS, "Login "+excelData.get(i).get("User")+" for Invoice  "+i);
 			}
 			catch(Exception e) {				
 				UserLoginException userLoginException = new UserLoginException(driver);
@@ -98,16 +98,12 @@ public class InvoiceLatest extends BaseTest {
 					homePage.accountPayable(test,javascriptExecutor);
 					
 					
-				test.log(Status.INFO, "Accounts Payable ");	
-				AccountsPayable accountsPayable = new AccountsPayable(driver);
-				test.log(Status.INFO, "Invoice search ");	
-					accountsPayable.receivedStage().
-					invoiceSearch(excelData.get(i).get("InvoiceNo"));
-					
+				AccountsPayable accountsPayable = new AccountsPayable(driver);					
 					if(!excelData.get(i).get("PO Number").isEmpty()) {
 						
 						test.log(Status.INFO, "Enter Data for Po Invoice ");	
 						accountsPayable.matching(
+								test,
 								excelData.get(i).get("InvoiceNo"),
 								excelData.get(i).get("PO Number"),
 								excelData.get(i).get("SupplierCode"),
@@ -123,6 +119,7 @@ public class InvoiceLatest extends BaseTest {
 					if(excelData.get(i).get("PO Number").isEmpty()) {
 						test.log(Status.INFO, "Enter Data for  Non-Po Invoice");	
 						accountsPayable.nonPOInvoice(
+								test,
 								javascriptExecutor,
 								excelData.get(i).get("InvoiceNo")								
 								,excelData.get(i).get("SupplierCode")
@@ -156,8 +153,7 @@ public class InvoiceLatest extends BaseTest {
 					
 					ReviewAndApprove reviewAndApprove = new ReviewAndApprove(driver);
 					while (excelData.get(i).containsKey(Approver + j) && !excelData.get(i).get(Approver + j).isEmpty()) {
-						System.out.println(excelData.get(i).containsKey(Approver + j));
-						status = reviewAndApprove.approve(javascriptExecutor,excelData.get(i).get(Approver + j),excelData.get(i).get("Password"),excelData.get(i).get("OrderDesc"),excelData.get(i).get("docType"),prNumber,status,excelData.get(i).get("Url"),i,j,test);
+						status = reviewAndApprove.approve(javascriptExecutor,excelData.get(i).get(Approver + j),excelData.get(i).get("Password"),excelData.get(i).get("InvoiceNo"),excelData.get(i).get("docType"),prNumber,status,excelData.get(i).get("Url"),i,j,test);
 						j++;
 					}
 					j=1;
