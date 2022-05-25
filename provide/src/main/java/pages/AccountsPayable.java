@@ -263,14 +263,14 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.PASS,"Successfully New Line added");
 		
 		//Scroll Bar to view Accounts payable tab
-		/*
-		 * test.log(Status.INFO,"Wait for scroll");
-		 * driver.findElement(By.xpath(horizontalScrollPortXpath)); WebElement element1
-		 * = driver.findElement(By.xpath(horizontalScrollXpath));
-		 * javascriptExecutor.executeScript("arguments[0].scrollLeft += 600;",element1);
-		 * Thread.sleep(1000);
-		 * test.log(Status.PASS,"Successfully Successfully scrolled right");
-		 */
+		
+		  test.log(Status.INFO,"Wait for scroll");
+		  driver.findElement(By.xpath(horizontalScrollPortXpath)); 
+		  WebElement element1  = driver.findElement(By.xpath(horizontalScrollXpath));
+		  javascriptExecutor.executeScript("arguments[0].scrollLeft += 1000;",element1);
+		  Thread.sleep(1000);
+		  test.log(Status.PASS,"Successfully Successfully scrolled right");
+		 
     		
 		
 		test.log(Status.INFO,"Click Purchase Category Line");
@@ -310,6 +310,8 @@ public class AccountsPayable extends BasePage {
 			el.click();
 		}
 		test.log(Status.PASS,"Successfully Selected Imputation");
+		
+		
 		
 		
 		//agency site
