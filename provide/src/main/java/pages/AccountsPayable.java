@@ -281,7 +281,7 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.PASS,"Successfully Clicked Purchase Category Line to enter Data");
 		
 		test.log(Status.INFO,"Click Input Button For Search");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryInputButtonXpath))).click();
+	//	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryInputButtonXpath))).click();
 		test.log(Status.PASS,"Successfully Button Clicked Purchase Category");
 		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.CONTROL + "a");
@@ -299,7 +299,7 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.PASS,"Successfully clicked Imputation Line");
 		
 		test.log(Status.INFO,"Click Imputation Input Button");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationInputButtonXpath))).click();
+	//	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationInputButtonXpath))).click();
 		test.log(Status.PASS,"Successfully clicked Imputation Line");
 		
 		/*
@@ -331,10 +331,13 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.INFO,"Click Agency Site Line");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteXpath))).click();
 		test.log(Status.PASS,"Successfully Agency Site Line");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(agencySiteDivXpath)));
-		test.log(Status.INFO,"Agency Site Div");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteDivXpath))).click();
-		test.log(Status.PASS,"Successfully Agency Site div");
+		/*
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+		 * agencySiteDivXpath))); test.log(Status.INFO,"Agency Site Div");
+		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+		 * agencySiteDivXpath))).click();
+		 * test.log(Status.PASS,"Successfully Agency Site div");
+		 */
 		
 		test.log(Status.INFO, "Enter Agency Site");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(Keys.CONTROL+"a");
@@ -351,10 +354,12 @@ public class AccountsPayable extends BasePage {
         	test.log(Status.INFO,"Click SSP line");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspXpath))).click();
 		test.log(Status.PASS,"Successfully SSP line");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(sspDivXpath)));
-		test.log(Status.INFO,"Click SSP Div");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspDivXpath))).click();
-		test.log(Status.PASS,"Successfully Clicked SSP div");
+		/*
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(sspDivXpath)));
+		 * test.log(Status.INFO,"Click SSP Div");
+		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspDivXpath
+		 * ))).click(); test.log(Status.PASS,"Successfully Clicked SSP div");
+		 */
 		
 		test.log(Status.INFO, "Enter SSP");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspSearchXpath))).sendKeys(Keys.CONTROL+"a");
