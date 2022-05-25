@@ -96,7 +96,7 @@ public class AccountsPayable extends BasePage {
 	static String agencySiteVisibleXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[13]/gl-lookup-list-renderer//child::span[@title!='']";
 	
 	static String horizontalScrollPortXpath="(//div[@class='ag-body-horizontal-scroll-viewport'])[2]";
-	static String horizontalScrollXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[5]/div[2]";
+	static String horizontalScrollXpath="(//div[@class='ag-body-horizontal-scroll-viewport'])[2]";
 	static String sspXpath= "/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[14]/gl-lookup-list-renderer/span";
 	static String sspDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String sspSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
@@ -262,6 +262,17 @@ public class AccountsPayable extends BasePage {
 		driver.switchTo().activeElement();
 		test.log(Status.PASS,"Successfully New Line added");
 		
+		//Scroll Bar to view Accounts payable tab
+		test.log(Status.INFO,"Wait for scroll");
+		driver.findElement(By.xpath(horizontalScrollPortXpath));
+		WebElement element1 = driver.findElement(By.xpath(horizontalScrollXpath));
+		javascriptExecutor.executeScript("arguments[0].scrollLeft += 600;",element1);
+    	Thread.sleep(1000);
+    	test.log(Status.PASS,"Successfully Successfully scrolled right");
+    	
+    	WebElement tx = driver.findElement(By.xpath("//span[@class='ag-header-cell-text' and contains(text(),'Start Date')]"));
+		javascriptExecutor.executeScript("arguments[0].scrollIntoView;",tx);
+		
 		test.log(Status.INFO,"Click Purchase Category Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked Purchase Category Line to enter Data");
@@ -318,12 +329,7 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSelect1Xpath+agency+agencySiteSelect2Xpath))).click();
 		test.log(Status.PASS,"Successfully Selected Agency Site");
 		
-		test.log(Status.INFO,"Wait for scroll");
-		driver.findElement(By.xpath(horizontalScrollPortXpath));
-		WebElement element1 = driver.findElement(By.xpath(horizontalScrollXpath));
-		javascriptExecutor.executeScript("arguments[0].scrollLeft += 600;",element1);
-    	Thread.sleep(1000);
-    	test.log(Status.PASS,"Successfully Successfully scrolled right");
+		
 		// ssp 
     	test.log(Status.INFO,"Check type It is Agency or Site :: "+type);
         if(type.equalsIgnoreCase("A")) {
