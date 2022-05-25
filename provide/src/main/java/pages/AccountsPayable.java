@@ -69,14 +69,17 @@ public class AccountsPayable extends BasePage {
 	static String addNewLineXpath="//button[@class='pt-btn pt-btn-link ng-star-inserted']";
 	static String addNewLineGridXpath="(//div[@class='grid-container'])[2]";
 	
-	static String purchaseCategoryXpath="//div[@col-id='Text32']//span[@class='text-align-left ng-star-inserted']";    
-	static String purchaseCategoryDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
+	static String purchaseCategoryXpath="//div[@col-id='Text32']//span[@class='text-align-left ng-star-inserted']";   
+	
+	static String purchaseCategoryInputButtonXpath="//input[@aria-label='Purchase Category Code']//following::button[@title='Expand']";
+	
 	static String purchaseCategorySearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String purchaseCategorySelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
 	static String purchaseCategorySelect2Xpath="')]";
 	static String purchaseCategorySelectXpath="//span[@class='pt-item-list-item-header']";
 	
 	static String imputationXpath="//div[@col-id='Text31']//span[@class='text-align-left ng-star-inserted']";
+	static String imputationInputButtonXpath="//div[@col-id='Text31']//child::input[@data-t-id='select-form-control']//following::span[@class='pt-select-placeholder ng-star-inserted']";
 	static String imputationDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String imputationSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String imputationSelect1Xpath="//span[@class='pt-highlighted-text' and starts-with(text(),'";
@@ -276,10 +279,11 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.INFO,"Click Purchase Category Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked Purchase Category Line to enter Data");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryDivXpath)));
-		test.log(Status.INFO,"Click Purchase Category Division");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryDivXpath))).click();
-		test.log(Status.PASS,"Successfully Clicked division");
+		
+		test.log(Status.INFO,"Click Input Button For Search");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryInputButtonXpath))).click();
+		test.log(Status.PASS,"Successfully Button Clicked Purchase Category");
+		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.CONTROL + "a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.BACK_SPACE);
 		test.log(Status.INFO,"Enter Purchase Category ");
@@ -293,10 +297,19 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.INFO,"Click Imputation Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationXpath))).click();
 		test.log(Status.PASS,"Successfully clicked Imputation Line");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationDivXpath)));
-		test.log(Status.INFO,"Click Imputation Division");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationDivXpath))).click();
-		test.log(Status.PASS,"Successfully Imputation division clicked");
+		
+		test.log(Status.INFO,"Click Imputation Input Button");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationInputButtonXpath))).click();
+		test.log(Status.PASS,"Successfully clicked Imputation Line");
+		
+		/*
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+		 * imputationDivXpath))); test.log(Status.INFO,"Click Imputation Division");
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+		 * imputationDivXpath))).click();
+		 * test.log(Status.PASS,"Successfully Imputation division clicked");
+		 */
+		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(Keys.CONTROL + "a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(Keys.BACK_SPACE);
 		test.log(Status.INFO,"Enter Imputation Data");
