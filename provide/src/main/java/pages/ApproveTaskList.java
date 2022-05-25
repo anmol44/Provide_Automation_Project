@@ -28,6 +28,9 @@ public class ApproveTaskList extends BasePage {
 			test.log(Status.INFO, "Click Approve Button For Invoice");
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invoiceApproveButtonXpath))).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(verifyApproveXpath)));
+			if(driver.findElements(By.xpath(allTasksXpath)).size()>0) {
+		    	 
+		     }
 			test.log(Status.PASS, "Successfully Approved By Approver");
 		     
 		     
@@ -37,6 +40,9 @@ public class ApproveTaskList extends BasePage {
 		test.log(Status.INFO, "Click Approve Button For PR");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(approveTaskListXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(verifyApproveXpath)));
+		if(driver.findElements(By.xpath(allTasksXpath)).size()>0) {
+	    	 
+	     }
 		test.log(Status.PASS, "Successfully Approved by Approver");
  	   
 			}

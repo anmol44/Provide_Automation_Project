@@ -69,14 +69,14 @@ public class AccountsPayable extends BasePage {
 	static String addNewLineXpath="//button[@class='pt-btn pt-btn-link ng-star-inserted']";
 	static String addNewLineGridXpath="(//div[@class='grid-container'])[2]";
 	
-	static String purchaseCategoryXpath="(//span[@class='text-align-left ng-star-inserted'])[2]";    
+	static String purchaseCategoryXpath="//div[@col-id='Text32']//span[@class='text-align-left ng-star-inserted']";    
 	static String purchaseCategoryDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String purchaseCategorySearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String purchaseCategorySelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
 	static String purchaseCategorySelect2Xpath="')]";
 	static String purchaseCategorySelectXpath="//span[@class='pt-item-list-item-header']";
 	
-	static String imputationXpath="(//span[@class='text-align-left ng-star-inserted'])[3]";
+	static String imputationXpath="//div[@col-id='Text31']//span[@class='text-align-left ng-star-inserted']";
 	static String imputationDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String imputationSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String imputationSelect1Xpath="//span[@class='pt-highlighted-text' and starts-with(text(),'";
@@ -87,7 +87,7 @@ public class AccountsPayable extends BasePage {
 	
 	static String natureCodeXpath="/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[11]/gl-lookup-list-renderer//child::span[@title!='']";
 	
-	static String agencySiteXpath= "(//span[@class='text-align-left ng-star-inserted'])[4]";
+	static String agencySiteXpath= "//div[@col-id='Text16']//span[@class='text-align-left ng-star-inserted']";
 	static String agencySiteDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String agencySiteSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String agencySiteSelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
@@ -97,7 +97,7 @@ public class AccountsPayable extends BasePage {
 	
 	static String horizontalScrollPortXpath="(//div[@class='ag-body-horizontal-scroll-viewport'])[2]";
 	static String horizontalScrollXpath="(//div[@class='ag-body-horizontal-scroll-viewport'])[2]";
-	static String sspXpath= "/html/body/bw-root/ia-invoices/pt-split-view/div/div[2]/div[2]/div/ia-invoice-coding/pt-tabs/mat-tab-group/div/mat-tab-body/div/div/div/gl-document-rows/div/gl-fields-grid/gl-grid/pt-grid/ag-grid-angular/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div[14]/gl-lookup-list-renderer/span";
+	static String sspXpath= "//div[@col-id='ProjectCode']//span[@class='text-align-left ng-star-inserted']";
 	static String sspDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String sspSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String sspSelect1Xpath="//span[@class='pt-highlighted-text' and contains(text(),'";
@@ -263,15 +263,15 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.PASS,"Successfully New Line added");
 		
 		//Scroll Bar to view Accounts payable tab
-		test.log(Status.INFO,"Wait for scroll");
-		driver.findElement(By.xpath(horizontalScrollPortXpath));
-		WebElement element1 = driver.findElement(By.xpath(horizontalScrollXpath));
-		javascriptExecutor.executeScript("arguments[0].scrollLeft += 600;",element1);
-    	Thread.sleep(1000);
-    	test.log(Status.PASS,"Successfully Successfully scrolled right");
-    	
-    	WebElement tx = driver.findElement(By.xpath("//span[@class='ag-header-cell-text' and contains(text(),'Start Date')]"));
-		javascriptExecutor.executeScript("arguments[0].scrollIntoView;",tx);
+		/*
+		 * test.log(Status.INFO,"Wait for scroll");
+		 * driver.findElement(By.xpath(horizontalScrollPortXpath)); WebElement element1
+		 * = driver.findElement(By.xpath(horizontalScrollXpath));
+		 * javascriptExecutor.executeScript("arguments[0].scrollLeft += 600;",element1);
+		 * Thread.sleep(1000);
+		 * test.log(Status.PASS,"Successfully Successfully scrolled right");
+		 */
+    		
 		
 		test.log(Status.INFO,"Click Purchase Category Line");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryXpath))).click();
