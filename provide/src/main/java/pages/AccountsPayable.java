@@ -280,13 +280,13 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked Purchase Category Line to enter Data");
 		
-		test.log(Status.INFO,"Click Input Button For Search");
+	//	test.log(Status.INFO,"Click Input Button For Search");
 	//	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryInputButtonXpath))).click();
-		test.log(Status.PASS,"Successfully Button Clicked Purchase Category");
+	//	test.log(Status.PASS,"Successfully Button Clicked Purchase Category");
 		
+		test.log(Status.INFO,"Enter Purchase Category ");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.CONTROL + "a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(Keys.BACK_SPACE);
-		test.log(Status.INFO,"Enter Purchase Category ");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySearchXpath))).sendKeys(purchaseCategory);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategorySelect1Xpath + purchaseCategory + purchaseCategorySelect2Xpath))).click();
@@ -298,9 +298,9 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationXpath))).click();
 		test.log(Status.PASS,"Successfully clicked Imputation Line");
 		
-		test.log(Status.INFO,"Click Imputation Input Button");
+	//	test.log(Status.INFO,"Click Imputation Input Button");
 	//	wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationInputButtonXpath))).click();
-		test.log(Status.PASS,"Successfully clicked Imputation Line");
+	//	test.log(Status.PASS,"Successfully clicked Imputation Line");
 		
 		/*
 		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
@@ -309,10 +309,9 @@ public class AccountsPayable extends BasePage {
 		 * imputationDivXpath))).click();
 		 * test.log(Status.PASS,"Successfully Imputation division clicked");
 		 */
-		
+		test.log(Status.INFO,"Enter Imputation Data");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(Keys.CONTROL + "a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(Keys.BACK_SPACE);
-		test.log(Status.INFO,"Enter Imputation Data");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(imputationSearchXpath))).sendKeys(coding);
 		Thread.sleep(2000);
 		test.log(Status.INFO,"Collect all Imputation Data from search Panel into List");
@@ -351,6 +350,12 @@ public class AccountsPayable extends BasePage {
 		// ssp 
     	test.log(Status.INFO,"Check type It is Agency or Site :: "+type);
         if(type.equalsIgnoreCase("A")) {
+        	
+        	test.log(Status.INFO,"Wait for scroll");		  
+  		  javascriptExecutor.executeScript("arguments[0].scrollLeft += 500;",element1);
+  		  Thread.sleep(1000);
+  		  test.log(Status.PASS,"Successfully Successfully scrolled right for SSP");
+        	
         	test.log(Status.INFO,"Click SSP line");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sspXpath))).click();
 		test.log(Status.PASS,"Successfully SSP line");
