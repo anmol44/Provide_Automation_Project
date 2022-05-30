@@ -1,12 +1,15 @@
 package pages;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 import base.BasePage;
 
@@ -60,6 +63,7 @@ public class LogOut extends BasePage {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+			
 		}
 		unSavedData(doctype,lengthOfList);		
 		Thread.sleep(2000);

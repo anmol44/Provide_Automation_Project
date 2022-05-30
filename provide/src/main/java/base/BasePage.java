@@ -1,7 +1,9 @@
 package base;
 
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -18,7 +20,7 @@ public class BasePage {
 	
 	public BasePage(WebDriver driver) {
 		BasePage.driver=driver;
-		wait = new WebDriverWait(driver,20);
+		wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 		javascriptExecutor = (JavascriptExecutor) driver;
 	}
 	

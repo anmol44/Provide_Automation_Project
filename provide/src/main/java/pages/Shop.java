@@ -1,5 +1,9 @@
 package pages;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +25,7 @@ public class Shop extends BasePage {
 	static String organizationCountXpath = "//div[@class='pal-tree-view-item-count ng-scope']";
 	static String organizationPanelXpath ="//div[@class='pal-tree-view-nodes']//child::pal-tree-item//child::div[@data-t-node-code=";
 	static String organizationSelectButtonXpath="//button[@class='btn btn-pal-action-button ng-scope']";
+	static String organizationListXpath="//span[@class='pal-tree-item-label margin-left ng-binding']";
 	static String selectDropDownXpath= "//div[@class='pal-tree-select dropdown']";
 	static String modalTitleXpath ="//span[@class='modal-title ng-binding']";
 	static String fieldContaierXpath="//div[@class='pal-tree-select-inner-container flex-grow' and @aria-label='Organization']";
@@ -47,18 +52,29 @@ public class Shop extends BasePage {
 	public Shop organizationSelect(ExtentTest test,String organization) {
 		
 		test.log(Status.INFO, "Enter Organization");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchBoxXpath)));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(organizationSearchBoxXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(modalTitleXpath)));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(selectDropDownXpath)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fieldContaierXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(fieldContaierXpath))).click();
 		// change from elementToBeClickable  to visiblityOfElementLocated.
+		
+		
+		test.log(Status.INFO, "Store All Organization in List");
+		List<WebElement> elements = new ArrayList<>();
+		elements = driver.findElements(By.xpath(organizationListXpath));
+		List<WebElement> element = elements.stream().filter(e->e.getText().equalsIgnoreCase(organization)).collect(Collectors.toList());
+		for(WebElement el : element) {
+			test.log(Status.INFO, "Organization is Displayed :: "+el.isDisplayed());
+			
+		}
+		
 		test.log(Status.INFO, "Organization If is correct and available");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSearchXpath))).sendKeys(organization);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(organizationSearchXpath))).sendKeys(organization);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationCountXpath)));
-		test.log(Status.INFO, "Select Organization");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationPanelXpath +organization+"]"))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(organizationSelectButtonXpath))).click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(organizationPanelXpath +organization+"]"))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(organizationSelectButtonXpath))).click();
 		test.log(Status.PASS, "Successful Organization");
 		return this;
 	}
