@@ -148,19 +148,19 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceXpath))).sendKeys(invoice);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceSearchXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(invoiceSearchXpath))).click();
-		test.log(Status.PASS,"Successfully Invoice Searched");
+		test.log(Status.PASS,"Successfully Invoice Search Button cliicked");
 
 		 
 		return this;
 	}
 	
 	public AccountsPayable  savePoInvoice(ExtentTest test,String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException  {
-		test.log(Status.INFO,"Click Header Data");
+		test.log(Status.INFO,"Click Header Data and check Invoice Found or Not");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(matLabLabelsXpath)));
 		WebElement element = driver.findElement(By.xpath(matLabLabelsXpath));
 		List<WebElement> elements = element.findElements(By.xpath("./child::*"));
 		elements.get(1).click();
-		test.log(Status.PASS,"Successfully Header Data clicked");
+		test.log(Status.PASS,"Successfully Header Data clicked and Invoice Found");
 		
 		test.log(Status.INFO,"Click supplier Code Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(supplierCodeButtonXpath)));
