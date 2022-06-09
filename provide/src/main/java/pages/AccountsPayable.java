@@ -19,6 +19,9 @@ public class AccountsPayable extends BasePage {
 
 	
 	static String recievedStageXpath = "//div[@class='chart-caption ng-star-inserted' and contains(text(),'Received')]";
+	
+	static String fullLayoutXpath="//button[@title='Full coding layout']";
+	
 	static String invoiceXpath = "(//input[@class='pt-input ng-untouched ng-pristine ng-valid'])[1]";
 	static String invoiceSearchXpath="//button[@class='pt-btn' and contains(text(),'Search')]";
 	
@@ -123,6 +126,14 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.INFO,"Click Recieved stage");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(recievedStageXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked Recieved stage");
+
+		return this;
+	}
+	
+	public AccountsPayable fullCodingLayout(ExtentTest test) {
+		test.log(Status.INFO,"Click Full Layout version");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(fullLayoutXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked Full Layout version");
 
 		return this;
 	}
@@ -406,6 +417,7 @@ public class AccountsPayable extends BasePage {
 	
 	public Matching matching(ExtentTest test,String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException {
 		receivedStage(test).
+		fullCodingLayout(test).
 		invoiceSearch(test,invoice).
 		savePoInvoice(test,invoice, po, supplierCode, invoiceDate, invoiceAmt, taxAmt).
 		sendToValidate(test);
@@ -415,6 +427,7 @@ public class AccountsPayable extends BasePage {
 	
 	public AccountsPayable nonPOInvoice(ExtentTest test,JavascriptExecutor javascriptExecutor,String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver,String purchaseCategory,String coding ,String agency,String type,String ssp) throws InterruptedException  {
 		receivedStage(test).
+		fullCodingLayout(test).
 		invoiceSearch(test,invoice).
 		editNonPoInvoice(test,invoice, supplierCode, invoiceDate, invoiceAmt, taxAmt, approver).
 		saveAndAddLines(test,javascriptExecutor, purchaseCategory,coding, agency, type, ssp).
