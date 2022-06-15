@@ -113,7 +113,9 @@ public class InvoiceLatest extends BaseTest {
 								);
 						
 						Matching matching = new Matching(driver);
-						matching.openAndMatchInvoice(excelData.get(i).get("MatchQty"));
+						matching.openAndMatchInvoice(test,
+								excelData.get(i).get("MatchQty")
+								);
 					}
 					else
 					if(excelData.get(i).get("PO Number").isEmpty()) {

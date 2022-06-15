@@ -108,7 +108,7 @@ public class Sbs extends BaseTest {
 						accountsPayable.matching(test,excelData.get(i).get("InvoiceNo"),excelData.get(i).get("PO Number"),excelData.get(i).get("SupplierCode"),excelData.get(i).get("InvoiceDate"),excelData.get(i).get("InvoiceAmt"),excelData.get(i).get("TaxAmt"));
 						
 						Matching matching = new Matching(driver);
-						matching.openAndMatchInvoice(excelData.get(i).get("MatchQty"));
+						matching.openAndMatchInvoice(test,excelData.get(i).get("MatchQty"));
 					}
 					if(!excelData.get(i).get("PR Type").isEmpty() && excelData.get(i).get("PO Number").isEmpty()) {
 						

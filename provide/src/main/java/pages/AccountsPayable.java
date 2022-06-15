@@ -62,7 +62,7 @@ public class AccountsPayable extends BasePage {
 	static String matLabLabelsXpath="(//div[@class='mat-tab-labels'])[1]";
 	static String matTabLabelsXpath= "//div[@id='mat-tab-label-0-1']";
 		
-	static String approverXpath="//label[contains(text(),' Approver ')]//following-sibling::div//child::button[@title='Expand']";
+	static String approverXpath="//label[contains(text(),'Requester')]//following-sibling::div//child::button[@title='Expand']";
 	static String approverDivXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']";
 	static String approverSearchXpath="//div[@class='pt-select-dropdown-header ng-star-inserted']//child::input";
 	static String approverSelectXpath="//span[@class='pt-item-list-item-header']";
@@ -200,7 +200,7 @@ public class AccountsPayable extends BasePage {
 		test.log(Status.INFO,"Enter PO");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(po);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchButtonXpath))).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberVerify1Xpath+po+poNumberVerify2Xpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poNumberVerify1Xpath+po+poNumberVerify2Xpath))).click();
 		test.log(Status.INFO,"Selected PO");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberTabCancelXpath))).click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poNumberSelectXpath))).click();
