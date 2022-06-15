@@ -44,10 +44,11 @@ public class Matching extends BasePage {
 			test.log(Status.INFO,"Try Refresh Button Clicking for match Panel");
 			while (driver.findElement(By.xpath(tryRefreshingXpath)).isDisplayed()) {
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(tryRefreshingXpath))).click();
+				Thread.sleep(2000);
 			}
 			test.log(Status.PASS,"Successful Match Panel Visisble");
-		} catch (NoSuchElementException e) {
-
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		test.log(Status.INFO,"Search Button visible");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(searchXpath)));
