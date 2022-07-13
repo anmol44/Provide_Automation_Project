@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>128</y>
+      <w>232</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>Commons :: Util
+{All common methods}
+--
+
+--
+Methods
+
+--ExcelData
+--ExceptionCode
+--ExtentReport
+--OutPutSheet
+--Screenshot
+--UserLoginException
+--
+Responsibilities
+
+These are the common functions which
+are used to handle scripts.
+
+--Helps to create Output sheet
+--Take screenshots at failure
+--Extent Report for test cases
+--handle exceptions.
+
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>128</y>
+      <w>224</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Entity :: Test Cases
+{Entities: 010 ,426 ,136 etc}
+-
+-PrCreationLatest
+
+--
+methods
+
+_PrCreation (String) : void    @Test
+--
+Responsibilities
+-- Workflow of automation with sequence.
+--create Purchase Requisition with PR NO.
+-- Check the flow of PR creation and take 
+screen shot for failure 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1000</x>
+      <y>128</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Test
+--
+ Input Excel sheet Data
+--
+Contains all data (url,user,
+         password,etc)
+ 
+
+bg=gray
+fg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>232</y>
+      <w>160</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>968</x>
+      <y>264</y>
+      <w>216</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Object : entity.xml
+--
+command : path of class(prRequisition or
+invoiceLatest)
+
+[pick the specific Test for which 
+we want to run tests] </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>288</y>
+      <w>176</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>432</y>
+      <w>192</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Output Folder
+--
+create extent report and excelsheet
+of test cases of the desired entity 
+for which we ran the project.
+
+[output in the desired folder]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>568</x>
+      <y>64</y>
+      <w>240</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>CLASS DIAGRAM : PROVIDE
+bg=yellow
+fg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>608</x>
+      <y>360</y>
+      <w>232</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::Invoice
+{Invoice Approval PO and NON-PO}
+--
+-InvoiceLatest
+
+--
+Method 
+invoice(String) : void   @Test
+
+--
+Responsibilities
+-- Search Invoice 
+--Edit Invoice 
+--fill proper data for approval
+-- send to the approver
+-- approve the correct invoice
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>456</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>304</y>
+      <w>152</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;160.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>592</x>
+      <y>656</y>
+      <w>248</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Package : Base
+--
+Classes : BaseTest ,BasePage
+--
+
+  BaseTest has BeforeTest and AfterTest 
+  Annotations
+
+ BasePage constructor ( driver, wait , 
+ javascriptExecutor.) and common functions 
+  
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>152</y>
+      <w>168</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>
+Package::Pages
+{Page Object Model}
+--
+--AccountsPayable
+--ApproveTaskList
+--EditCoding
+--EditRequisition
+--Form
+--GetApprove
+--GetTaskList
+--HomePage
+--Login
+--Logout
+--Matching
+--ReviewAndApprove
+--SendToValidation
+--Shop
+--ViewDetails
+
+--
+Responsibilities
+-- return the next page object
+-- perform the automation for 
+   specific page</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>176</y>
+      <w>168</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;240.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>160</y>
+      <w>184</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>336</y>
+      <w>88</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>232</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>360</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>736</x>
+      <y>560</y>
+      <w>32</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;20.0;120.0</additional_attributes>
+  </element>
+</diagram>

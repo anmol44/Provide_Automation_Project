@@ -48,7 +48,7 @@ public class PrCreationLatest extends BaseTest {
 
 	@Test   // Create Pr for Each Entity
 	@Parameters("Name")
-	public void sbs(String Name) throws InterruptedException, IOException {
+	public void PrCreation(String Name) throws InterruptedException, IOException {
 
 		String inputFile = System.getProperty("user.dir") + "/test/";
 		String outputFile = System.getProperty("user.dir") + "/Output/OutputDataProvide.xlsx";

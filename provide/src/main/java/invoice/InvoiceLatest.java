@@ -48,7 +48,7 @@ public class InvoiceLatest extends BaseTest {
 	
 	@Test   // Anmol chaudhary 
 	@Parameters("Name")
-	public void sbs(String Name) throws IOException {
+	public void invoice(String Name) throws IOException {
 		
 		String inputFile = System.getProperty("user.dir") +"/test/";
 		String outputFile = System.getProperty("user.dir") +"/Output/OutputDataProvide.xlsx";
