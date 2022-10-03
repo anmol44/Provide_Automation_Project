@@ -20,7 +20,7 @@ public class BaseTest {
 	}
 	
 	
-	
+	// Method to be called after each test case run
 	  @AfterMethod 
 	  public void quitDriver() throws InterruptedException {
 	  Thread.sleep(100); 

@@ -3,7 +3,6 @@ package base;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -38,9 +37,18 @@ public class BasePage {
 		
 	}
 	
+	
+	// making Overload methods for selecting time and type of locator.
 	public void waitForElement(String element) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(element)));
 	}
+	
+	public WebElement waitForElement(By by, Integer to) {
+		WebDriverWait waitLocal = new WebDriverWait(driver,Duration.ofSeconds(to));
+		return waitLocal.until(ExpectedConditions.visibilityOfElementLocated(by));
+		
+	}
+	
 	
 
 }
