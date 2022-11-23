@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -83,7 +84,7 @@ public class Matching extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxCodeInputXpath))).sendKeys(taxCode);
 		test.log(Status.PASS,"successful enter Tax Code");
 		test.log(Status.INFO,"select Tax code");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectTaxCodeXpath1+taxCode+selectTaxCodeXpath2))).click();
+		wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath(selectTaxCodeXpath1+taxCode+selectTaxCodeXpath2))).click();
 		test.log(Status.PASS, "Tax Code selected successfully");
 		
 		return this;
