@@ -30,8 +30,15 @@ public class Matching extends BasePage {
 	static String confirmButtonXpath="//button[@class='pt-btn ng-star-inserted']//child::span[contains(text(),'Confirm')]";
 	static String showAllPOXpath = "//div[@class='pt-flipswitch-container checked']";
 	static String showAllPOButtonXpath = "//button[@class='pt-flipswitch-switch']";
+	static String taxCodeXpath = "//div[@col-id='TaxCode' and @role='gridcell']";
+	static String taxCodeInputXpath = "//input[@data-t-id='search-input' ]";
+	static String  selectTaxCodeXpath1 = "//span[text()='";
+	static String selectTaxCodeXpath2 = "']//parent::span[not(text()[normalize-space(.)])]";
+	static String saveButtonXpath = "//button[@class='pt-btn' and contains(text(),'Save')]";
+	static String invoiceSavedLabelXpath = "//span[contains(text(),'Invoice saved')]";
+	
 
-	public Matching openAndMatchInvoice(ExtentTest test ,String matchQty) throws Exception   {
+	public Matching openAndMatchInvoice(ExtentTest test ) throws Exception   {
 		test.log(Status.INFO,"Try Refresh Button Click");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(tryRefreshingXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(refreshButtonXpath)));
@@ -50,6 +57,7 @@ public class Matching extends BasePage {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		test.log(Status.INFO,"Search Button visible");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(searchXpath)));
 		test.log(Status.PASS,"Successful Search Button visible");	
@@ -62,7 +70,26 @@ public class Matching extends BasePage {
 			test.log(Status.PASS,"Successful button clicked to show all PO items");
 		}
 		test.log(Status.PASS,"Successful Show all PO items button is checked");
+			
+		return this;
+	}
+	
+	public Matching sendTaxCode(ExtentTest test, String taxCode) {
+		test.log(Status.INFO,"click tax code input block");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(taxCodeXpath)));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxCodeXpath))).click();
+		test.log(Status.PASS," successful Tax code clicked");
+		test.log(Status.INFO,"enter Tax Code");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxCodeInputXpath))).sendKeys(taxCode);
+		test.log(Status.PASS,"successful enter Tax Code");
+		test.log(Status.INFO,"select Tax code");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectTaxCodeXpath1+taxCode+selectTaxCodeXpath2))).click();
+		test.log(Status.PASS, "Tax Code selected successfully");
 		
+		return this;
+	}
+	
+	public Matching quantityToMatch(ExtentTest test, String matchQty) {
 		test.log(Status.INFO,"quantity to match data send");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(quantityToMatchXpath))).click();
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(ProvidePom.quantityToMatchInpuXpath))).clear();
@@ -76,7 +103,27 @@ public class Matching extends BasePage {
 		test.log(Status.PASS,"Successful match button clicked");
 		
 		//wait until confirm button active
+		test.log(Status.INFO,"wait till Spinner off");
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(spinnerXpath)));
+		test.log(Status.PASS,"Spinner off successful");		
+	
+		  return this;
+	}
+	
+	public Matching clickSaveButton(ExtentTest test) throws InterruptedException {
+		test.log(Status.INFO,"Click Save Button ");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(saveButtonXpath))).click();
+		test.log(Status.PASS,"Successful Save Button");
+		
+		test.log(Status.INFO, "wait for Invoice saved logo");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(invoiceSavedLabelXpath)));
+		test.log(Status.PASS, "Successful Invoice saved");
+		Thread.sleep(2000);
+		
+		return this;
+	}
+	
+	public Matching clickConfirmButton(ExtentTest test) {
 		test.log(Status.INFO,"Click Confirm Button ");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(confirmButtonXpath))).click();
 		test.log(Status.PASS,"Successful Confirm Button");
@@ -84,9 +131,8 @@ public class Matching extends BasePage {
 		test.log(Status.INFO,"Click refresh Button after Confirm Button click");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(tryRefreshingXpath)));
 		test.log(Status.PASS,"Successful refresh Button clicked after confirm button click");
-		
 		return this;
-
 	}
+    
+ }
 
-}

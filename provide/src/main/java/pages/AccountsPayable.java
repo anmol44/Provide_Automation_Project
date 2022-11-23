@@ -32,6 +32,8 @@ public class AccountsPayable extends BasePage {
 	static String poSearchButtonXpath="//button[@class='pt-btn pt-btn-primary search-button' and contains(text(),'Search')]";
 	static String poNumberVerify1Xpath="//span[@class='label' and contains(text(),'";
 	static String poNumberVerify2Xpath="')]";
+	static String organizationButtonXpath = "(//button[@class='pt-tree-select-toggle-btn'])[2]";
+	static String selectAllButtonXpath = "//button[@title='Select all lower level organizations' and contains(text(),'Select all')]";
 	static String poNumberTabCancelXpath="//button[@title='Cancel']";
 	static String poNumberSelectXpath="//button[@class='pt-btn select-btn' and contains(text(),'Select')]";
 
@@ -114,7 +116,10 @@ public class AccountsPayable extends BasePage {
 	static String openXpath=   "//button[@class='pt-btn ng-star-inserted']//child::span[contains(text(),'Open')]";     //"(//button[@class='pt-btn ng-star-inserted'])[2]";
 	static String sendToValidationXpath= "//button[@class='pt-btn ng-star-inserted']//child::span[contains(text(),'Send to validation')]";    //"(//button[@class='pt-btn ng-star-inserted'])[1]";
 	static String tryRefreshingXpath="//button[@class='pt-btn-link ng-star-inserted' and contains(text(),'Try refreshing')]";
+	static String refreshButtonXpath = "//button[@class='pt-btn pt-btn-borderless pt-btn-md link-btn pt-clickable' and contains(text(),'Refresh')]";
 	static String verifyInvoiceSentToValidation = "//span[contains(text(),'Invoice sent to validation')]";
+	
+	static String createInvoiceXpath = "//span[@class='ng-star-inserted' and contains(text(),'Create invoice')]";
 
 	
 	public AccountsPayable(WebDriver driver) {
@@ -197,6 +202,13 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poDivXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(Keys.CONTROL+"a");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(Keys.BACK_SPACE);
+		test.log(Status.INFO, "click to select all organization");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(organizationButtonXpath)));
+		test.log(Status.PASS, "clicked successfully");
+		test.log(Status.INFO, "Check all organizations select check");
+		if(driver.findElements(By.xpath(selectAllButtonXpath)).size()>0) {
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllButtonXpath))).click();
+		}
 		test.log(Status.INFO,"Enter PO");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(poSearchXpath))).sendKeys(po);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(poSearchButtonXpath))).click();
@@ -354,6 +366,9 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(Keys.BACK_SPACE);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(agency);
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(Keys.CONTROL+"a");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(Keys.BACK_SPACE);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSearchXpath))).sendKeys(agency);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(agencySiteSelect1Xpath+agency+agencySiteSelect2Xpath))).click();
 		test.log(Status.PASS,"Successfully Selected Agency Site");
 		
@@ -402,7 +417,7 @@ public class AccountsPayable extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(sendToValidationXpath))).click();
 		test.log(Status.INFO,"Successfully Clicked send To Validation Button");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(verifyInvoiceSentToValidation)));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tryRefreshingXpath))).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(tryRefreshingXpath))).click();   // try refreshing when no duplicated of invoice no.  23/11/2022  @Anmol
 		test.log(Status.PASS,"Successfully Sent To Validation");
 		return this;
 	}
@@ -415,13 +430,20 @@ public class AccountsPayable extends BasePage {
 	}
 	
 	
+	public CreateInvoice clickCreateInvoice(ExtentTest test) {
+		test.log(Status.INFO,"Click Create Invoice");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(createInvoiceXpath))).click();
+		test.log(Status.PASS,"Create invoice button successful");
+		return new CreateInvoice(driver);
+	}
+	
+	
 	public Matching matching(ExtentTest test,String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException {
 		receivedStage(test).
 		fullCodingLayout(test).
 		invoiceSearch(test,invoice).
 		savePoInvoice(test,invoice, po, supplierCode, invoiceDate, invoiceAmt, taxAmt).
-		sendToValidate(test);
-		
+		sendToValidate(test);		
 		return new Matching(driver);
 	}
 	

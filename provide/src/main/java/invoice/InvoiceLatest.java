@@ -111,11 +111,16 @@ public class InvoiceLatest extends BaseTest {
 								excelData.get(i).get("InvoiceAmt"),
 								excelData.get(i).get("TaxAmt")
 								);
-						
+						if(excelData.get(i).get("Manual matching").equalsIgnoreCase("Yes")) {
+							                                                                            // check invoice for manual match or not
 						Matching matching = new Matching(driver);
-						matching.openAndMatchInvoice(test,
-								excelData.get(i).get("MatchQty")
-								);
+						matching.openAndMatchInvoice(test).
+						quantityToMatch(test, excelData.get(i).get("MatchQty")).
+						sendTaxCode(test, excelData.get(i).get("TaxCode/Rate")).
+						clickSaveButton(test).
+						clickConfirmButton(test);
+					
+						}
 					}
 					else
 					if(excelData.get(i).get("PO Number").isEmpty()) {
