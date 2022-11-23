@@ -75,7 +75,7 @@ public class Matching extends BasePage {
 		return this;
 	}
 	
-	public Matching sendTaxCode(ExtentTest test, String taxCode) {
+	public Matching sendTaxCode(ExtentTest test, String taxCode) throws InterruptedException {
 		test.log(Status.INFO,"click tax code input block");
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(taxCodeXpath)));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxCodeXpath))).click();
@@ -84,6 +84,7 @@ public class Matching extends BasePage {
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(taxCodeInputXpath))).sendKeys(taxCode);
 		test.log(Status.PASS,"successful enter Tax Code");
 		test.log(Status.INFO,"select Tax code");
+		Thread.sleep(2000);
 		wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath(selectTaxCodeXpath1+taxCode+selectTaxCodeXpath2))).click();
 		test.log(Status.PASS, "Tax Code selected successfully");
 		
