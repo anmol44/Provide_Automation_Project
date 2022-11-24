@@ -293,7 +293,7 @@ public class AccountsPayable extends BasePage {
 		  test.log(Status.INFO,"Wait for scroll");
 		  driver.findElement(By.xpath(horizontalScrollPortXpath)); 
 		  WebElement element1  = driver.findElement(By.xpath(horizontalScrollXpath));
-		  javascriptExecutor.executeScript("arguments[0].scrollLeft += 1000;",element1);
+		  javascriptExecutor.executeScript("arguments[0].scrollLeft += 1500;",element1);
 		  Thread.sleep(1000);
 		  test.log(Status.PASS,"Successfully Successfully scrolled right");
 		 
