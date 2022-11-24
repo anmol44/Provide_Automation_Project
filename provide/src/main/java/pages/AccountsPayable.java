@@ -300,6 +300,9 @@ public class AccountsPayable extends BasePage {
     		
 		
 		test.log(Status.INFO,"Click Purchase Category Line");
+		WebElement purchaseCategoryElement = driver.findElement(By.xpath(purchaseCategoryXpath));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", purchaseCategoryElement);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(purchaseCategoryXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked Purchase Category Line to enter Data");
 		
