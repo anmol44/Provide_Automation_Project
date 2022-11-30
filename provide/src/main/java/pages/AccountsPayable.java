@@ -288,8 +288,8 @@ public class AccountsPayable extends BasePage {
 		driver.switchTo().activeElement();
 		test.log(Status.PASS,"Successfully New Line added");
 		
-		//Scroll Bar to view Accounts payable tab
 		
+		//Scroll Bar to view Accounts payable tab
 		  test.log(Status.INFO,"Wait for scroll");
 		  driver.findElement(By.xpath(horizontalScrollPortXpath)); 
 		  WebElement element1  = driver.findElement(By.xpath(horizontalScrollXpath));
