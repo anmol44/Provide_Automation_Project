@@ -120,6 +120,9 @@ public class AccountsPayable extends BasePage {
 	static String verifyInvoiceSentToValidation = "//span[contains(text(),'Invoice sent to validation')]";
 	
 	static String createInvoiceXpath = "//span[@class='ng-star-inserted' and contains(text(),'Create invoice')]";
+	static String selectAllOrganizationButtonXpath = "//button[@data-t-id='tree-select-caret']";
+	static String unselectAllButton = "//button[@title='Unselect all lower level organizations']";
+	static String selectAllOrganizationXpath = "//div[@title='Sopra Steria Group']//following-sibling::button[@title='Select all lower level organizations' and contains(text(),'Select all')]";
 
 	
 	public AccountsPayable(WebDriver driver) {
@@ -129,8 +132,31 @@ public class AccountsPayable extends BasePage {
 	
 	public AccountsPayable receivedStage(ExtentTest test) {
 		test.log(Status.INFO,"Click Recieved stage");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(recievedStageXpath))).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(recievedStageXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked Recieved stage");
+
+		return this;
+	}
+	
+	public AccountsPayable selectAllOrganization(ExtentTest test) {
+		test.log(Status.INFO,"Click button for select All Organization");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationButtonXpath))).click();
+		test.log(Status.PASS,"Successfully Clicked button for All Selected");
+		test.log(Status.INFO,"Check all Organization selected");
+		
+		if(driver.findElements(By.xpath(unselectAllButton)).size()>0) {
+			test.log(Status.PASS,"Successfully Selected already button for All Selected");
+			test.log(Status.INFO,"close tab for select organization");
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationButtonXpath))).click();
+			test.log(Status.PASS," Successfull close tab for select organization");
+		}else {
+			
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationXpath))).click();
+			test.log(Status.PASS,"Successfully Selected  button for All Selected");
+			test.log(Status.INFO,"close tab for select organization");
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationButtonXpath))).click();
+			test.log(Status.PASS,"Successfull close tab for select organization");
+		}
 
 		return this;
 	}
@@ -442,6 +468,7 @@ public class AccountsPayable extends BasePage {
 	
 	
 	public Matching matching(ExtentTest test,String invoice,String po,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt) throws InterruptedException {
+		selectAllOrganization(test).
 		receivedStage(test).
 		fullCodingLayout(test).
 		invoiceSearch(test,invoice).
@@ -451,6 +478,7 @@ public class AccountsPayable extends BasePage {
 	}
 	
 	public AccountsPayable nonPOInvoice(ExtentTest test,JavascriptExecutor javascriptExecutor,String invoice,String supplierCode,String invoiceDate,String invoiceAmt,String taxAmt,String approver,String purchaseCategory,String coding ,String agency,String type,String ssp) throws InterruptedException  {
+		selectAllOrganization(test).
 		receivedStage(test).
 		fullCodingLayout(test).
 		invoiceSearch(test,invoice).
