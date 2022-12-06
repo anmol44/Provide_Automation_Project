@@ -132,13 +132,15 @@ public class AccountsPayable extends BasePage {
 	
 	public AccountsPayable receivedStage(ExtentTest test) {
 		test.log(Status.INFO,"Click Recieved stage");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(recievedStageXpath))).click();
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath(recievedStageXpath))));
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.xpath(recievedStageXpath)))).click();
 		test.log(Status.PASS,"Successfully Clicked Recieved stage");
 
 		return this;
 	}
 	
-	public AccountsPayable selectAllOrganization(ExtentTest test) {
+	public AccountsPayable selectAllOrganization(ExtentTest test) throws InterruptedException {
 		test.log(Status.INFO,"Click button for select All Organization");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationButtonXpath))).click();
 		test.log(Status.PASS,"Successfully Clicked button for All Selected");
@@ -146,17 +148,18 @@ public class AccountsPayable extends BasePage {
 		
 		if(driver.findElements(By.xpath(unselectAllButton)).size()>0) {
 			test.log(Status.PASS,"Successfully Selected already button for All Selected");
-			test.log(Status.INFO,"close tab for select organization");
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationButtonXpath))).click();
-			test.log(Status.PASS," Successfull close tab for select organization");
+
 		}else {
 			
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationXpath))).click();
 			test.log(Status.PASS,"Successfully Selected  button for All Selected");
-			test.log(Status.INFO,"close tab for select organization");
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectAllOrganizationButtonXpath))).click();
-			test.log(Status.PASS,"Successfull close tab for select organization");
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(unselectAllButton)));
+			Thread.sleep(2000);
 		}
+		
+		test.log(Status.INFO,"Refresh the page");
+		driver.navigate().refresh();
+		test.log(Status.PASS,"Page Refreshed");
 
 		return this;
 	}
