@@ -37,14 +37,18 @@ public class Matching extends BasePage {
 	static String selectTaxCodeXpath2 = "']//parent::span[not(text()[normalize-space(.)])]";
 	static String saveButtonXpath = "//button[@class='pt-btn' and contains(text(),'Save')]";
 	static String invoiceSavedLabelXpath = "//span[contains(text(),'Invoice saved')]";
+	static String sendToValidationLogMessageXpath = "//span[contains(text(),'Invoice sent to validation')]";
 	
 
 	public Matching openAndMatchInvoice(ExtentTest test ) throws Exception   {
+			
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(sendToValidationLogMessageXpath)));
+		
 		test.log(Status.INFO,"Try Refresh Button Click");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(tryRefreshingXpath))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(refreshButtonXpath)));
-		test.log(Status.PASS,"Successful Try Refresh Button Clicked and Refresh Button on same page");
 		
+		test.log(Status.PASS,"Successful Try Refresh Button Clicked and Refresh Button on same page");
 		test.log(Status.INFO,"Open Button Click");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(openToMatchXpath))).click();
 		test.log(Status.PASS,"Successful Open Button Clicked to match Quantity");
