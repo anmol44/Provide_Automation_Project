@@ -65,8 +65,13 @@ public class LogOut extends BasePage {
 			e.printStackTrace();
 			
 		}
+		
+		try {
 		unSavedData(doctype,lengthOfList);		
 		Thread.sleep(2000);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		if (driver.getCurrentUrl().contains(logOutUrl)) {
 			allSessionsLogOut(wait,doctype,lengthOfList);
 			
