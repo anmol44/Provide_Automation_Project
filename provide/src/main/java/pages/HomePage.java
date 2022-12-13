@@ -55,6 +55,7 @@ public class HomePage extends BasePage {
 		webelement = (WebElement) javascriptExecutor.executeScript("return "+accountsPayableXpath);
 		javascriptExecutor.executeScript("arguments[0].click() ",webelement);
 		test.log(Status.PASS, "Accounts Payable clicked");
+		driver.navigate().refresh();
 		return new AccountsPayable(driver);
 	}
 	
