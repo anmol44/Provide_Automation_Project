@@ -51,7 +51,7 @@ public class InvoiceLatest extends BaseTest {
 	public void invoice(String Name) throws IOException {
 		
 		String inputFile = System.getProperty("user.dir") +"/test/";
-		String outputFile = System.getProperty("user.dir") +"/Output/OutputDataProvide.xlsx";
+		String outputFile = System.getProperty("user.dir") +"/Output/OutputInvoiceProvide.xlsx";
 		ExtentReports extent = ExtentReport.initializeExtendReport();
 		ExtentTest test = extent.createTest("Reading Excel File"," ");
 		
@@ -188,7 +188,7 @@ public class InvoiceLatest extends BaseTest {
 				e.printStackTrace();
 			}
 		}
-	OutPutSheet.outPutResultSheet(workbook, extent);
+	OutPutSheet.outPutResultSheet(workbook, extent, outputFile);
 		
 	}
 	

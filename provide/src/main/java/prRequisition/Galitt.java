@@ -204,7 +204,7 @@ public class Galitt extends BaseTest {
 			}
 			
 		}
-	OutPutSheet.outPutResultSheet(workbook, extent);
+	OutPutSheet.outPutResultSheet(workbook, extent, outputFile);
 		
 	}
 	

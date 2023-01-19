@@ -236,7 +236,7 @@ public class PrCreationLatest extends BaseTest {
 			}
 
 		}
-		OutPutSheet.outPutResultSheet(workbook, extent);
+		OutPutSheet.outPutResultSheet(workbook, extent, outputFile);
 
 	}
 

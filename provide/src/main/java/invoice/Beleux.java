@@ -163,7 +163,7 @@ public class Beleux extends BaseTest {
 				e.printStackTrace();
 			}
 		}
-	OutPutSheet.outPutResultSheet(workbook, extent);
+	OutPutSheet.outPutResultSheet(workbook, extent, outputFile);
 		
 	}
 	

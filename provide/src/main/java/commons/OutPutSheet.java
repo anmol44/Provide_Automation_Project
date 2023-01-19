@@ -25,7 +25,7 @@ public class OutPutSheet {
 		static HashMap<Integer, HashMap<String,String>> excelData;
 		static Cell cell;
 		static CellStyle style;
-		static String outputFile = System.getProperty("user.dir") +"/Output/OutputDataProvide.xlsx";
+	//	static String outputFile = System.getProperty("user.dir") +"/Output/OutputDataProvide.xlsx";
 	
 	public static Workbook createOutPutSheet(String inputFile, String outputFile ) {
 		 FileSystem system = FileSystems.getDefault();
@@ -74,7 +74,7 @@ public class OutPutSheet {
 		
 	}
 	
-	public static void outPutResultSheet(XSSFWorkbook workbook,ExtentReports extent) throws IOException {
+	public static void outPutResultSheet(XSSFWorkbook workbook,ExtentReports extent, String outputFile ) throws IOException {
 		
 		 FileOutputStream outputStream = new FileOutputStream(outputFile);
 	     workbook.write(outputStream);
